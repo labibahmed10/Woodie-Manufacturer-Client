@@ -2,17 +2,19 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import logo from "../../images/logo.png";
 
-const Navbar = () => {
+const Navbar = ({ children }) => {
   return (
     <nav class="drawer drawer-end">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content flex flex-col">
         {/* <!-- Navbar --> */}
-        <div class="w-full navbar md:px-20 pt-5 bg-neutral">
+        <div class="w-full navbar md:px-20 pt-2 bg-neutral">
           {/* brand logo */}
           <div class="flex-1 px-2 mx-2">
             <img className="w-16" src={logo} alt="" />
-            <span className="text-2xl font-bold">Woodie</span>
+            <span className="md:text-2xl text-xl ml-1 font-bold">
+              Woodie <br /> Manufacturer
+            </span>
           </div>
 
           <div class="flex-none lg:hidden">
@@ -67,6 +69,7 @@ const Navbar = () => {
 
         {/* <!-- Page content here --> */}
         <Outlet></Outlet>
+        {children}
         {/*  */}
       </div>
 
