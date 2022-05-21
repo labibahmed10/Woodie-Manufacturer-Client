@@ -1,11 +1,12 @@
 import React from "react";
 import HomeBanner from "./HomeBanner/HomeBanner";
+import Toolkits from "./Toolkits/Toolkits";
 
 const HomePage = () => {
   return (
     <div>
-      {/* <h1 className="text-5xl">Hell0</h1> */}
       <HomeBanner></HomeBanner>
+      <Toolkits></Toolkits>
     </div>
   );
 };

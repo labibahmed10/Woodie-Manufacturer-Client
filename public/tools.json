@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Wood Finisher",
+    "image": "https://i.ibb.co/vxRKfyg/cutter.png",
+    "desc": "This is used to give finishing touch on the wood",
+    "moq": 120,
+    "avlQuan": 1100,
+    "pPerUnit": 23
+  },
+  {
+    "name": "Gloves",
+    "image": "https://i.ibb.co/5sNt1cv/gloves.png",
+    "desc": "This is used to save your hands from danger",
+    "moq": 105,
+    "avlQuan": 2000,
+    "pPerUnit": 9
+  },
+  {
+    "name": "Electric Cutting Machine",
+    "image": "https://i.ibb.co/mv8m7nS/cuttingmachine.png",
+    "desc": "This is used to cut the wood in the best way possible",
+    "moq": 50,
+    "avlQuan": 900,
+    "pPerUnit": 200
+  },
+  {
+    "name": "Hack Shaw",
+    "image": "https://i.ibb.co/Pt0QTXc/hack-shaw.png",
+    "desc": "This is used to cut the wood when you don't have the machine",
+    "moq": 150,
+    "avlQuan": 800,
+    "pPerUnit": 48
+  },
+  {
+    "name": "Tape",
+    "image": "https://i.ibb.co/N6k2632/tape.png",
+    "desc": "This is used to measure the wood in a size you would cut",
+    "moq": 180,
+    "avlQuan": 1440,
+    "pPerUnit": 32
+  },
+  {
+    "name": "Tool Box",
+    "image": "https://i.ibb.co/xXKFnfs/toolbox.png",
+    "desc": "This is used to store your equipments",
+    "moq": 35,
+    "avlQuan": 2000,
+    "pPerUnit": 190
+  }
+]

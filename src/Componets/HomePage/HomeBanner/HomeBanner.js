@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 import "./HomeBanner.css";
 const HomeBanner = () => {
   return (
-    <div className="h-[38rem]">
+    <div className="h-[38rem] mb-16">
       <Swiper
         spaceBetween={30}
         effect={"fade"}
@@ -19,7 +19,7 @@ const HomeBanner = () => {
         loop={true}
         loopFillGroupWithBlank={true}
         modules={[EffectFade, Navigation]}
-        className="mySwiper "
+        className="mySwiper"
       >
         <SwiperSlide>
           <img className="relative " src="https://i.ibb.co/z2c6b36/banner.webp" alt="" />
