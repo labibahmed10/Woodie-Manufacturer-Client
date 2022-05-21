@@ -1,6 +1,7 @@
 import React from "react";
 import BusinessSummary from "./BusinessSummary/BusinessSummary";
 import HomeBanner from "./HomeBanner/HomeBanner";
+import ReviewSection from "./ReviewSection/ReviewSection";
 import Toolkits from "./Toolkits/Toolkits";
 
 const HomePage = () => {
@@ -9,6 +10,7 @@ const HomePage = () => {
       <HomeBanner></HomeBanner>
       <Toolkits></Toolkits>
       <BusinessSummary></BusinessSummary>
+      <ReviewSection></ReviewSection>
     </div>
   );
 };
