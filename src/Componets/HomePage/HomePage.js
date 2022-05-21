@@ -1,4 +1,5 @@
 import React from "react";
+import BusinessSummary from "./BusinessSummary/BusinessSummary";
 import HomeBanner from "./HomeBanner/HomeBanner";
 import Toolkits from "./Toolkits/Toolkits";
 
@@ -7,6 +8,7 @@ const HomePage = () => {
     <div>
       <HomeBanner></HomeBanner>
       <Toolkits></Toolkits>
+      <BusinessSummary></BusinessSummary>
     </div>
   );
 };

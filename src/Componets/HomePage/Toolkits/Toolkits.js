@@ -11,7 +11,7 @@ const Toolkits = () => {
   }, []);
 
   return (
-    <section className="md:px-20 md:py-20 py-16 px-5">
+    <section className="md:px-20 md:py-20 py-16 px-5 lg:mb-16 mb-5 text-secondary">
       <h1 className="text-center lg:text-5xl text-4xl pb-10 font-bold">
         Get Our <span className="text-primary">Tools</span>
       </h1>
