@@ -1,5 +1,6 @@
 import React from "react";
 import BusinessSummary from "./BusinessSummary/BusinessSummary";
+import Footer from "./Footer/Footer";
 import HomeBanner from "./HomeBanner/HomeBanner";
 import ReviewSection from "./ReviewSection/ReviewSection";
 import Toolkits from "./Toolkits/Toolkits";
@@ -11,6 +12,8 @@ const HomePage = () => {
       <Toolkits></Toolkits>
       <BusinessSummary></BusinessSummary>
       <ReviewSection></ReviewSection>
+
+      <Footer></Footer>
     </div>
   );
 };

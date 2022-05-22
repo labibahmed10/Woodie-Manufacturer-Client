@@ -24,29 +24,29 @@ const ReviewSection = () => {
         world
       </h1>
 
-      <div className="h-[35rem]">
+      <div className="lg:h-[35rem] py-10">
         <Swiper
-          slidesPerView={4}
+          // slidesPerView={2}
           spaceBetween={30}
-          slidesPerGroup={3}
+          // slidesPerGroup={3}
           centeredSlides={true}
           autoplay={{
             delay: 3500,
             disableOnInteraction: false,
           }}
           modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper"
+          className="mySwiper w-full"
         >
           {reviews.map((review) => (
             <SwiperSlide>
-              <div class="card w-96 bg-base-100 shadow-xl">
+              <div class="card lg:w-[30rem] h-full w-full bg-base-100 shadow-xl">
                 <img className="px-32" src={review.image} alt="Shoes" />
 
                 <figure class="px-5 pt-3">
                   <h2 class="text-2xl font-bold">{review.name}</h2>
                 </figure>
 
-                <div class="card-body text-left items-center">
+                <div class="card-body text-left items-center h-full">
                   <p>{review.text}</p>
                   <div class="rating rating-md mt-2">
                     <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-300" />
