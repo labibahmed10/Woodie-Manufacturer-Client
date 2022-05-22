@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import swal from "sweetalert";
 import auth from "../../firebase.init";
 
 const PurchasePage = () => {
@@ -32,12 +33,14 @@ const PurchasePage = () => {
     }
 
     if (quantity < moq) {
+      setDisable(true);
       return toast("You have to order minimum of MOQ", {
         autoClose: 1500,
       });
     }
 
     if (quantity > availableQuantity) {
+      setDisable(true);
       return toast("Sorry we don't have this much equipments in stock! Contact us to know more", {
         autoClose: 1500,
       });
@@ -52,7 +55,19 @@ const PurchasePage = () => {
       quantity,
     };
 
-    console.log(buyerInfo);
+    fetch(`http://localhost:5000/purchase`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(buyerInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          swal("Thank You!", "You Successfully placed the order", "success");
+        }
+      });
   };
 
   return (
@@ -114,7 +129,15 @@ const PurchasePage = () => {
               class="input input-bordered  w-1/2 mx-auto"
             />
 
-            <input type="submit" className="btn btn-primary w-30 mx-auto mt-5" value="Purchase" />
+            <div className="flex justify-center mt-5 gap-5">
+              <input disabled={disable} type="submit" className="btn btn-primary " value="Purchase" />
+              <input
+                onClick={() => setDisable(false)}
+                type="normal"
+                className="btn btn-primary w-20"
+                value="reset"
+              />
+            </div>
           </div>
         </div>
       </form>
