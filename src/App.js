@@ -7,6 +7,10 @@ import LogIn from "./UsersRegistration/Login";
 import SignUp from "./UsersRegistration/SignUp";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DashboardPage from "./Componets/DashboardPage/DashboardPage";
+import MyOrders from "./Componets/DashboardPage/MyOrders/MyOrders";
+import AddReview from "./Componets/DashboardPage/AddReview/AddReview";
+import MyProfile from "./Componets/DashboardPage/MyProfile/MyProfile";
 
 function App() {
   return (
@@ -26,6 +30,19 @@ function App() {
               </RequiredAuth>
             }
           ></Route>
+
+          <Route
+            path="/dashboard"
+            element={
+              <RequiredAuth>
+                <DashboardPage></DashboardPage>
+              </RequiredAuth>
+            }
+          >
+            <Route path="myorder" element={<MyOrders></MyOrders>}></Route>
+            <Route path="addreview" element={<AddReview></AddReview>}></Route>
+            <Route path="myprofile" element={<MyProfile></MyProfile>}></Route>
+          </Route>
         </Routes>
         <ToastContainer theme="dark"></ToastContainer>
       </Navbar>

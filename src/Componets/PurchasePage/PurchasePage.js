@@ -60,6 +60,7 @@ const PurchasePage = () => {
 
     const buyerInfo = {
       name: user?.displayName,
+      productName: singleTool?.name,
       email: user?.email,
       adress,
       phone,
@@ -93,7 +94,11 @@ const PurchasePage = () => {
                 refetch();
               }
             });
-          swal("Thank You!", "You Successfully placed the order", "success");
+          swal(
+            "Thank You!",
+            "You have Successfully placed the order.Now you can pay by going to 'My order' page",
+            "success"
+          );
         }
       });
 

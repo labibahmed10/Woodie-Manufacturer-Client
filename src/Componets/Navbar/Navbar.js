@@ -55,16 +55,16 @@ const Navbar = ({ children }) => {
               </li> */}
               <li>
                 {user && (
-                  <NavLink to="/dashboard" className="rounded-xl font-semibold">
+                  <NavLink to="/dashboard/myorder" className="rounded-xl font-semibold">
                     Dashboard
                   </NavLink>
                 )}
               </li>
-              <li>
+              {/* <li>
                 <NavLink to="admin" className="rounded-xl font-semibold">
                   Admin
                 </NavLink>
-              </li>
+              </li> */}
               <li>
                 {user ? (
                   <button onClick={() => signOut(auth)} className="rounded-xl font-semibold">
@@ -103,16 +103,16 @@ const Navbar = ({ children }) => {
           </li> */}
           <li>
             {user && (
-              <NavLink to="/dashboard" className="rounded-xl font-semibold">
+              <NavLink to="/dashboard/myorder" className="rounded-xl font-semibold">
                 Dashboard
               </NavLink>
             )}
           </li>
-          <li>
+          {/* <li>
             <NavLink to="admin" className="rounded-xl font-semibold">
               Admin
             </NavLink>
-          </li>
+          </li> */}
           <li>
             {user ? (
               <button onClick={() => signOut(auth)} className="rounded-xl font-semibold">
