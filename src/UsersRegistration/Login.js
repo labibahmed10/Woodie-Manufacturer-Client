@@ -21,17 +21,17 @@ const LogIn = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    const { email, password } = data;
-    console.log(data);
-    signInWithEmailAndPassword(email, password);
-  };
-
   useEffect(() => {
     if (user) {
       navigate(from, { replace: true });
     }
   }, [user, from, navigate]);
+
+  const onSubmit = (data) => {
+    const { email, password } = data;
+    console.log(data);
+    signInWithEmailAndPassword(email, password);
+  };
 
   if (loading) {
     return <Spinner></Spinner>;

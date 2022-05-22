@@ -1,8 +1,13 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { NavLink, Outlet } from "react-router-dom";
+import auth from "../../firebase.init";
 import logo from "../../images/logo.png";
 
 const Navbar = ({ children }) => {
+  const [user, loading] = useAuthState(auth);
+
   return (
     <nav class="drawer drawer-end">
       <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
@@ -43,15 +48,17 @@ const Navbar = ({ children }) => {
                   Home
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to="/purchase" className="rounded-xl font-semibold">
                   Purchase
                 </NavLink>
-              </li>
+              </li> */}
               <li>
-                <NavLink to="/dashboard" className="rounded-xl font-semibold">
-                  Dashboard
-                </NavLink>
+                {user && (
+                  <NavLink to="/dashboard" className="rounded-xl font-semibold">
+                    Dashboard
+                  </NavLink>
+                )}
               </li>
               <li>
                 <NavLink to="admin" className="rounded-xl font-semibold">
@@ -59,10 +66,17 @@ const Navbar = ({ children }) => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="login" className="rounded-xl font-semibold">
-                  Login
-                </NavLink>
+                {user ? (
+                  <button onClick={() => signOut(auth)} className="rounded-xl font-semibold">
+                    Log out
+                  </button>
+                ) : (
+                  <NavLink to="login" className="rounded-xl font-semibold">
+                    Login
+                  </NavLink>
+                )}
               </li>
+              <li>{user && <span className="active font-semibold">{user?.displayName}</span>}</li>
             </ul>
           </div>
         </div>
@@ -82,15 +96,17 @@ const Navbar = ({ children }) => {
               Home
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/purchase" className="rounded-xl font-semibold">
               Purchase
             </NavLink>
-          </li>
+          </li> */}
           <li>
-            <NavLink to="/dashboard" className="rounded-xl font-semibold">
-              Dashboard
-            </NavLink>
+            {user && (
+              <NavLink to="/dashboard" className="rounded-xl font-semibold">
+                Dashboard
+              </NavLink>
+            )}
           </li>
           <li>
             <NavLink to="admin" className="rounded-xl font-semibold">
@@ -98,9 +114,15 @@ const Navbar = ({ children }) => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="login" className="rounded-xl font-semibold">
-              Login
-            </NavLink>
+            {user ? (
+              <button onClick={() => signOut(auth)} className="rounded-xl font-semibold">
+                Log out
+              </button>
+            ) : (
+              <NavLink to="login" className="rounded-xl font-semibold">
+                Login
+              </NavLink>
+            )}
           </li>
         </ul>
       </div>

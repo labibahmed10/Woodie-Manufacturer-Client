@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ToolCard = ({ tool }) => {
-  const { image, desc, moq, avlQuan, pPerUnit, name } = tool;
+  const { image, desc, moq, avlQuan, pPerUnit, name, _id } = tool;
+  const navigate = useNavigate();
 
   return (
     <div class="card card-compact lg:w-96 w-full bg-accent shadow-xl h-full">
@@ -21,7 +23,9 @@ const ToolCard = ({ tool }) => {
           Price Per Unit : <span className="text-lg"> ${pPerUnit}</span> / piece
         </p>
         <div class="card-actions justify-end">
-          <button class="btn btn-primary">Buy Now</button>
+          <button onClick={() => navigate(`/purchase/${_id}`)} class="btn btn-primary">
+            Buy Now
+          </button>
         </div>
       </div>
     </div>

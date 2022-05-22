@@ -5,6 +5,8 @@ import PurchasePage from "./Componets/PurchasePage/PurchasePage";
 import RequiredAuth from "./RequireAuth/RequireAuth";
 import LogIn from "./UsersRegistration/Login";
 import SignUp from "./UsersRegistration/SignUp";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -17,7 +19,7 @@ function App() {
           <Route path="/signup" element={<SignUp></SignUp>}></Route>
 
           <Route
-            path="/purchase"
+            path="/purchase/:id"
             element={
               <RequiredAuth>
                 <PurchasePage></PurchasePage>
@@ -25,6 +27,7 @@ function App() {
             }
           ></Route>
         </Routes>
+        <ToastContainer theme="dark"></ToastContainer>
       </Navbar>
     </div>
   );
