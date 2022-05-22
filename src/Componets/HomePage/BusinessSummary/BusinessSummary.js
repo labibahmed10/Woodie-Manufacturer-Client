@@ -8,11 +8,11 @@ import { FaHandSparkles } from "react-icons/fa";
 const BusinessSummary = () => {
   return (
     <section className="md:px-20 md:py-20 py-16 px-5 bg-neutral lg:mb-16 mb-5 text-secondary">
-      <h1 className="text-center lg:text-5xl text-3xl lg:pb-4 pb-2 font-bold uppercase">
-        Billions of <span className="text-primary">Customer Rely </span>On Us
+      <h1 className="text-center lg:text-4xl text-2xl lg:pb-4 pb-2 font-bold uppercase">
+        What Makes Us <span className="text-primary">Different from other</span> tool Manufacturers?
       </h1>
 
-      <p className="text-center lg:text-3xl text-xl lg:pb-20 pb-10 font-semibold uppercase">
+      <p className="text-center lg:text-2xl text-xl lg:pb-20 pb-10 font-semibold uppercase">
         users <span className="text-primary">satisfaction is important</span> to us
       </p>
 
