@@ -1,50 +1,62 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import swal from "sweetalert";
 import auth from "../../firebase.init";
+import Spinner from "../../Spinner/Spinner";
 
 const PurchasePage = () => {
-  const [singleTool, setSingleTool] = useState([]);
   const [user] = useAuthState(auth);
   const { id } = useParams();
   const [disable, setDisable] = useState(false);
 
-  // console.log(id);
-  useEffect(() => {
-    fetch(`http://localhost:5000/allTools/${id}`)
-      .then((res) => res.json())
-      .then((data) => setSingleTool(data));
-  }, [id]);
+  let {
+    data: singleTool,
+    refetch,
+    isLoading,
+  } = useQuery(["singleTool", id], () =>
+    fetch(`http://localhost:5000/allTools/${id}`).then((res) => res.json())
+  );
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   const handlePurchaseTool = (e) => {
     e.preventDefault();
 
     const moq = singleTool?.moq;
     const availableQuantity = singleTool?.avlQuan;
-    const quantity = +e.target.quantity.value;
+    const userQuantity = +e.target.quantity.value;
     const adress = e.target.adress.value;
     const phone = +e.target.phone.value;
     const details = e.target.details.value;
 
-    if (!adress || !quantity || !phone) {
+    if (!adress || !userQuantity || !phone) {
       return toast("please fill up with your valuable information");
     }
 
-    if (quantity < moq) {
+    if (userQuantity < moq) {
       setDisable(true);
       return toast("You have to order minimum of MOQ", {
         autoClose: 1500,
       });
     }
 
-    if (quantity > availableQuantity) {
+    if (userQuantity > availableQuantity) {
       setDisable(true);
       return toast("Sorry we don't have this much equipments in stock! Contact us to know more", {
         autoClose: 1500,
       });
     }
+
+    // calculating total cost of user for their tools
+    const totalCost = userQuantity * singleTool?.pPerUnit;
+
+    // also updating the quantity from ordered
+    const updatedQuantity = availableQuantity - userQuantity;
 
     const buyerInfo = {
       name: user?.displayName,
@@ -52,8 +64,11 @@ const PurchasePage = () => {
       adress,
       phone,
       details,
-      quantity,
+      quantity: userQuantity,
+      totalCost,
     };
+
+    singleTool = { ...singleTool, avlQuan: updatedQuantity };
 
     fetch(`http://localhost:5000/purchase`, {
       method: "POST",
@@ -64,10 +79,25 @@ const PurchasePage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.acknowledged) {
+        if (data?.acknowledged) {
+          fetch(`http://localhost:5000/allTools/${id}`, {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(singleTool),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              if (data?.modifiedCount > 0) {
+                refetch();
+              }
+            });
           swal("Thank You!", "You Successfully placed the order", "success");
         }
       });
+
+    e.target.reset();
   };
 
   return (
