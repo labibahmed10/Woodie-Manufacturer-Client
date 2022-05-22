@@ -1,7 +1,6 @@
 import React from "react";
 import logo from "../../../images/logo.png";
 const Footer = () => {
-  // footer lg:place-items-center  text-lg font-semibold
   return (
     <footer class="lg:p-10 px-5 bg-neutral">
       <div className="flex justify-between items-center md:flex-row flex-col lg:px-20 mb-5">
@@ -19,7 +18,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="footer lg:place-items-center  text-lg font-semibold pb-5">
+      <div className="footer lg:place-items-center  text-lg font-semibold lg:pb-0 pb-5">
         <div>
           <span class="footer-title">Services</span>
           <a class="link link-hover">Branding</a>
