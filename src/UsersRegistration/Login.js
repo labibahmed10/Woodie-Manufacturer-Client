@@ -4,8 +4,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../images/logo.png";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
-
 import image from "../images/banner6.webp";
+import SocialSIgnIn from "./SocialSIgnIn";
+import Spinner from "../Spinner/Spinner";
 
 const LogIn = () => {
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
@@ -22,6 +23,7 @@ const LogIn = () => {
 
   const onSubmit = (data) => {
     const { email, password } = data;
+    console.log(data);
     signInWithEmailAndPassword(email, password);
   };
 
@@ -31,13 +33,20 @@ const LogIn = () => {
     }
   }, [user, from, navigate]);
 
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
+
   return (
     <section style={{ backgroundImage: `url(${image})` }} className=" px-5 bg-cover bg-no-repeat h-screen">
       <div>
-        <div class="card shadow-xl max-w-md bg-base-100 mx-auto lg:mt-32 mt-10">
+        <div class="card shadow-xl max-w-md bg-base-100 mx-auto lg:mt-32 my-10">
           <div class="card-body">
             <img className="lg:w-48 w-24 mx-auto" src={logo} alt="" />
             <h1 className="text-center text-2xl lg:text-3xl font-bold pb-3">Login With</h1>
+
+            {/* social login page here */}
+            <SocialSIgnIn></SocialSIgnIn>
 
             <form action="" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-5">
               <div class="form-control">
@@ -59,7 +68,6 @@ const LogIn = () => {
                   class="input input-bordered"
                   {...register("password", { required: true })}
                 />
-
                 {errors.password?.type === "required" && (
                   <span className="text-red-500 text-sm mt-1">Please provide your password</span>
                 )}
@@ -70,6 +78,9 @@ const LogIn = () => {
                   </Link>
                 </label>
               </div>
+              {/* showed error message here */}
+              {error && <span className="text-red-500 text-sm">{error?.message}</span>}
+
               <div class="form-control mt-4">
                 <button class="btn btn-primary">Login</button>
               </div>

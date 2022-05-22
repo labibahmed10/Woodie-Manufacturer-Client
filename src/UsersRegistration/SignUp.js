@@ -6,9 +6,13 @@ import { useUpdateProfile } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import { useForm } from "react-hook-form";
 import image from "../images/banner4.webp";
+import SocialSIgnIn from "./SocialSIgnIn";
+import Spinner from "../Spinner/Spinner";
 
 const SignUp = () => {
-  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+  const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, {
+    sendEmailVerification: true,
+  });
   const [updateProfile, updating, Uerror] = useUpdateProfile(auth);
 
   const navigate = useNavigate();
@@ -33,13 +37,20 @@ const SignUp = () => {
     }
   }, [user, from, navigate]);
 
+  if (loading || updating) {
+    return <Spinner></Spinner>;
+  }
+
   return (
     <section style={{ backgroundImage: `url(${image})` }} className="px-5 bg-cover bg-no-repeat h-screen">
       <div>
-        <div class="lg:mt-32 mt-10 card shadow-2xl max-w-md bg-base-100 mx-auto">
+        <div class="lg:mt-32 my-10 card shadow-2xl max-w-md bg-base-100 mx-auto">
           <div class="card-body">
             <img className="lg:w-48 w-24 mx-auto" src={logo} alt="" />
             <h1 className="text-center text-2xl lg:text-3xl font-bold mb-3">Create an Account</h1>
+
+            {/* social login page here */}
+            <SocialSIgnIn></SocialSIgnIn>
 
             <form action="" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-3">
               <div class="form-control">
@@ -92,6 +103,10 @@ const SignUp = () => {
                   </span>
                 )}
               </div>
+
+              {/* showed error message here */}
+              {error && <span className="text-red-500 text-sm">{error?.message}</span>}
+
               <div class="form-control my-4">
                 <button class="btn btn-primary">Signup</button>
               </div>

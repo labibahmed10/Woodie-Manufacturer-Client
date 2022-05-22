@@ -37,8 +37,8 @@ const ReviewSection = () => {
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper w-full"
         >
-          {reviews.map((review) => (
-            <SwiperSlide>
+          {reviews.map((review, i) => (
+            <SwiperSlide key={i}>
               <div class="card lg:w-[30rem] h-full w-full bg-base-100 shadow-xl">
                 <img className="px-32" src={review.image} alt="Shoes" />
 
