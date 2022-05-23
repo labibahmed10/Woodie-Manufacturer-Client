@@ -11,6 +11,7 @@ import DashboardPage from "./Componets/DashboardPage/DashboardPage";
 import MyOrders from "./Componets/DashboardPage/MyOrders/MyOrders";
 import AddReview from "./Componets/DashboardPage/AddReview/AddReview";
 import MyProfile from "./Componets/DashboardPage/MyProfile/MyProfile";
+import PaymentPage from "./Componets/DashboardPage/MyOrders/PaymentPage";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route path="myorder" element={<MyOrders></MyOrders>}></Route>
             <Route path="addreview" element={<AddReview></AddReview>}></Route>
             <Route path="myprofile" element={<MyProfile></MyProfile>}></Route>
+            <Route path="payment/:id" element={<PaymentPage></PaymentPage>}></Route>
           </Route>
         </Routes>
         <ToastContainer theme="dark"></ToastContainer>

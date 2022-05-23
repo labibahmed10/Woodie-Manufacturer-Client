@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 const AddReview = () => {
   return (
-    <div>
-      
-    </div>
+    <section>
+     
+    </section>
   );
 };
 

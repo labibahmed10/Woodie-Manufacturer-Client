@@ -60,12 +60,13 @@ const PurchasePage = () => {
 
     const buyerInfo = {
       name: user?.displayName,
-      productName: singleTool?.name,
+      toolName: singleTool?.name,
       email: user?.email,
       adress,
       phone,
       details,
       quantity: userQuantity,
+      avlQuan: updatedQuantity,
       totalCost,
     };
 
@@ -80,6 +81,7 @@ const PurchasePage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data?.acknowledged) {
           fetch(`http://localhost:5000/allTools/${id}`, {
             method: "PUT",

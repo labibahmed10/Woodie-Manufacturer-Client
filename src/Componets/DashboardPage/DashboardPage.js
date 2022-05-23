@@ -4,19 +4,24 @@ import { NavLink, Outlet } from "react-router-dom";
 const DashboardPage = () => {
   return (
     <div class="drawer drawer-mobile">
-      <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+      <input id="dashbar" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content lg:px-10 px-2 lg:mt-20 mt-10">
         {/* <!-- Page content here --> */}
         <Outlet></Outlet>
-        <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">
+        <label for="dashbar" class="btn btn-primary drawer-button lg:hidden">
           Open drawer
         </label>
       </div>
       <div class="drawer-side ">
-        <label for="my-drawer-2" class="drawer-overlay"></label>
-        <ul class="menu p-4 space-y-2 lg:w-80 w-64  text-base-content bg-neutral">
+        <label for="dashbar" class="drawer-overlay"></label>
+        <ul class="menu p-4 space-y-2 lg:w-80 w-64  text-base-content bg-neutral relative">
           {/* <!-- Sidebar content here --> */}
-          <li>
+          {/* this is used to close the sidebar */}
+          <label for="dashbar" class="btn btn-sm btn-circle absolute right-2 top-2 lg:hidden">
+            ✕
+          </label>
+
+          <li className="pt-5">
             <NavLink to="myorder">My Orders</NavLink>
           </li>
           <li>
