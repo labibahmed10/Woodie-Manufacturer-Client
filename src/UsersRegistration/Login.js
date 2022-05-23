@@ -7,9 +7,13 @@ import auth from "../firebase.init";
 import image from "../images/banner6.webp";
 import SocialSIgnIn from "./SocialSIgnIn";
 import Spinner from "../Spinner/Spinner";
+import UseToken from "../CustomHooks/UseToken";
 
 const LogIn = () => {
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+
+  // custom hook has been made
+  const [token] = UseToken(user);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,10 +26,10 @@ const LogIn = () => {
   } = useForm();
 
   useEffect(() => {
-    if (user) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, from, navigate]);
+  }, [token, from, navigate]);
 
   const onSubmit = (data) => {
     const { email, password } = data;

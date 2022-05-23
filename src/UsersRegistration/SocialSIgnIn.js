@@ -1,21 +1,25 @@
 import React, { useEffect } from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
+import UseToken from "../CustomHooks/UseToken";
 import auth from "../firebase.init";
 import Spinner from "../Spinner/Spinner";
 
 const SocialSIgnIn = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
+  // custom hook has been made
+  const [token] = UseToken(user);
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (user) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, from, navigate]);
+  }, [token, from, navigate]);
 
   if (loading) {
     return <Spinner></Spinner>;

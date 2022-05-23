@@ -8,12 +8,16 @@ import { useForm } from "react-hook-form";
 import image from "../images/banner4.webp";
 import SocialSIgnIn from "./SocialSIgnIn";
 import Spinner from "../Spinner/Spinner";
+import UseToken from "../CustomHooks/UseToken";
 
 const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, {
     sendEmailVerification: true,
   });
   const [updateProfile, updating, Uerror] = useUpdateProfile(auth);
+
+  // custom hook has been made
+  const [token] = UseToken(user);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,10 +36,10 @@ const SignUp = () => {
   };
 
   useEffect(() => {
-    if (user) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, from, navigate]);
+  }, [token, from, navigate]);
 
   if (loading || updating) {
     return <Spinner></Spinner>;
