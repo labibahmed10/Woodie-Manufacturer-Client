@@ -76,6 +76,7 @@ const PurchasePage = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(buyerInfo),
     })
@@ -87,6 +88,7 @@ const PurchasePage = () => {
             method: "PUT",
             headers: {
               "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
             },
             body: JSON.stringify(singleTool),
           })
@@ -123,26 +125,36 @@ const PurchasePage = () => {
         <div className="space-y-4 lg:mt-40 lg:w-[25rem] ">
           <h1 className="text-center text-4xl font-bold">Hello {user?.displayName}</h1>
 
-          <div class="form-control">
+          <div className="form-control">
             <input
               type="email"
               disabled
               defaultValue={user?.email}
-              class="input input-bordered w-full font-semibold"
+              className="input input-bordered w-full font-semibold"
             />
           </div>
 
-          <div class="form-control">
-            <input name="adress" type="text" placeholder="Your Adress" class="input input-bordered  w-full" />
+          <div className="form-control">
+            <input
+              name="adress"
+              type="text"
+              placeholder="Your Adress"
+              className="input input-bordered  w-full"
+            />
           </div>
 
-          <div class="form-control">
-            <input name="phone" type="number" placeholder="Your Phone" class="input input-bordered  w-full" />
+          <div className="form-control">
+            <input
+              name="phone"
+              type="number"
+              placeholder="Your Phone"
+              className="input input-bordered  w-full"
+            />
           </div>
 
           <textarea
             name="details"
-            class="textarea textarea-bordered w-full"
+            className="textarea textarea-bordered w-full"
             placeholder="Write anything you want to clarify"
           ></textarea>
         </div>
@@ -158,12 +170,12 @@ const PurchasePage = () => {
             <span className="text-gray-500">Product Per Unit</span> : ${singleTool?.pPerUnit} / piece
           </p>
 
-          <div class="form-control pt-8">
+          <div className="form-control pt-8">
             <input
               name="quantity"
               type="number"
               placeholder="Quantity"
-              class="input input-bordered  w-1/2 mx-auto"
+              className="input input-bordered  w-1/2 mx-auto"
             />
 
             <div className="flex justify-center mt-5 gap-5">

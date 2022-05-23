@@ -27,7 +27,7 @@ const MyOrders = () => {
   }
 
   return (
-    <div class="overflow-x-auto">
+    <div className="overflow-x-auto">
       {cancelOrder && (
         <UseCancelModal
           refetch={refetch}
@@ -35,7 +35,7 @@ const MyOrders = () => {
           cancelOrder={cancelOrder}
         ></UseCancelModal>
       )}
-      <table class="table w-full">
+      <table className="table w-full">
         {/* <!-- head --> */}
         <thead>
           <tr className="text-center">
@@ -58,8 +58,8 @@ const MyOrders = () => {
               <td className="bg-accent space-x-5">
                 <label
                   onClick={() => setCancelOrder(detail)}
-                  for="cancelorder"
-                  class="btn btn-primary btn-sm"
+                  htmlFor="cancelorder"
+                  className="btn btn-primary btn-sm"
                 >
                   Cancel
                 </label>

@@ -37,13 +37,14 @@ const MyProfile = () => {
       method: "PUT",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(updatedUser),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.modifiedCount > 0 || data.upsertedCount) {
+        if (data?.result?.modifiedCount > 0 || data?.result?.upsertedCount) {
           swal("Congrats!", "Your Information was updated!", "success");
           e.target.reset();
         } else {
@@ -55,49 +56,53 @@ const MyProfile = () => {
   return (
     <section>
       <form className="mx-auto space-y-3 lg:mt-20 mt-5 lg:w-[27rem]" onSubmit={handleUpdateProfile}>
-        <div class="form-control">
+        <div className="form-control">
           <input
             type="text"
             value={displayName}
-            class="input bg-neutral input-bordered font-semibold w-full"
+            className="input bg-neutral input-bordered font-semibold w-full"
           />
         </div>
 
-        <div class="form-control">
-          <input type="email" value={email} class="input bg-neutral input-bordered font-semibold w-full" />
+        <div className="form-control">
+          <input
+            type="email"
+            value={email}
+            className="input bg-neutral input-bordered font-semibold w-full"
+          />
         </div>
 
-        <div class="form-control">
+        <div className="form-control">
           <input
             name="edu"
             type="text"
             placeholder="Add Education"
-            class="input bg-neutral input-bordered font-semibold w-full"
+            className="input bg-neutral input-bordered font-semibold w-full"
           />
         </div>
 
-        <div class="form-control">
+        <div className="form-control">
           <input
             name="location"
             type="text"
             placeholder="Add Location(city/district)"
-            class="input bg-neutral input-bordered font-semibold w-full"
+            className="input bg-neutral input-bordered font-semibold w-full"
           />
         </div>
-        <div class="form-control">
+        <div className="form-control">
           <input
             name="phone"
             type="number"
             placeholder="Add Phone Number"
-            class="input bg-neutral input-bordered font-semibold w-full"
+            className="input bg-neutral input-bordered font-semibold w-full"
           />
         </div>
-        <div class="form-control">
+        <div className="form-control">
           <input
             name="profile"
             type="url"
             placeholder="Add LinkedIn or other"
-            class="input bg-neutral input-bordered font-semibold w-full"
+            className="input bg-neutral input-bordered font-semibold w-full"
           />
         </div>
 

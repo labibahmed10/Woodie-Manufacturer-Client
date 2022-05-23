@@ -29,6 +29,7 @@ const AddReview = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(review),
     })
@@ -39,23 +40,23 @@ const AddReview = () => {
   return (
     <section className="mx-auto lg:mt-20 lg:w-[27rem]">
       <form onSubmit={handleReview} className="space-y-4">
-        <div class="form-control">
-          <input type="text" value={displayName} class="input bg-neutral font-semibold w-full" />
+        <div className="form-control">
+          <input type="text" value={displayName} className="input bg-neutral font-semibold w-full" />
         </div>
         <textarea
           name="message"
-          class="textarea textarea-bordered w-full"
+          className="textarea textarea-bordered w-full"
           placeholder="Description"
         ></textarea>
 
-        <div class="form-control">
+        <div className="form-control">
           <label className="label">How Would You Rate Us?</label>
-          <div onChange={(e) => setRatings(+e.target.value)} class="rating rating-md">
-            <input type="radio" value="1" name="rating-7" class="mask mask-star-2 bg-orange-400" />
-            <input type="radio" value="2" name="rating-7" class="mask mask-star-2 bg-orange-400" />
-            <input type="radio" value="3" name="rating-7" class="mask mask-star-2 bg-orange-400" />
-            <input type="radio" value="4" name="rating-7" class="mask mask-star-2 bg-orange-400" />
-            <input type="radio" value="5" name="rating-7" class="mask mask-star-2 bg-orange-400" />
+          <div onChange={(e) => setRatings(+e.target.value)} className="rating rating-md">
+            <input type="radio" value="1" name="rating-7" className="mask mask-star-2 bg-orange-400" />
+            <input type="radio" value="2" name="rating-7" className="mask mask-star-2 bg-orange-400" />
+            <input type="radio" value="3" name="rating-7" className="mask mask-star-2 bg-orange-400" />
+            <input type="radio" value="4" name="rating-7" className="mask mask-star-2 bg-orange-400" />
+            <input type="radio" value="5" name="rating-7" className="mask mask-star-2 bg-orange-400" />
           </div>
         </div>
 

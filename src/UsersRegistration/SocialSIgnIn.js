@@ -27,10 +27,10 @@ const SocialSIgnIn = () => {
 
   return (
     <div>
-      <div class="pt-3">
+      <div className="pt-3">
         <button
           onClick={() => signInWithGoogle()}
-          class="flex justify-center items-center gap-2 border border-black w-full py-2 rounded-2xl mb-4"
+          className="flex justify-center items-center gap-2 border border-black w-full py-2 rounded-2xl mb-4"
         >
           <img
             className="w-8"
@@ -41,7 +41,7 @@ const SocialSIgnIn = () => {
         </button>
       </div>
 
-      <div class="divider">OR</div>
+      <div className="divider">OR</div>
     </div>
   );
 };

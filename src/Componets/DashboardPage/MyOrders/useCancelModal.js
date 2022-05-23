@@ -10,6 +10,9 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
 
     fetch(`http://localhost:5000/cancelOrder/${_id}`, {
       method: "DELETE",
+      headers: {
+        authorizaion: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -20,7 +23,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
           // fetch(`http://localhost:5000/allTools/${_id}`, {
           //   method: "PUT",
           //   headers: {
-          //     "content-type": "application/json",
+          //     "content-type": "application/json", "authorization" : `bearer ${localStorage.getItem("accessToken")}` "authorization" : `bearer localStorage.getItem("accessToken")`
           //   },
           //   body: JSON.stringify(cancelOrder),
           // })
@@ -37,14 +40,14 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
 
   return (
     <div>
-      <input type="checkbox" id="cancelorder" class="modal-toggle" />
-      <div class="modal text-secondary">
-        <div class="modal-box relative">
-          <label for="cancelorder" class="btn btn-sm btn-circle absolute right-2 top-2">
+      <input type="checkbox" id="cancelorder" className="modal-toggle" />
+      <div className="modal text-secondary">
+        <div className="modal-box relative">
+          <label htmlFor="cancelorder" className="btn btn-sm btn-circle absolute right-2 top-2">
             ✕
           </label>
-          <h3 class="text-lg font-bold">Are You Sure You Want To Cancel Your Order For :-</h3>
-          <p class="py-4">Name : {toolName}</p>
+          <h3 className="text-lg font-bold">Are You Sure You Want To Cancel Your Order For :-</h3>
+          <p className="py-4">Name : {toolName}</p>
           <div className="flex justify-end">
             <button onClick={handleCancelOrder} className="btn btn-primary btn-sm">
               Yes,cancel

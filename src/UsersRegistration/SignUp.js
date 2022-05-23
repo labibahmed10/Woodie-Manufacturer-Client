@@ -48,8 +48,8 @@ const SignUp = () => {
   return (
     <section style={{ backgroundImage: `url(${image})` }} className="px-5 bg-cover bg-no-repeat h-screen">
       <div>
-        <div class="lg:mt-32 my-10 card shadow-2xl max-w-md bg-base-100 mx-auto">
-          <div class="card-body">
+        <div className="lg:mt-32 my-10 card shadow-2xl max-w-md bg-base-100 mx-auto">
+          <div className="card-body">
             <img className="lg:w-48 w-24 mx-auto" src={logo} alt="" />
             <h1 className="text-center text-2xl lg:text-3xl font-bold mb-3">Create an Account</h1>
 
@@ -57,11 +57,11 @@ const SignUp = () => {
             <SocialSIgnIn></SocialSIgnIn>
 
             <form action="" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-3">
-              <div class="form-control">
+              <div className="form-control">
                 <input
                   type="text"
                   placeholder="Your Name"
-                  class="input input-bordered"
+                  className="input input-bordered"
                   {...register("name", { required: true })}
                 />
 
@@ -70,11 +70,11 @@ const SignUp = () => {
                 )}
               </div>
 
-              <div class="form-control">
+              <div className="form-control">
                 <input
                   type="email"
                   placeholder="email"
-                  class="input input-bordered"
+                  className="input input-bordered"
                   {...register("email", {
                     required: true,
                     pattern: /\S+@\S+\.\S+/,
@@ -87,11 +87,11 @@ const SignUp = () => {
                 {errors.email?.type === "pattern" && <span className="text-red-500">Please include @ .</span>}
               </div>
 
-              <div class="form-control">
+              <div className="form-control">
                 <input
                   type="text"
                   placeholder="password"
-                  class="input input-bordered"
+                  className="input input-bordered"
                   {...register("password", {
                     required: true,
                     pattern: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
@@ -111,8 +111,8 @@ const SignUp = () => {
               {/* showed error message here */}
               {error && <span className="text-red-500 text-sm">{error?.message}</span>}
 
-              <div class="form-control my-4">
-                <button class="btn btn-primary">Signup</button>
+              <div className="form-control my-4">
+                <button className="btn btn-primary">Signup</button>
               </div>
 
               <p className="text-center text-sm lg:text-lg">

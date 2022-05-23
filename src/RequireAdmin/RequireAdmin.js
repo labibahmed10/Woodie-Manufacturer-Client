@@ -5,15 +5,15 @@ import auth from "../firebase.init";
 import Spinner from "../Spinner/Spinner";
 
 const RequireAdmin = ({ children }) => {
-  // const [user, loading] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const location = useLocation();
 
   // const [admin] = useAdmin();
   const admin = false;
 
-  // if (loading) {
-  //   return <Spinner></Spinner>;
-  // }
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
 
   if (!admin) {
     return <Navigate to="/login" state={{ from: location }} replace></Navigate>;

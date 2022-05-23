@@ -39,23 +39,23 @@ const ReviewSection = () => {
         >
           {reviews.map((review, i) => (
             <SwiperSlide key={i}>
-              <div class="card lg:w-[30rem] h-full w-full bg-base-100 shadow-xl">
+              <div className="card lg:w-[30rem] h-full w-full bg-base-100 shadow-xl">
                 <img className="px-32" src={review.image} alt="Shoes" />
 
-                <figure class="px-5 pt-3">
-                  <h2 class="text-2xl font-bold">{review.name}</h2>
+                <figure className="px-5 pt-3">
+                  <h2 className="text-2xl font-bold">{review.name}</h2>
                 </figure>
 
-                <div class="card-body text-left items-center h-full">
+                <div className="card-body text-left items-center h-full">
                   <p>{review.text}</p>
 
-                  <div class="rating rating-md mt-2">
+                  <div className="rating rating-md mt-2">
                     {[...Array(review?.ratings).keys()].map((rating) => (
                       <input
                         key={rating}
                         type="radio"
                         name="rating-7"
-                        class="mask mask-star-2 bg-orange-300"
+                        className="mask mask-star-2 bg-orange-300"
                       />
                     ))}
                   </div>

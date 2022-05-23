@@ -44,8 +44,8 @@ const LogIn = () => {
   return (
     <section style={{ backgroundImage: `url(${image})` }} className=" px-5 bg-cover bg-no-repeat h-screen">
       <div>
-        <div class="card shadow-xl max-w-md bg-base-100 mx-auto lg:mt-32 my-10">
-          <div class="card-body">
+        <div className="card shadow-xl max-w-md bg-base-100 mx-auto lg:mt-32 my-10">
+          <div className="card-body">
             <img className="lg:w-48 w-24 mx-auto" src={logo} alt="" />
             <h1 className="text-center text-2xl lg:text-3xl font-bold pb-3">Login With</h1>
 
@@ -53,11 +53,11 @@ const LogIn = () => {
             <SocialSIgnIn></SocialSIgnIn>
 
             <form action="" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-5">
-              <div class="form-control">
+              <div className="form-control">
                 <input
                   type="text"
                   placeholder="email"
-                  class="input input-bordered"
+                  className="input input-bordered"
                   {...register("email", { required: true })}
                 />
 
@@ -65,19 +65,19 @@ const LogIn = () => {
                   <span className="text-red-500 text-sm mt-1">Please provide your email</span>
                 )}
               </div>
-              <div class="form-control">
+              <div className="form-control">
                 <input
                   type="text"
                   placeholder="password"
-                  class="input input-bordered"
+                  className="input input-bordered"
                   {...register("password", { required: true })}
                 />
                 {errors.password?.type === "required" && (
                   <span className="text-red-500 text-sm mt-1">Please provide your password</span>
                 )}
 
-                <label class="label">
-                  <Link to="/signup" class="label-text-alt link link-hover">
+                <label className="label">
+                  <Link to="/signup" className="label-text-alt link link-hover">
                     Forgot password?
                   </Link>
                 </label>
@@ -85,8 +85,8 @@ const LogIn = () => {
               {/* showed error message here */}
               {error && <span className="text-red-500 text-sm">{error?.message}</span>}
 
-              <div class="form-control mt-4">
-                <button class="btn btn-primary">Login</button>
+              <div className="form-control mt-4">
+                <button className="btn btn-primary">Login</button>
               </div>
 
               <p className="text-center text-sm lg:text-lg">
