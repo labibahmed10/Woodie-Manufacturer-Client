@@ -39,7 +39,7 @@ const SignUp = () => {
     if (token) {
       navigate(from, { replace: true });
     }
-  }, [token, from, navigate]);
+  }, [token, from, navigate, updateProfile]);
 
   if (loading || updating) {
     return <Spinner></Spinner>;

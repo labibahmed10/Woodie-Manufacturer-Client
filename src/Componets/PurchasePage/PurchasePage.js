@@ -110,19 +110,19 @@ const PurchasePage = () => {
   };
 
   return (
-    <section className="flex lg:flex-row flex-col items-center justify-around lg:px-20 px-5 lg:py-20 py-16">
+    <section className="flex lg:flex-row flex-col items-center lg:justify-around lg:px-20 px-5 lg:py-20 py-16">
       <div className="lg:mt-40 flex flex-col items-center">
         <img className="w-80" src={singleTool?.image} alt="" />
-        <p className="text-lg font-bold">
+        <p className="text-lg font-bold lg:pb-0 pb-4">
           <span className="text-gray-500">Product Name</span> : {singleTool?.name}
         </p>
       </div>
 
       <form
-        className="flex lg:flex-row flex-col items-center justify-between gap-20"
+        className="flex lg:flex-row flex-col items-center justify-between gap-20 "
         onSubmit={handlePurchaseTool}
       >
-        <div className="space-y-4 lg:mt-40 lg:w-[25rem] ">
+        <div className="space-y-4 lg:mt-40  lg:w-[25rem]">
           <h1 className="text-center text-4xl font-bold">Hello {user?.displayName}</h1>
 
           <div className="form-control">

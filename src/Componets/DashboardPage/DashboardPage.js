@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../../CustomHooks/useAdmin";
 
 const DashboardPage = () => {
+  const [admin] = useAdmin();
+
   return (
     <div className="drawer drawer-mobile">
       <input id="dashbar" type="checkbox" className="drawer-toggle" />
@@ -12,7 +15,7 @@ const DashboardPage = () => {
           Open drawer
         </label>
       </div>
-      <div className="drawer-side ">
+      <div className="drawer-side overflow-y-hidden">
         <label htmlFor="dashbar" className="drawer-overlay"></label>
         <ul className="menu p-4 space-y-2 lg:w-80 w-64  text-base-content bg-neutral relative">
           {/* <!-- Sidebar content here --> */}
@@ -21,27 +24,37 @@ const DashboardPage = () => {
             ✕
           </label>
 
-          <li className="pt-5">
-            <NavLink to="myorder">My Orders</NavLink>
-          </li>
-          <li>
-            <NavLink to="addreview">Add a review</NavLink>
-          </li>
+          {!admin && (
+            <>
+              <li className="pt-5">
+                <NavLink to="myorder">My Orders</NavLink>
+              </li>
+              <li>
+                <NavLink to="addreview">Add a review</NavLink>
+              </li>
+            </>
+          )}
+
           <li>
             <NavLink to="myprofile">My Profile</NavLink>
           </li>
-          <li>
-            <NavLink to="manageorder">Manage All Orders</NavLink>
-          </li>
-          <li>
-            <NavLink to="addproduct">Add A Product</NavLink>
-          </li>
-          <li>
-            <NavLink to="makeadmin">Make Admin</NavLink>
-          </li>
-          <li>
-            <NavLink to="manageproduct">Manage Products</NavLink>
-          </li>
+
+          {admin && (
+            <>
+              <li>
+                <NavLink to="manageorder">Manage All Orders</NavLink>
+              </li>
+              <li>
+                <NavLink to="addproduct">Add A Product</NavLink>
+              </li>
+              <li>
+                <NavLink to="makeadmin">Make Admin</NavLink>
+              </li>
+              <li>
+                <NavLink to="manageproduct">Manage Products</NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>

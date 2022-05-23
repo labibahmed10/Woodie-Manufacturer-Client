@@ -21,7 +21,7 @@ const UseToken = (user) => {
           console.log(data);
           if (data?.result?.acknowledged) {
             localStorage.setItem("accessToken", data?.accessToken);
-            setToken(token);
+            setToken(data?.accessToken);
           }
         });
     }

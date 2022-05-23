@@ -4,9 +4,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { NavLink, Outlet } from "react-router-dom";
 import auth from "../../firebase.init";
 import logo from "../../images/logo.png";
+import Spinner from "../../Spinner/Spinner";
 
 const Navbar = ({ children }) => {
   const [user, loading] = useAuthState(auth);
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <nav className="drawer drawer-end">

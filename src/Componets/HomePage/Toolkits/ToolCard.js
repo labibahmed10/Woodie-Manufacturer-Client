@@ -12,7 +12,7 @@ const ToolCard = ({ tool }) => {
       </figure>
       <div className="card-body">
         <h2 className="card-title text-3xl mx-auto">{name}</h2>
-        <p className="font-semibold">{desc}</p>
+        <p className="font-semibold text-lg">{desc}</p>
         <p className="font-semibold">
           MOQ : <span className="text-lg">{moq}</span> pieces
         </p>
