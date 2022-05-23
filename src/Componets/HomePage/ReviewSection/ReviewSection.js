@@ -13,7 +13,7 @@ const ReviewSection = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("/review.json")
+    fetch("http://localhost:5000/allReviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
@@ -48,12 +48,16 @@ const ReviewSection = () => {
 
                 <div class="card-body text-left items-center h-full">
                   <p>{review.text}</p>
+
                   <div class="rating rating-md mt-2">
-                    <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-300" />
-                    <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-300" />
-                    <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-300" />
-                    <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-300" />
-                    <input type="radio" name="rating-7" class="mask mask-star-2 bg-orange-300" />
+                    {[...Array(review?.ratings).keys()].map((rating) => (
+                      <input
+                        key={rating}
+                        type="radio"
+                        name="rating-7"
+                        class="mask mask-star-2 bg-orange-300"
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
