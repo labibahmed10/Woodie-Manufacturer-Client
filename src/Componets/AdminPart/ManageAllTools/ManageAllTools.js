@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
+import { toast } from "react-toastify";
 import Spinner from "../../../Spinner/Spinner";
 import UseCancelModal from "../../DashboardPage/MyOrders/UseCancelModal";
 
 const ManageAllTools = () => {
   const [cancelOrder, setCancelOrder] = useState([]);
+
   const {
     data: allUser,
     isLoading,
@@ -22,8 +24,23 @@ const ManageAllTools = () => {
     return <Spinner />;
   }
 
-  const deleteOrder = (id) => {
+  const handleUpdateStatus = (id) => {
     console.log(id);
+
+    fetch(`http://localhost:5000/updateStatus/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data?.modifiedCount > 0) {
+          toast("The product has now gone for shipping");
+          refetch();
+        }
+      });
   };
 
   return (
@@ -82,7 +99,13 @@ const ManageAllTools = () => {
 
               {!detail.paid && (
                 <td className="bg-accent space-x-5">
-                  <button className="btn btn-success btn-sm">{detail.status}pending</button>
+                  {detail.status ? (
+                    <button className="btn btn-info btn-sm">Shipping</button>
+                  ) : (
+                    <button onClick={() => handleUpdateStatus(detail._id)} className="btn btn-success btn-sm">
+                      pending
+                    </button>
+                  )}
                 </td>
               )}
             </tr>
