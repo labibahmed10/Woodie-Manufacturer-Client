@@ -45,13 +45,13 @@ const DashboardPage = () => {
                 <NavLink to="manageorder">Manage All Orders</NavLink>
               </li>
               <li>
-                <NavLink to="addproduct">Add A Product</NavLink>
+                <NavLink to="addtool">Add A Tool</NavLink>
               </li>
               <li>
                 <NavLink to="makeadmin">Make Admin</NavLink>
               </li>
               <li>
-                <NavLink to="manageproduct">Manage Products</NavLink>
+                <NavLink to="managetool">Manage Products</NavLink>
               </li>
             </>
           )}

@@ -8,7 +8,7 @@ const UseToken = (user) => {
     const newUser = { name: user?.user?.displayName, email };
 
     if (email) {
-      fetch(`http://localhost:5000/randomUsers?email=${email}`, {
+      fetch(`http://localhost:5000/allRandomUsers?email=${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -18,7 +18,6 @@ const UseToken = (user) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data?.result?.acknowledged) {
             localStorage.setItem("accessToken", data?.accessToken);
             setToken(data?.accessToken);

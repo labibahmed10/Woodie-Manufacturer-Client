@@ -33,7 +33,7 @@ const MyProfile = () => {
     };
     console.log(updatedUser);
 
-    fetch(`http://localhost:5000/randomUsers?email=${email}`, {
+    fetch(`http://localhost:5000/allRandomUsers?email=${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

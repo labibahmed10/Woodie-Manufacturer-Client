@@ -3,10 +3,10 @@ import { toast } from "react-toastify";
 
 const ImageApiSecret = " 9314728cfc25a2418af59e385a715f7a";
 
-const AddAProduct = () => {
+const AddATool = () => {
   const [picture, setPicture] = useState({});
 
-  // getting the picture
+  // getting the picture and setting in a state
   const handleImage = (e) => {
     setPicture(e.target.files[0]);
   };
@@ -19,8 +19,13 @@ const AddAProduct = () => {
     const moq = +e.target.moq.value;
     const pPerUnit = +e.target.pPerUnit.value;
     const desc = e.target.desc.value;
-
     const image = picture;
+
+    if (!name || !avlQuan || !moq || !pPerUnit || !desc) {
+      return toast.error("Please fill up the form", {
+        autoClose: 1500,
+      });
+    }
 
     const formData = new FormData();
     formData.append("image", image);
@@ -34,6 +39,7 @@ const AddAProduct = () => {
       desc,
     };
 
+    // making image from file
     fetch(`https://api.imgbb.com/1/upload?key=${ImageApiSecret}`, {
       method: "POST",
       body: formData,
@@ -60,12 +66,12 @@ const AddAProduct = () => {
                 toast.success("New Tool Uploaded successfully", {
                   autoClose: 1500,
                 });
-
                 e.target.reset();
               } else {
                 toast.error("Failed to add a tool", {
                   autoClose: 1500,
                 });
+                e.target.reset();
               }
             });
         }
@@ -136,4 +142,4 @@ const AddAProduct = () => {
   );
 };
 
-export default AddAProduct;
+export default AddATool;

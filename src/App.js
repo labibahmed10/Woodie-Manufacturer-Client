@@ -14,8 +14,9 @@ import MyProfile from "./Componets/DashboardPage/MyProfile/MyProfile";
 import PaymentPage from "./Componets/DashboardPage/MyOrders/PaymentPage";
 import ManageAllOrders from "./Componets/AdminPart/ManageAllOrders/ManageAllOrders";
 import MakeAdmin from "./Componets/AdminPart/MakeAdmin/MakeAdmin";
-import AddAProduct from "./Componets/AdminPart/AddAProduct/AddAProduct";
+
 import ManageProducts from "./Componets/AdminPart/ManageProducts/ManageProducts";
+import AddATool from "./Componets/AdminPart/AddATool/AddATool";
 
 function App() {
   return (
@@ -49,8 +50,8 @@ function App() {
             <Route path="myprofile" element={<MyProfile></MyProfile>}></Route>
             <Route path="manageorder" element={<ManageAllOrders></ManageAllOrders>}></Route>
             <Route path="makeadmin" element={<MakeAdmin></MakeAdmin>}></Route>
-            <Route path="addproduct" element={<AddAProduct></AddAProduct>}></Route>
-            <Route path="manageproduct" element={<ManageProducts></ManageProducts>}></Route>
+            <Route path="addtool" element={<AddATool></AddATool>}></Route>
+            <Route path="managetool" element={<ManageProducts></ManageProducts>}></Route>
             <Route path="payment/:id" element={<PaymentPage></PaymentPage>}></Route>
           </Route>
         </Routes>

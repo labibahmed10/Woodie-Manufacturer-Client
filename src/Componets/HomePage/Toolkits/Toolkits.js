@@ -16,7 +16,7 @@ const Toolkits = () => {
         Get Our <span className="text-primary">Tools</span>
       </h1>
       <div className="grid lg:grid-cols-3 grid-cols-1 place-items-center gap-10">
-        {tools.map((tool, i) => (
+        {tools.slice(0, 6).map((tool, i) => (
           <ToolCard key={i} tool={tool}></ToolCard>
         ))}
       </div>

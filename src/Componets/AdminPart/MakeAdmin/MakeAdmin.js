@@ -1,10 +1,79 @@
-import React from 'react';
+import React from "react";
+import { useQuery } from "react-query";
+import swal from "sweetalert";
+import Spinner from "../../../Spinner/Spinner";
 
 const MakeAdmin = () => {
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery("allRandomUsers", () =>
+    fetch("http://localhost:5000/allRandomUsers", {
+      method: "GET",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    }).then((res) => res.json())
+  );
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  const MakeAdmin = (email) => {
+    fetch(`http://localhost:5000/allRandomUsers/admin?email=${email}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount) {
+          refetch();
+          swal("Congrats!", "This user was made as an 'Admin'", "success");
+        }
+      });
+  };
+
   return (
-    <div>
-      
-    </div>
+    <section>
+      <div className="overflow-x-auto mx-5">
+        <table className="table w-full">
+          {/* <!-- head --> */}
+          <thead>
+            <tr className="text-center">
+              <th className="bg-neutral">Serial</th>
+              <th className="bg-neutral">Name</th>
+              <th className="bg-neutral">Email</th>
+              <th className="bg-neutral">Action</th>
+              <th className="bg-neutral"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {users?.map((user, i) => (
+              <tr key={i} className="hover">
+                <th className="bg-accent">{i + 1}</th>
+                <td className="bg-accent">{user?.name}</td>
+                <td className="bg-accent">{user?.email}</td>
+                <td className="bg-accent">
+                  {user?.role !== "admin" && (
+                    <button onClick={() => MakeAdmin(user?.email)} className="btn btn-sm btn-primary">
+                      Make Admin
+                    </button>
+                  )}
+                </td>
+                <td className="bg-accent">
+                  <button className="btn btn-sm">Delete User</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 };
 
