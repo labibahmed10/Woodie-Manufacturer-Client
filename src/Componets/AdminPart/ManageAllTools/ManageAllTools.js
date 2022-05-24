@@ -35,9 +35,10 @@ const ManageAllTools = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data?.modifiedCount > 0) {
-          toast("The product has now gone for shipping");
+          toast.success("The product has now gone for shipping", {
+            autoClose: 1500,
+          });
           refetch();
         }
       });

@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import Spinner from "../../../Spinner/Spinner";
 
 const ImageApiSecret = " 9314728cfc25a2418af59e385a715f7a";
 
 const AddATool = () => {
   const [picture, setPicture] = useState({});
+  const [loading, setLoading] = useState(false);
 
   // getting the picture and setting in a state
   const handleImage = (e) => {
     setPicture(e.target.files[0]);
   };
+
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
 
   const handleAddProduct = (e) => {
     e.preventDefault();
@@ -38,7 +44,7 @@ const AddATool = () => {
       pPerUnit,
       desc,
     };
-
+    setLoading(true);
     // making image from file
     fetch(`https://api.imgbb.com/1/upload?key=${ImageApiSecret}`, {
       method: "POST",
@@ -61,11 +67,12 @@ const AddATool = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              console.log(data);
+              // console.log(data);
               if (data?.acknowledged) {
                 toast.success("New Tool Uploaded successfully", {
                   autoClose: 1500,
                 });
+                setLoading(false);
                 e.target.reset();
               } else {
                 toast.error("Failed to add a tool", {
@@ -79,7 +86,7 @@ const AddATool = () => {
   };
 
   return (
-    <section className="lg:w-[30rem] px-3 pb-3 mx-auto mb-40 lg:space-y-4 space-y-2 border">
+    <section className="lg:max-w-4xl p-3 lg:p-5 lg:mt-32 mt-0  mx-auto lg:space-y-4 space-y-2 border">
       <form action="" onSubmit={handleAddProduct}>
         <div class="form-control">
           <label class="label">
@@ -98,7 +105,7 @@ const AddATool = () => {
               name="image"
               type="file"
               placeholder="Type here"
-              className="lg:w-60 border py-2 px-2 rounded-lg"
+              className="lg:w-[25rem] w-full border py-2 px-2 rounded-lg"
             />
           </div>
 
@@ -106,7 +113,12 @@ const AddATool = () => {
             <label class="label">
               <span class="label-text font-semibold">Available Quantity?</span>
             </label>
-            <input name="avlQuan" type="number" placeholder="quantity" class="input input-bordered " />
+            <input
+              name="avlQuan"
+              type="number"
+              placeholder="quantity"
+              class="lg:w-[25rem] w-full input input-bordered "
+            />
           </div>
         </div>
 
@@ -115,13 +127,23 @@ const AddATool = () => {
             <label class="label">
               <span class="label-text font-semibold">Minimum Order Quantity?</span>
             </label>
-            <input name="moq" type="number" placeholder="Moq" class="input input-bordered " />
+            <input
+              name="moq"
+              type="number"
+              placeholder="Moq"
+              class="input input-bordered lg:w-[25rem] w-full"
+            />
           </div>
           <div class="form-control">
             <label class="label">
               <span class="label-text font-semibold">Price Per Unit($)?</span>
             </label>
-            <input name="pPerUnit" type="number" placeholder="price" class="input input-bordered " />
+            <input
+              name="pPerUnit"
+              type="number"
+              placeholder="price"
+              class="input input-bordered lg:w-[25rem] w-full"
+            />
           </div>
         </div>
 

@@ -11,7 +11,7 @@ const DashboardPage = () => {
   return (
     <div className="drawer drawer-mobile">
       <input id="dashbar" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content lg:px-10 px-2 lg:mt-20 mt-10">
+      <div className="drawer-content lg:px-10 px-2 lg:py-24 py-16">
         {/* <!-- Page content here --> */}
         <Outlet></Outlet>
         <label htmlFor="dashbar" className="btn btn-primary drawer-button lg:hidden">
