@@ -3,7 +3,14 @@ import { useQuery } from "react-query";
 import swal from "sweetalert";
 import Spinner from "../../../Spinner/Spinner";
 
+import { useAuthState } from "react-firebase-hooks/auth";
+import useAdmin from "../../../CustomHooks/useAdmin";
+import auth from "../../../firebase.init";
+
 const MakeAdmin = () => {
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
+
   const {
     data: users,
     isLoading,

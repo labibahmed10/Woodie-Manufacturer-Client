@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ManageProducts = () => {
+const MyPortfolioPage = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const ManageProducts = () => {
   );
 };
 
-export default ManageProducts;
+export default MyPortfolioPage;

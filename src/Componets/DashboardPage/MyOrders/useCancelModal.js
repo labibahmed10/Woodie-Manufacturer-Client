@@ -46,8 +46,9 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
           <label htmlFor="cancelorder" className="btn btn-sm btn-circle absolute right-2 top-2">
             ✕
           </label>
-          <h3 className="text-lg font-bold">Are You Sure You Want To Cancel Your Order For :-</h3>
-          <p className="py-4">Name : {toolName}</p>
+          <h3 className="text-lg font-bold">Are You Sure You Want To Cancel The Order For :-</h3>
+          <p className="py-2">Name : {toolName}</p>
+          <p>Quantity : {quantity}</p>
           <div className="flex justify-end">
             <button onClick={handleCancelOrder} className="btn btn-primary btn-sm">
               Yes,cancel

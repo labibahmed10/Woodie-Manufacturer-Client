@@ -65,6 +65,17 @@ const Navbar = ({ children }) => {
                   </NavLink>
                 )}
               </li>
+
+              <li>
+                <NavLink to="/blogs" className="rounded-xl font-semibold">
+                  Blogs
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/myportfolio" className="rounded-xl font-semibold">
+                  My Portfolio
+                </NavLink>
+              </li>
               {/* <li>
                 <NavLink to="admin" className="rounded-xl font-semibold">
                   Admin
@@ -76,7 +87,7 @@ const Navbar = ({ children }) => {
                     Log out
                   </button>
                 ) : (
-                  <NavLink to="login" className="rounded-xl font-semibold">
+                  <NavLink to="/login" className="rounded-xl font-semibold">
                     Login
                   </NavLink>
                 )}
@@ -101,6 +112,7 @@ const Navbar = ({ children }) => {
               Home
             </NavLink>
           </li>
+
           {/* <li>
             <NavLink to="/purchase" className="rounded-xl font-semibold">
               Purchase
@@ -113,6 +125,17 @@ const Navbar = ({ children }) => {
               </NavLink>
             )}
           </li>
+
+          <li>
+            <NavLink to="/blogs" className="rounded-xl font-semibold">
+              Blogs
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/myportfolio" className="rounded-xl font-semibold">
+              My Portfolio
+            </NavLink>
+          </li>
           {/* <li>
             <NavLink to="admin" className="rounded-xl font-semibold">
               Admin
@@ -124,7 +147,7 @@ const Navbar = ({ children }) => {
                 Log out
               </button>
             ) : (
-              <NavLink to="login" className="rounded-xl font-semibold">
+              <NavLink to="/login" className="rounded-xl font-semibold">
                 Login
               </NavLink>
             )}

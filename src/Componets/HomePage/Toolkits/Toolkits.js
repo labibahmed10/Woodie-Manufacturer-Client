@@ -5,7 +5,12 @@ const Toolkits = () => {
   const [tools, setTools] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allTools")
+    fetch("http://localhost:5000/allTools", {
+      method: "GET",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setTools(data));
   }, []);

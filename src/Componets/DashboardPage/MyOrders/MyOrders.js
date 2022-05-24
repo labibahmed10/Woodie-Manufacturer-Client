@@ -12,13 +12,17 @@ const MyOrders = () => {
   const navigate = useNavigate();
   const { email } = user;
 
+  console.log(email);
   const {
     data: personData,
     isLoading,
     refetch,
   } = useQuery(["personsData", email], () =>
-    fetch(`http://localhost:5000/purchase?email=${email}`, {
+    fetch(`http://localhost:5000/purchaseByEmail?email=${email}`, {
       method: "GET",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
     }).then((res) => res.json())
   );
 

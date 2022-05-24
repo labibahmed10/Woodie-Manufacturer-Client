@@ -8,9 +8,9 @@ import Spinner from "../Spinner/Spinner";
 const RequireAdmin = ({ children }) => {
   const [user, loading] = useAuthState(auth);
   const location = useLocation();
-  const [admin] = useAdmin(user);
+  const [admin, aLoading] = useAdmin(user);
 
-  if (loading) {
+  if (loading || aLoading) {
     return <Spinner></Spinner>;
   }
 
