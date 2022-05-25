@@ -75,13 +75,19 @@ const CheckoutForm = ({ purchaseInfo }) => {
     if (intentError) {
       setCardError(intentError.message);
     } else {
+      const paymentInfo = {
+        transictionID: paymentIntent?.id,
+        paymentID: _id,
+        status: "Pending",
+      };
+
       fetch(`http://localhost:5000/purchasePaid/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
-        body: JSON.stringify({ transictionID: paymentIntent?.id, paymentID: _id }),
+        body: JSON.stringify(paymentInfo),
       })
         .then((res) => res.json())
         .then((data) => {

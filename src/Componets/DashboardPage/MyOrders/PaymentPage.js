@@ -107,24 +107,9 @@ const PaymentPage = () => {
             </p>
           </div>
 
-          {/* <div className="form-control"> */}
-          {/* <input
-              bg-neutral
-              input
-              bg-neutral-bordered
-              type="text"
-              placeholder="card Number"
-              className="input bg-neutral input-bordered font-semibold w-full my-4"
-            /> */}
           <Elements stripe={stripePromise}>
             <CheckoutForm purchaseInfo={purchaseInfo} />
           </Elements>
-          {/* </div> */}
-
-          {/* <div className="flex justify-between items-center font-bold">
-            <p>Your Total Cost Will Be ${purchaseInfo?.totalCost}</p>
-            <button className="btn btn-primary btn-md lg:w-28">Pay</button>
-          </div> */}
         </div>
       </div>
     </section>

@@ -57,7 +57,7 @@ const Navbar = ({ children }) => {
 
               <li>
                 {user && (
-                  <NavLink to="/dashboard/myorder" className="rounded-xl font-semibold">
+                  <NavLink to="/dashboard/myprofile" className="rounded-xl font-semibold">
                     Dashboard
                   </NavLink>
                 )}

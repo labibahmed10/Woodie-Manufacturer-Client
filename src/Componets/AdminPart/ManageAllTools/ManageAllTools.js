@@ -28,13 +28,16 @@ const ManageAllTools = () => {
     console.log(id);
 
     fetch(`http://localhost:5000/updateStatus/${id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
+        "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
+      body: JSON.stringify({ status: "Spipped" }),
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data?.modifiedCount > 0) {
           toast.success("The product has now gone for shipping", {
             autoClose: 1500,
@@ -97,11 +100,9 @@ const ManageAllTools = () => {
               </td>
 
               <td className="bg-accent space-x-5">
-                {detail.paid && detail.status ? (
-                  <label className="px-3 py-2 rounded-xl font-semibold bg-info">Shipping</label>
-                ) : (
+                {detail.paid && detail.status && (
                   <button onClick={() => handleUpdateStatus(detail._id)} className="btn btn-success btn-sm">
-                    pending
+                    {detail.status}
                   </button>
                 )}
               </td>
