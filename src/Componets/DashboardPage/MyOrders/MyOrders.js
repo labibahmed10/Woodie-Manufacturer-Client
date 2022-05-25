@@ -12,7 +12,7 @@ const MyOrders = () => {
   const navigate = useNavigate();
   const { email } = user;
 
-  console.log(email);
+
   const {
     data: personData,
     isLoading,
@@ -30,7 +30,7 @@ const MyOrders = () => {
     return <Spinner />;
   }
 
-  console.log(personData);
+
 
   return (
     <div className="overflow-x-auto">
@@ -51,7 +51,7 @@ const MyOrders = () => {
 
             <th className="bg-neutral">Quantity</th>
             <th className="bg-neutral">Action</th>
-            {/* <th className="bg-neutral"></th> */}
+            <th className="bg-neutral">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -61,14 +61,18 @@ const MyOrders = () => {
               <td className="bg-accent">{detail?.toolName}</td>
               <td className="bg-accent">{detail?.email}</td>
               <td className="bg-accent">{detail?.quantity}</td>
-              <td className="bg-accent space-x-5">
-                <label
-                  onClick={() => setCancelOrder(detail)}
-                  htmlFor="cancelorder"
-                  className="btn btn-primary btn-sm"
-                >
-                  Cancel
-                </label>
+              <td className="bg-accent ">
+                {!detail.paid && (
+                  <label
+                    onClick={() => setCancelOrder(detail)}
+                    htmlFor="cancelorder"
+                    className="btn btn-primary btn-sm"
+                  >
+                    Cancel
+                  </label>
+                )}
+              </td>
+              <td className="bg-accent">
                 {detail.paid ? (
                   <span className="text-green-500 px-3">Paid</span>
                 ) : (

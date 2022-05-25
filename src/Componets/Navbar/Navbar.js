@@ -1,13 +1,14 @@
 import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import logo from "../../images/logo.png";
 import Spinner from "../../Spinner/Spinner";
 
 const Navbar = ({ children }) => {
   const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
 
   if (loading) {
     return <Spinner />;
@@ -92,7 +93,13 @@ const Navbar = ({ children }) => {
                   </NavLink>
                 )}
               </li>
-              <li>{user && <span className="active font-semibold">{user?.displayName}</span>}</li>
+              <li>
+                {user && (
+                  <p onClick={() => navigate("/dashboard/myprofile")} className="active font-semibold">
+                    {user?.displayName}
+                  </p>
+                )}
+              </li>
             </ul>
           </div>
         </div>

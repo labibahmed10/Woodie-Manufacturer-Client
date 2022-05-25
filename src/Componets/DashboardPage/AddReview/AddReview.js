@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
+import swal from "sweetalert";
 import auth from "../../../firebase.init";
 
 const AddReview = () => {
@@ -34,20 +35,31 @@ const AddReview = () => {
       body: JSON.stringify(review),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          swal("Thank You!", "We are privilleged to have your review 😀", "success");
+          e.target.reset();
+        }
+      });
   };
 
   return (
     <section className="mx-auto lg:mt-20 lg:w-[27rem]">
-      <form onSubmit={handleReview} className="space-y-4">
+      <form onSubmit={handleReview} className="space-y-3">
         <div className="form-control">
           <input type="text" value={displayName} className="input bg-neutral font-semibold w-full" />
         </div>
-        <textarea
-          name="message"
-          className="textarea textarea-bordered w-full"
-          placeholder="Description"
-        ></textarea>
+        <div>
+          <label htmlFor="" className="label font-semibold">
+            Give us any kind of reviews & Suggestion
+          </label>
+          <textarea
+            name="message"
+            className="textarea textarea-bordered w-full"
+            placeholder="Description"
+          ></textarea>
+        </div>
 
         <div className="form-control">
           <label className="label">How Would You Rate Us?</label>

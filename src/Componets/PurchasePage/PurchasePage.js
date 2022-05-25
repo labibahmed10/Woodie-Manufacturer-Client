@@ -174,7 +174,7 @@ const PurchasePage = () => {
             <input
               name="quantity"
               type="number"
-              placeholder="Quantity"
+              defaultValue={singleTool.moq}
               className="input input-bordered  w-1/2 mx-auto"
             />
 

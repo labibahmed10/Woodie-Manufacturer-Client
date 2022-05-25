@@ -64,7 +64,7 @@ const ManageAllTools = () => {
 
             <th className="bg-neutral">Quantity</th>
             <th className="bg-neutral">Payment</th>
-            <th className="bg-neutral"></th>
+            <th className="bg-neutral">Action</th>
             <th className="bg-neutral">Status</th>
           </tr>
         </thead>
@@ -76,18 +76,16 @@ const ManageAllTools = () => {
               <td className="bg-accent">{detail?.email}</td>
               <td className="bg-accent">{detail?.quantity}</td>
 
-              {detail.paid ? (
-                <td className="bg-accent space-x-5">
-                  <label className="btn btn-info btn-sm">Paid</label>
-                </td>
-              ) : (
-                <td className="bg-accent space-x-5">
-                  <label className="btn btn-warning btn-sm">Unpaid</label>
-                </td>
-              )}
+              <td className="bg-accent space-x-5">
+                {detail.paid ? (
+                  <label className="px-3 py-2 rounded-xl font-semibold bg-info">Paid</label>
+                ) : (
+                  <label className="px-3 py-2 rounded-xl font-semibold bg-warning">Unpaid</label>
+                )}
+              </td>
 
-              {!detail.paid && (
-                <td className="bg-accent space-x-5">
+              <td className="bg-accent space-x-5">
+                {!detail.paid && (
                   <label
                     htmlFor="cancelorder"
                     onClick={() => setCancelOrder(detail)}
@@ -95,20 +93,18 @@ const ManageAllTools = () => {
                   >
                     Cancel
                   </label>
-                </td>
-              )}
+                )}
+              </td>
 
-              {!detail.paid && (
-                <td className="bg-accent space-x-5">
-                  {detail.status ? (
-                    <button className="btn btn-info btn-sm">Shipping</button>
-                  ) : (
-                    <button onClick={() => handleUpdateStatus(detail._id)} className="btn btn-success btn-sm">
-                      pending
-                    </button>
-                  )}
-                </td>
-              )}
+              <td className="bg-accent space-x-5">
+                {detail.paid && detail.status ? (
+                  <label className="px-3 py-2 rounded-xl font-semibold bg-info">Shipping</label>
+                ) : (
+                  <button onClick={() => handleUpdateStatus(detail._id)} className="btn btn-success btn-sm">
+                    pending
+                  </button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

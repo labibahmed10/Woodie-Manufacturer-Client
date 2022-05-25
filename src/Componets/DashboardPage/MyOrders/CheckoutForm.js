@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import swal from "sweetalert";
 import Spinner from "../../../Spinner/Spinner";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ purchaseInfo }) => {
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const stripe = useStripe();
   const elements = useElements();
 
@@ -55,11 +58,10 @@ const CheckoutForm = ({ purchaseInfo }) => {
 
     setCardError(error?.message || "");
 
-    // cofirm card intent
-
     // setting loader true
     setLoading(true);
 
+    // cofirm card intent payment
     const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
         card: card,
@@ -73,8 +75,6 @@ const CheckoutForm = ({ purchaseInfo }) => {
     if (intentError) {
       setCardError(intentError.message);
     } else {
-      console.log(paymentIntent);
-
       fetch(`http://localhost:5000/purchasePaid/${_id}`, {
         method: "PATCH",
         headers: {
@@ -85,15 +85,14 @@ const CheckoutForm = ({ purchaseInfo }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
-          setLoading(false);
-          if (data.modifiedCount > 1) {
-            event.target.reset();
+          if (data.modifiedCount > 0) {
+            setLoading(false);
             swal(
               "Congrats!",
               `Your Payment Is Successful!,Your Transaction Id - ${paymentIntent.id}`,
               "success"
             );
+            navigate("/dashboard/myorder");
           }
         });
     }
