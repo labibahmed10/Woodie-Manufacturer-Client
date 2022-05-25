@@ -12,7 +12,6 @@ const MyOrders = () => {
   const navigate = useNavigate();
   const { email } = user;
 
-
   const {
     data: personData,
     isLoading,
@@ -30,8 +29,7 @@ const MyOrders = () => {
     return <Spinner />;
   }
 
-
-
+  console.log(personData);
   return (
     <div className="overflow-x-auto">
       {cancelOrder && (
@@ -52,6 +50,7 @@ const MyOrders = () => {
             <th className="bg-neutral">Quantity</th>
             <th className="bg-neutral">Action</th>
             <th className="bg-neutral">Status</th>
+            <th className="bg-neutral">Transiction ID</th>
           </tr>
         </thead>
         <tbody>
@@ -84,7 +83,11 @@ const MyOrders = () => {
                   </button>
                 )}
               </td>
-              {/* <td className="bg-accent">Purple</td> */}
+              <td className="bg-accent">
+                {detail?.transictionID && (
+                  <span className="text-green-500 px-3">{detail?.transictionID}</span>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>

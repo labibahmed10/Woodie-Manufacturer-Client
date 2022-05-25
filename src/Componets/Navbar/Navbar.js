@@ -54,11 +54,7 @@ const Navbar = ({ children }) => {
                   Home
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink to="/purchase" className="rounded-xl font-semibold">
-                  Purchase
-                </NavLink>
-              </li> */}
+
               <li>
                 {user && (
                   <NavLink to="/dashboard/myorder" className="rounded-xl font-semibold">
@@ -77,11 +73,7 @@ const Navbar = ({ children }) => {
                   My Portfolio
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink to="admin" className="rounded-xl font-semibold">
-                  Admin
-                </NavLink>
-              </li> */}
+
               <li>
                 {user ? (
                   <button onClick={() => signOut(auth)} className="rounded-xl font-semibold">
@@ -120,11 +112,6 @@ const Navbar = ({ children }) => {
             </NavLink>
           </li>
 
-          {/* <li>
-            <NavLink to="/purchase" className="rounded-xl font-semibold">
-              Purchase
-            </NavLink>
-          </li> */}
           <li>
             {user && (
               <NavLink to="/dashboard/myorder" className="rounded-xl font-semibold">
@@ -143,11 +130,7 @@ const Navbar = ({ children }) => {
               My Portfolio
             </NavLink>
           </li>
-          {/* <li>
-            <NavLink to="admin" className="rounded-xl font-semibold">
-              Admin
-            </NavLink>
-          </li> */}
+
           <li>
             {user ? (
               <button onClick={() => signOut(auth)} className="rounded-xl font-semibold">
