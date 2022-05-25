@@ -5,6 +5,7 @@ import GlobalCustomerPage from "./GlobalCustomerPage/GlobalCustomerPage";
 import HomeBanner from "./HomeBanner/HomeBanner";
 import ReviewSection from "./ReviewSection/ReviewSection";
 import Toolkits from "./Toolkits/Toolkits";
+import WhyChooseUsPage from "./WhyChooseUsPage/WhyChooseUsPage";
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
       <BusinessSummary></BusinessSummary>
       <ReviewSection></ReviewSection>
       <GlobalCustomerPage></GlobalCustomerPage>
+      <WhyChooseUsPage></WhyChooseUsPage>
       <Footer></Footer>
     </div>
   );
