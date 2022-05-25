@@ -30,6 +30,8 @@ const MyOrders = () => {
     return <Spinner />;
   }
 
+  console.log(personData);
+
   return (
     <div className="overflow-x-auto">
       {cancelOrder && (
@@ -67,12 +69,16 @@ const MyOrders = () => {
                 >
                   Cancel
                 </label>
-                <button
-                  onClick={() => navigate(`/dashboard/payment/${detail._id}`)}
-                  className="btn btn-success btn-sm"
-                >
-                  Pay
-                </button>
+                {detail.paid ? (
+                  <span className="text-green-500 px-3">Paid</span>
+                ) : (
+                  <button
+                    onClick={() => navigate(`/dashboard/payment/${detail._id}`)}
+                    className="btn btn-success btn-sm"
+                  >
+                    Pay
+                  </button>
+                )}
               </td>
               {/* <td className="bg-accent">Purple</td> */}
             </tr>

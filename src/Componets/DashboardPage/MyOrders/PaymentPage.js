@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaCreditCard } from "react-icons/fa";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm";
+
+const stripePromise = loadStripe(
+  "pk_test_51L176eLJGq2V9Vbnyh02I7vKL5E6H5e19B2UidcrAcbDKPfq3Ue3nVLr4r9FMCxtMz8eB2HeEo7rtADhDhHpRuzm009Himf1Yb"
+);
+
 const PaymentPage = () => {
-  const [purchaseInfo, setPurchaseInfo] = useState([]);
+  const [purchaseInfo, setPurchaseInfo] = useState("");
   const { id } = useParams();
-  console.log(id);
+
   useEffect(() => {
     fetch(`http://localhost:5000/purchase/${id}`)
       .then((res) => res.json())
@@ -13,11 +21,14 @@ const PaymentPage = () => {
       });
   }, [id]);
 
-  console.log(purchaseInfo);
+  // console.log(purchaseInfo);
   return (
-    <section className="px-2">
-      <div className="mx-auto space-y-3 lg:mt-20 mt-5 lg:w-[27rem]">
+    <section className="px-2 lg:px-0">
+      <div className="mx-auto lg:mt-20 mt-5 lg:max-w-3xl">
         <div className="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">Your Name</span>
+          </label>
           <input
             type="text"
             value={purchaseInfo?.name}
@@ -26,6 +37,9 @@ const PaymentPage = () => {
         </div>
 
         <div className="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">Your Email</span>
+          </label>
           <input
             type="email"
             value={purchaseInfo?.email}
@@ -34,6 +48,9 @@ const PaymentPage = () => {
         </div>
 
         <div className="form-control">
+          <label class="label">
+            <span class="label-text font-semibold">Tool You Ordered</span>
+          </label>
           <input
             bg-neutral
             input
@@ -44,27 +61,37 @@ const PaymentPage = () => {
           />
         </div>
 
-        <div className="flex gap-5">
-          <input
-            bg-neutral
-            input
-            bg-neutral-bordered
-            type="text"
-            value={`${purchaseInfo?.quantity} pieces`}
-            className="input bg-neutral input-bordered font-semibold w-full"
-          />
-          <input
-            bg-neutral
-            input
-            bg-neutral-bordered
-            type="text"
-            value={`$ ${purchaseInfo?.totalCost}`}
-            className="input bg-neutral input-bordered font-semibold w-full"
-          />
+        <div className="flex justify-between gap-5">
+          <div className="w-full">
+            <label class="label">
+              <span class="label-text font-semibold">Number Of Quantity</span>
+            </label>
+            <input
+              bg-neutral
+              input
+              bg-neutral-bordered
+              type="text"
+              value={`${purchaseInfo?.quantity} pieces`}
+              className="input bg-neutral input-bordered font-semibold w-full"
+            />
+          </div>
+          <div className="w-full">
+            <label class="label">
+              <span class="label-text font-semibold">Total Price</span>
+            </label>
+            <input
+              bg-neutral
+              input
+              bg-neutral-bordered
+              type="text"
+              value={`$ ${purchaseInfo?.totalCost}`}
+              className="input bg-neutral input-bordered font-semibold w-full"
+            />
+          </div>
         </div>
 
         <div>
-          <p className="text-gray-500 mb-2">You can pay with</p>
+          <p className="text-gray-500 my-2">You can pay with</p>
           <div className="flex items-center gap-2">
             <input
               bg-neutral
@@ -80,26 +107,24 @@ const PaymentPage = () => {
             </p>
           </div>
 
-          <div className="form-control">
-            <input
+          {/* <div className="form-control"> */}
+          {/* <input
               bg-neutral
               input
               bg-neutral-bordered
               type="text"
               placeholder="card Number"
               className="input bg-neutral input-bordered font-semibold w-full my-4"
-            />
-          </div>
+            /> */}
+          <Elements stripe={stripePromise}>
+            <CheckoutForm purchaseInfo={purchaseInfo} />
+          </Elements>
+          {/* </div> */}
 
-          {/* <div className="flex gap-5">
-            <input bg-neutral input bg-neutral-bordered type="text" placeholder="card Number" className="input bg-neutral input-bordered font-semibold w-full" />
-            <input bg-neutral input bg-neutral-bordered type="text" placeholder="card Number" className="input bg-neutral input-bordered font-semibold w-full" />
-          </div> */}
-
-          <div className="flex justify-between items-center font-bold">
+          {/* <div className="flex justify-between items-center font-bold">
             <p>Your Total Cost Will Be ${purchaseInfo?.totalCost}</p>
             <button className="btn btn-primary btn-md lg:w-28">Pay</button>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
