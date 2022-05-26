@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 
 import SocialSIgnIn from "./SocialSIgnIn";
 import Spinner from "../Spinner/Spinner";
 import UseToken from "../CustomHooks/UseToken";
+import { toast } from "react-toastify";
 
 const LogIn = () => {
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-
+  const [sendPasswordResetEmail, sending, Perror] = useSendPasswordResetEmail(auth);
+  const [userEmail, setUserEmail] = useState("");
   // custom hook has been made
   const [token] = UseToken(user);
 
@@ -33,12 +35,27 @@ const LogIn = () => {
 
   const onSubmit = (data) => {
     const { email, password } = data;
+    setUserEmail(email);
     signInWithEmailAndPassword(email, password);
   };
 
-  if (loading) {
+  if (loading || sending) {
     return <Spinner></Spinner>;
   }
+
+  const sendPassResetEmail = async () => {
+    const email = userEmail;
+    console.log(email);
+    if (!email) {
+      return toast("Please Input Email", {
+        autoClose: 2500,
+      });
+    }
+    await sendPasswordResetEmail(email);
+    toast("Check Your Email to Reset Password", {
+      autoClose: 2000,
+    });
+  };
 
   return (
     <section
@@ -81,9 +98,9 @@ const LogIn = () => {
                 )}
 
                 <label className="label">
-                  <Link to="/signup" className="label-text-alt link link-hover">
+                  <button onClick={sendPassResetEmail} className="label-text-alt link link-hover">
                     Forgot password?
-                  </Link>
+                  </button>
                 </label>
               </div>
               {/* showed error message here */}

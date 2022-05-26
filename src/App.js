@@ -51,11 +51,8 @@ function App() {
             }
           >
             <Route path="myorder" element={<MyOrders></MyOrders>}></Route>
-
             <Route path="payment/:id" element={<PaymentPage></PaymentPage>}></Route>
-
             <Route path="addreview" element={<AddReview></AddReview>}></Route>
-
             <Route path="myprofile" element={<MyProfile></MyProfile>}></Route>
 
             <Route
