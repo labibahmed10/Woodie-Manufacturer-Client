@@ -4,7 +4,7 @@ const WhyChooseUsPage = () => {
   return (
     <section
       style={{ backgroundImage: `url(${"https://i.ibb.co/dkxGBZZ/slider-3.webp"})` }}
-      className="bg-no-repeat bg-cover lg:h-[35rem]  lg:px-20 px-5 py-10 my-20 text-white"
+      className="bg-no-repeat bg-cover lg:px-20 px-5 py-16 my-20 text-white"
     >
       <h1 className="lg:text-5xl text-3xl text-center py-5 font-bold">Why Choose Us?</h1>
 
