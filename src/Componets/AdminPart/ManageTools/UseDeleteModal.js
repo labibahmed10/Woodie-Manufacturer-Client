@@ -4,16 +4,15 @@ import swal from "sweetalert";
 const UseDeleteModal = ({ refetch, deleteTool, setDeleteTool }) => {
   const { name, _id } = deleteTool;
 
-  const handleDeleteOrder = () => {
-    fetch(`http://localhost:5000/deleteTool/${_id}`, {
+  const handleDeleteOrder = (id) => {
+    fetch(`https://shrouded-stream-85988.herokuapp.com/deleteTool/${id}`, {
       method: "DELETE",
       headers: {
-        authorizaion: `bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-       
         if (data?.deletedCount > 0) {
           swal("Congratulations", "The Tool Was Deleted From Database", "success");
           refetch();
@@ -34,7 +33,7 @@ const UseDeleteModal = ({ refetch, deleteTool, setDeleteTool }) => {
           <p className="py-2">Name : {name}</p>
 
           <div className="flex justify-end">
-            <button onClick={handleDeleteOrder} className="btn btn-primary btn-sm">
+            <button onClick={() => handleDeleteOrder(_id)} className="btn btn-primary btn-sm">
               Yes,Delete
             </button>
           </div>

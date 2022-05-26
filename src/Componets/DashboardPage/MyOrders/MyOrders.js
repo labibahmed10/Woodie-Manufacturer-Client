@@ -17,7 +17,7 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery(["personsData", email], () =>
-    fetch(`http://localhost:5000/purchaseByEmail?email=${email}`, {
+    fetch(`https://shrouded-stream-85988.herokuapp.com/purchaseByEmail?email=${email}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

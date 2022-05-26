@@ -3,24 +3,22 @@ import React, { useState } from "react";
 const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
   const { toolName, _id, avlQuan, quantity } = cancelOrder;
 
-  const handleCancelOrder = () => {
+  const handleCancelOrder = (id) => {
     const newQuantity = avlQuan + quantity;
     cancelOrder = { ...cancelOrder, avlQuan: newQuantity };
-  
 
-    fetch(`http://localhost:5000/cancelOrder/${_id}`, {
+    fetch(`https://shrouded-stream-85988.herokuapp.com/cancelOrder/${id}`, {
       method: "DELETE",
       headers: {
-        authorizaion: `bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-      
         if (data?.deletedCount > 0) {
           refetch();
           setCancelOrder(null);
-          // fetch(`http://localhost:5000/allTools/${_id}`, {
+          // fetch(`https://shrouded-stream-85988.herokuapp.com/allTools/${_id}`, {
           //   method: "PUT",
           //   headers: {
           //     "content-type": "application/json", "authorization" : `bearer ${localStorage.getItem("accessToken")}` "authorization" : `bearer localStorage.getItem("accessToken")`
@@ -29,7 +27,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
           // })
           //   .then((res) => res.json())
           //   .then((data) => {
-          //   
+          //
           //     // if (data?.modifiedCount > 0) {
           //     //   refetch();
           //     // }
@@ -50,7 +48,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
           <p className="py-2">Name : {toolName}</p>
           <p>Quantity : {quantity}</p>
           <div className="flex justify-end">
-            <button onClick={handleCancelOrder} className="btn btn-primary btn-sm">
+            <button onClick={() => handleCancelOrder(_id)} className="btn btn-primary btn-sm">
               Yes,cancel
             </button>
           </div>

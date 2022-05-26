@@ -17,7 +17,7 @@ const PurchasePage = () => {
     refetch,
     isLoading,
   } = useQuery(["singleTool", id], () =>
-    fetch(`http://localhost:5000/allTools/${id}`).then((res) => res.json())
+    fetch(`https://shrouded-stream-85988.herokuapp.com/allTools/${id}`).then((res) => res.json())
   );
 
   if (isLoading) {
@@ -72,7 +72,7 @@ const PurchasePage = () => {
 
     singleTool = { ...singleTool, avlQuan: updatedQuantity };
 
-    fetch(`http://localhost:5000/purchase`, {
+    fetch(`https://shrouded-stream-85988.herokuapp.com/purchase`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -83,7 +83,7 @@ const PurchasePage = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data?.acknowledged) {
-          fetch(`http://localhost:5000/allTools/${id}`, {
+          fetch(`https://shrouded-stream-85988.herokuapp.com/allTools/${id}`, {
             method: "PUT",
             headers: {
               "content-type": "application/json",

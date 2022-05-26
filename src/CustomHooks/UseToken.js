@@ -8,7 +8,7 @@ const UseToken = (user) => {
     const newUser = { name: user?.user?.displayName, email };
 
     if (email) {
-      fetch(`http://localhost:5000/allRandomUsers?email=${email}`, {
+      fetch(`https://shrouded-stream-85988.herokuapp.com/allRandomUsers?email=${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

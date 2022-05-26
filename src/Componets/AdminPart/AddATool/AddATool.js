@@ -57,7 +57,7 @@ const AddATool = () => {
         if (res.success) {
           toolInfo = { ...toolInfo, image };
 
-          fetch("http://localhost:5000/allTools", {
+          fetch("https://shrouded-stream-85988.herokuapp.com/allTools", {
             method: "POST",
             headers: {
               "content-type": "application/json",

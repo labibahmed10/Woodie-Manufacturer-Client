@@ -16,7 +16,7 @@ const MakeAdmin = () => {
     isLoading,
     refetch,
   } = useQuery("allRandomUsers", () =>
-    fetch("http://localhost:5000/allRandomUsers", {
+    fetch("https://shrouded-stream-85988.herokuapp.com/allRandomUsers", {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -29,7 +29,7 @@ const MakeAdmin = () => {
   }
 
   const MakeAdmin = (email) => {
-    fetch(`http://localhost:5000/allRandomUsers/admin?email=${email}`, {
+    fetch(`https://shrouded-stream-85988.herokuapp.com/allRandomUsers/admin?email=${email}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -61,7 +61,7 @@ const MakeAdmin = () => {
           </thead>
           <tbody>
             {users?.map((user, i) => (
-              <tr key={i} className="hover">
+              <tr key={i} className="hover text-center">
                 <th className="bg-accent">{i + 1}</th>
                 <td className="bg-accent">{user?.name}</td>
                 <td className="bg-accent">{user?.email}</td>

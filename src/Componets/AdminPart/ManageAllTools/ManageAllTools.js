@@ -12,7 +12,7 @@ const ManageAllTools = () => {
     isLoading,
     refetch,
   } = useQuery("allusers", () =>
-    fetch("http://localhost:5000/purchase", {
+    fetch("https://shrouded-stream-85988.herokuapp.com/purchase", {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -25,7 +25,7 @@ const ManageAllTools = () => {
   }
 
   const handleUpdateStatus = (id) => {
-    fetch(`http://localhost:5000/updateStatus/${id}`, {
+    fetch(`https://shrouded-stream-85988.herokuapp.com/updateStatus/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

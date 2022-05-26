@@ -14,7 +14,7 @@ const PaymentPage = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/purchase/${id}`, {
+    fetch(`https://shrouded-stream-85988.herokuapp.com/purchase/${id}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

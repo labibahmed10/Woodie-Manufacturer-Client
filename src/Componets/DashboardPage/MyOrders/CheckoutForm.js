@@ -17,7 +17,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
   const price = totalCost;
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://shrouded-stream-85988.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-Type": "application/json",
@@ -81,7 +81,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
         status: "Pending",
       };
 
-      fetch(`http://localhost:5000/purchasePaid/${_id}`, {
+      fetch(`https://shrouded-stream-85988.herokuapp.com/purchasePaid/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

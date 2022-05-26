@@ -5,7 +5,7 @@ const Toolkits = () => {
   const [tools, setTools] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allTools", {
+    fetch("https://shrouded-stream-85988.herokuapp.com/allTools", {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

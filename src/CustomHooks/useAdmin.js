@@ -10,16 +10,16 @@ const useAdmin = (user) => {
     const email = user?.email;
 
     if (email) {
-      fetch(`http://localhost:5000/admin?email=${email}`, {
+      fetch(`https://shrouded-stream-85988.herokuapp.com/admin?email=${email}`, {
         method: "GET",
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
       })
         .then((res) => {
-          if (res.status === 401 || res.status === 403) {
-            navigate("/home");
-          }
+          // if (res.status === 401 || res.status === 403) {
+          //   navigate("/home");
+          // }
           return res.json();
         })
         .then((data) => {

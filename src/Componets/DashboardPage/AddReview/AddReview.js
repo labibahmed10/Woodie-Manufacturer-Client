@@ -26,7 +26,7 @@ const AddReview = () => {
       text,
     };
 
-    fetch(`http://localhost:5000/allReviews`, {
+    fetch(`https://shrouded-stream-85988.herokuapp.com/allReviews`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
