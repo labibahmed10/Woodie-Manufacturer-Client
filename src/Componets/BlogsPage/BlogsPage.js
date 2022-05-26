@@ -48,6 +48,44 @@ const BlogsPage = () => {
           </p>
         </div>
       </div>
+      <div className="border p-4 mb-3">
+        <h1 className="text-center py-4 text-3xl font-semibold md:md-0 mb-3">
+          How does prototypical inheritance work?
+        </h1>
+        <div className="flex md:flex-row flex-col items-center gap-10 leading-7">
+          <img
+            className="md:w-1/2 "
+            src="https://www.javascripttutorial.net/wp-content/uploads/2022/01/JavaScript-prototypal-inheritance-inherits-from-Object.svg"
+            alt=""
+          />
+          <p>
+            The prototypical inheritace in JS is a feature used to add methods and properties in objects.In
+            this method an object can inherit the properties and methods of another obect.We use a javascript
+            prototype to add new properties and methods to and existing object constructor.JavaScript is the
+            most common of the prototype-capable languages, and its capabilities are relatively unique. When
+            used appropriately, prototypical inheritance in JavaScript is a powerful tool that can save hours
+            of coding.
+          </p>
+        </div>
+      </div>
+      <div className="border p-4 mb-3">
+        <h1 className="text-center py-4 text-3xl font-semibold  md:md-0 mb-3">
+          Why you do not set the state directly in React. For example, if you have const [products,
+          setProducts] = useState([]). Why you do not set products = [...] instead, you use the setProducts?
+        </h1>
+        <div className="flex md:flex-row flex-col items-center gap-10 leading-7">
+          <img className="md:w-1/2" src="https://daveceddia.com/images/useState-hook-twitter.png" alt="" />
+
+          <p className="text-xl text-justify">
+            In React, the state is immutable. In simple terms it means that we should not modify it
+            directly.React state is a plain JavaScript object that holds information that influences the
+            output of a render.If we try to set Products = [...] like this and not setProducts([...]) like
+            this it will not re-render the component.When state changes the component reponds by re-rendering
+            and the updates can be possible by using setProducts() and it will not disturb the process of
+            rendering.
+          </p>
+        </div>
+      </div>
     </article>
   );
 };
