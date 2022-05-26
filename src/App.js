@@ -19,6 +19,7 @@ import AddATool from "./Componets/AdminPart/AddATool/AddATool";
 import RequireAdmin from "./RequireAdmin/RequireAdmin";
 import BlogsPage from "./Componets/BlogsPage/BlogsPage";
 import MyPortfolioPage from "./Componets/MyPortfolioPage/MyPortfolioPage";
+import NotFoundPage from "./Componets/NotFoundPage/NotFoundPage";
 
 function App() {
   return (
@@ -93,7 +94,9 @@ function App() {
               }
             ></Route>
           </Route>
+          <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
         </Routes>
+
         <ToastContainer theme="dark"></ToastContainer>
       </Navbar>
     </div>
