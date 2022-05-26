@@ -100,6 +100,26 @@ const BlogsPage = () => {
           <img className="lg:w-1/2 mx-auto" src="https://i.postimg.cc/mg9jKbJ3/ans-5.jpg" alt="" />
         </div>
       </div>
+      <div className="border p-4 mb-3">
+        <h1 className="text-center py-4 text-3xl font-semibold  md:md-0 mb-3">
+          What is a unit test? Why should write unit tests?
+        </h1>
+        <div className="flex md:flex-row flex-col items-center gap-10 leading-7">
+          <img
+            className="md:w-1/2"
+            src="https://blog.autify.com/static/84ac8b56a04924ac3a0f6a5dd94b3df3/3b2f8/unit-testing-life-cycle.png"
+            alt=""
+          />
+
+          <p className="text-xl text-justify">
+            Unit testing is an important process of web developement.While building large application
+            developers isolate some written codes to test whether they running perfectly or not.It is
+            important because after making the whole application and if any error occurs it will difficult to
+            find those bugs and may waste time.Also unit testing ensures that all code meets quality standards
+            before it's being published.
+          </p>
+        </div>
+      </div>
     </article>
   );
 };
