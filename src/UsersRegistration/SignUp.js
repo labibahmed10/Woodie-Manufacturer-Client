@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../images/logo.png";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useUpdateProfile } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
 import { useForm } from "react-hook-form";
-import image from "../images/banner4.webp";
 import SocialSIgnIn from "./SocialSIgnIn";
 import Spinner from "../Spinner/Spinner";
 import UseToken from "../CustomHooks/UseToken";
@@ -46,11 +44,14 @@ const SignUp = () => {
   }
 
   return (
-    <section style={{ backgroundImage: `url(${image})` }} className="px-5 bg-cover bg-no-repeat h-screen">
+    <section
+      style={{ backgroundImage: `url('https://i.postimg.cc/V68pVgwz/banner6.webp')` }}
+      className="px-5 bg-cover bg-no-repeat h-screen"
+    >
       <div>
         <div className="lg:mt-32 my-10 card shadow-2xl max-w-md bg-base-100 mx-auto">
           <div className="card-body">
-            <img className="lg:w-48 w-24 mx-auto" src={logo} alt="" />
+            <img className="lg:w-48 w-24 mx-auto" src="https://i.postimg.cc/JhfM4jWF/logo.png" alt="" />
             <h1 className="text-center text-2xl lg:text-3xl font-bold mb-3">Create an Account</h1>
 
             {/* social login page here */}

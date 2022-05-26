@@ -3,7 +3,7 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
-import logo from "../../images/logo.png";
+
 import Spinner from "../../Spinner/Spinner";
 
 const Navbar = ({ children }) => {
@@ -22,7 +22,7 @@ const Navbar = ({ children }) => {
         <div className="w-full navbar md:px-20 pt-2 bg-neutral">
           {/* brand logo */}
           <div className="flex-1 px-2 mx-2">
-            <img className="w-16" src={logo} alt="" />
+            <img className="w-16" src="https://i.postimg.cc/JhfM4jWF/logo.png" alt="" />
             <span className="md:text-2xl text-xl ml-1 font-bold">
               Woodie <br /> Manufacturer
             </span>

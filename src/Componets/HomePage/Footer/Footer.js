@@ -1,10 +1,10 @@
 import React from "react";
-import logo from "../../../images/logo.png";
+
 const Footer = () => {
   return (
     <footer className="lg:p-10 px-5 bg-neutral">
       <div className="flex justify-between items-center md:flex-row flex-col lg:px-20 mb-5">
-        <img className="w-48" src={logo} alt="" />
+        <img className="w-48" src="https://i.postimg.cc/JhfM4jWF/logo.png" alt="" />
         <div>
           <span className="footer-title">Newsletter</span>
           <div className="form-control lg:w-[28rem] w-[21rem]">

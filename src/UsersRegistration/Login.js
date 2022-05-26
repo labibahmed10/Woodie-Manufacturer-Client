@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import logo from "../images/logo.png";
+
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
-import image from "../images/banner6.webp";
+
 import SocialSIgnIn from "./SocialSIgnIn";
 import Spinner from "../Spinner/Spinner";
 import UseToken from "../CustomHooks/UseToken";
@@ -42,11 +42,16 @@ const LogIn = () => {
   }
 
   return (
-    <section style={{ backgroundImage: `url(${image})` }} className=" px-5 bg-cover bg-no-repeat h-screen">
+    <section
+      style={{
+        backgroundImage: `url('https://i.postimg.cc/W4rx8KQ9/banner4.webp')`,
+      }}
+      className=" px-5 bg-cover bg-no-repeat h-screen"
+    >
       <div>
         <div className="card shadow-xl max-w-md bg-base-100 mx-auto lg:mt-32 my-10">
           <div className="card-body">
-            <img className="lg:w-48 w-24 mx-auto" src={logo} alt="" />
+            <img className="lg:w-48 w-24 mx-auto" src="https://i.postimg.cc/JhfM4jWF/logo.png" alt="" />
             <h1 className="text-center text-2xl lg:text-3xl font-bold pb-3">Login With</h1>
 
             {/* social login page here */}
