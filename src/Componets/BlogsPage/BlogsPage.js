@@ -86,6 +86,20 @@ const BlogsPage = () => {
           </p>
         </div>
       </div>
+      <div className="border p-4 mb-3">
+        <h1 className="text-center py-4 text-3xl font-semibold md:md-0 mb-3">
+          You have an array of products. Each product has a name, price, description, etc. How will you
+          implement a search to find products by name?
+        </h1>
+        <div className="flex md:flex-row flex-col items-center gap-10 leading-7">
+          <img
+            className="md:w-1/3"
+            src="https://velocitybytes.com/uploads/images/2021/07/image_750x_60f31070e6f3a.jpg"
+            alt=""
+          />
+          <img className="lg:w-1/2 mx-auto" src="https://i.postimg.cc/mg9jKbJ3/ans-5.jpg" alt="" />
+        </div>
+      </div>
     </article>
   );
 };
