@@ -14,7 +14,7 @@ const SignUp = () => {
   });
   const [updateProfile, updating, Uerror] = useUpdateProfile(auth);
 
-  // custom hook has been made
+  // custom hook has been made for token issue
   const [token] = UseToken(user);
 
   const navigate = useNavigate();
@@ -104,13 +104,13 @@ const SignUp = () => {
                 )}
                 {errors.password?.type === "pattern" && (
                   <span className="text-red-500 text-sm mt-1">
-                    Password must contain a number and one capital letter
+                    Password must 8 characters with a number and one capital letter
                   </span>
                 )}
               </div>
 
               {/* showed error message here */}
-              {error && <span className="text-red-500 text-sm">{error?.message}</span>}
+              {(error || Uerror) && <span className="text-red-500 text-sm">{error?.message}</span>}
 
               <div className="form-control my-4">
                 <button className="btn btn-primary">Signup</button>

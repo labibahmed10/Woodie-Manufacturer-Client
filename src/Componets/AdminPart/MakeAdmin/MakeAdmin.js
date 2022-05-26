@@ -37,7 +37,6 @@ const MakeAdmin = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount) {
           refetch();
           swal("Congrats!", "This user was made as an 'Admin'", "success");
@@ -47,6 +46,7 @@ const MakeAdmin = () => {
 
   return (
     <section>
+      <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Make A Admin Here</h1>
       <div className="overflow-x-auto mx-5">
         <table className="table w-full">
           {/* <!-- head --> */}

@@ -67,7 +67,6 @@ const AddATool = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              // console.log(data);
               if (data?.acknowledged) {
                 toast.success("New Tool Uploaded successfully", {
                   autoClose: 1500,
@@ -86,80 +85,83 @@ const AddATool = () => {
   };
 
   return (
-    <section className="lg:max-w-4xl p-3 lg:p-5 lg:mt-32 mt-0  mx-auto lg:space-y-4 space-y-2 border">
-      <form action="" onSubmit={handleAddProduct}>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text font-semibold">Name of the Tool?</span>
-          </label>
-          <input name="name" type="text" placeholder="Type here" class="input input-bordered " />
-        </div>
-
-        <div className="flex lg:justify-between lg:flex-row flex-col lg:space-y-0 space-y-2">
-          <div class="form-control ">
+    <section>
+      <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Add A Tool Here</h1>
+      <section className="lg:max-w-4xl p-3 lg:p-5 my-16 mt-0  mx-auto lg:space-y-4 space-y-2 border">
+        <form action="" onSubmit={handleAddProduct}>
+          <div class="form-control">
             <label class="label">
-              <span class="label-text font-semibold">Upload a Picture</span>
+              <span class="label-text font-semibold">Name of the Tool?</span>
             </label>
-            <input
-              onChange={handleImage}
-              name="image"
-              type="file"
-              placeholder="Type here"
-              className="lg:w-[25rem] w-full border py-2 px-2 rounded-lg"
-            />
+            <input name="name" type="text" placeholder="Type here" class="input input-bordered " />
+          </div>
+
+          <div className="flex lg:justify-between lg:flex-row flex-col lg:space-y-0 space-y-2">
+            <div class="form-control ">
+              <label class="label">
+                <span class="label-text font-semibold">Upload a Picture</span>
+              </label>
+              <input
+                onChange={handleImage}
+                name="image"
+                type="file"
+                placeholder="Type here"
+                className="lg:w-[25rem] w-full border py-2 px-2 rounded-lg"
+              />
+            </div>
+
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text font-semibold">Available Quantity?</span>
+              </label>
+              <input
+                name="avlQuan"
+                type="number"
+                placeholder="quantity"
+                class="lg:w-[25rem] w-full input input-bordered "
+              />
+            </div>
+          </div>
+
+          <div className="flex lg:justify-between lg:flex-row flex-col lg:space-y-0 space-y-2">
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text font-semibold">Minimum Order Quantity?</span>
+              </label>
+              <input
+                name="moq"
+                type="number"
+                placeholder="Moq"
+                class="input input-bordered lg:w-[25rem] w-full"
+              />
+            </div>
+            <div class="form-control">
+              <label class="label">
+                <span class="label-text font-semibold">Price Per Unit($)?</span>
+              </label>
+              <input
+                name="pPerUnit"
+                type="number"
+                placeholder="price"
+                class="input input-bordered lg:w-[25rem] w-full"
+              />
+            </div>
           </div>
 
           <div class="form-control">
             <label class="label">
-              <span class="label-text font-semibold">Available Quantity?</span>
+              <span class="label-text font-semibold">Describe about the tool</span>
             </label>
-            <input
-              name="avlQuan"
-              type="number"
-              placeholder="quantity"
-              class="lg:w-[25rem] w-full input input-bordered "
-            />
+            <textarea name="desc" placeholder="Write Details" class="input input-bordered"></textarea>
           </div>
-        </div>
 
-        <div className="flex lg:justify-between lg:flex-row flex-col lg:space-y-0 space-y-2">
-          <div class="form-control">
-            <label class="label">
-              <span class="label-text font-semibold">Minimum Order Quantity?</span>
-            </label>
-            <input
-              name="moq"
-              type="number"
-              placeholder="Moq"
-              class="input input-bordered lg:w-[25rem] w-full"
-            />
+          <div className="flex justify-end mt-5">
+            <button type="submit" className="btn btn-primary">
+              Add Tool
+            </button>
           </div>
-          <div class="form-control">
-            <label class="label">
-              <span class="label-text font-semibold">Price Per Unit($)?</span>
-            </label>
-            <input
-              name="pPerUnit"
-              type="number"
-              placeholder="price"
-              class="input input-bordered lg:w-[25rem] w-full"
-            />
-          </div>
-        </div>
-
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text font-semibold">Describe about the tool</span>
-          </label>
-          <textarea name="desc" placeholder="Write Details" class="input input-bordered"></textarea>
-        </div>
-
-        <div className="flex justify-end mt-5">
-          <button type="submit" className="btn btn-primary">
-            Add Tool
-          </button>
-        </div>
-      </form>
+        </form>
+      </section>
     </section>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
-
+import CountUp from "react-countup";
 import { MdOutlinePeopleAlt } from "react-icons/md";
-import { AiOutlinePlus, AiOutlineFlag } from "react-icons/ai";
+import { AiOutlineFlag } from "react-icons/ai";
 import { SiExpensify } from "react-icons/si";
 import { FaHandSparkles } from "react-icons/fa";
 
@@ -22,7 +22,9 @@ const BusinessSummary = () => {
             <p className="text-6xl">
               <AiOutlineFlag />
             </p>
-            <p className="flex items-center text-5xl font-bold">60+</p>
+            <p className="flex items-center text-5xl font-bold">
+              <CountUp delay={2} end={60}></CountUp> +
+            </p>
             <p className="text-2xl font-semibold">Countries</p>
           </div>
 
@@ -30,7 +32,9 @@ const BusinessSummary = () => {
             <p className="text-6xl">
               <SiExpensify />
             </p>
-            <p className="flex items-center text-5xl font-bold">18+</p>
+            <p className="flex items-center text-5xl font-bold">
+              <CountUp delay={2} end={20}></CountUp>+
+            </p>
             <p className="text-2xl font-semibold">Years of Experience</p>
           </div>
 
@@ -38,7 +42,9 @@ const BusinessSummary = () => {
             <p className="text-6xl">
               <MdOutlinePeopleAlt />
             </p>
-            <p className="flex items-center text-5xl font-bold">580+</p>
+            <p className="flex items-center text-5xl font-bold">
+              <CountUp delay={2} end={580}></CountUp>+
+            </p>
             <p className="text-2xl font-semibold">Happy Clients</p>
           </div>
 
@@ -46,7 +52,9 @@ const BusinessSummary = () => {
             <p className="text-6xl">
               <FaHandSparkles />
             </p>
-            <p className="flex items-center text-5xl font-bold">415+</p>
+            <p className="flex items-center text-5xl font-bold">
+              <CountUp delay={2} end={415}></CountUp>+
+            </p>
             <p className="text-2xl font-semibold">Positive Feedbacks</p>
           </div>
         </div>

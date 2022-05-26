@@ -25,8 +25,6 @@ const ManageAllTools = () => {
   }
 
   const handleUpdateStatus = (id) => {
-    console.log(id);
-
     fetch(`http://localhost:5000/updateStatus/${id}`, {
       method: "PATCH",
       headers: {
@@ -37,7 +35,6 @@ const ManageAllTools = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data?.modifiedCount > 0) {
           toast.success("The product has now gone for shipping", {
             autoClose: 1500,
@@ -48,69 +45,72 @@ const ManageAllTools = () => {
   };
 
   return (
-    <div className="overflow-x-auto">
-      {cancelOrder && (
-        <UseCancelModal
-          refetch={refetch}
-          setCancelOrder={setCancelOrder}
-          cancelOrder={cancelOrder}
-        ></UseCancelModal>
-      )}
+    <section>
+      <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Update Your Profile Here</h1>
+      <div className="overflow-x-auto">
+        {cancelOrder && (
+          <UseCancelModal
+            refetch={refetch}
+            setCancelOrder={setCancelOrder}
+            cancelOrder={cancelOrder}
+          ></UseCancelModal>
+        )}
 
-      <table className="table w-full">
-        {/* <!-- head --> */}
-        <thead>
-          <tr className="text-center">
-            <th className="bg-neutral"></th>
-            <th className="bg-neutral">Tools Name</th>
-            <th className="bg-neutral">Email</th>
+        <table className="table w-full">
+          {/* <!-- head --> */}
+          <thead>
+            <tr className="text-center">
+              <th className="bg-neutral"></th>
+              <th className="bg-neutral">Tools Name</th>
+              <th className="bg-neutral">Email</th>
 
-            <th className="bg-neutral">Quantity</th>
-            <th className="bg-neutral">Payment</th>
-            <th className="bg-neutral">Action</th>
-            <th className="bg-neutral">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {allUser?.map((detail, i) => (
-            <tr key={detail._id} className="text-center">
-              <th className="bg-accent">{i + 1}</th>
-              <td className="bg-accent">{detail?.toolName}</td>
-              <td className="bg-accent">{detail?.email}</td>
-              <td className="bg-accent">{detail?.quantity}</td>
-
-              <td className="bg-accent space-x-5">
-                {detail.paid ? (
-                  <label className="px-3 py-2 rounded-xl font-semibold bg-info">Paid</label>
-                ) : (
-                  <label className="px-3 py-2 rounded-xl font-semibold bg-warning">Unpaid</label>
-                )}
-              </td>
-
-              <td className="bg-accent space-x-5">
-                {!detail.paid && (
-                  <label
-                    htmlFor="cancelorder"
-                    onClick={() => setCancelOrder(detail)}
-                    className="btn btn-error btn-sm"
-                  >
-                    Cancel
-                  </label>
-                )}
-              </td>
-
-              <td className="bg-accent space-x-5">
-                {detail.paid && detail.status && (
-                  <button onClick={() => handleUpdateStatus(detail._id)} className="btn btn-success btn-sm">
-                    {detail.status}
-                  </button>
-                )}
-              </td>
+              <th className="bg-neutral">Quantity</th>
+              <th className="bg-neutral">Payment</th>
+              <th className="bg-neutral">Action</th>
+              <th className="bg-neutral">Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {allUser?.map((detail, i) => (
+              <tr key={detail._id} className="text-center">
+                <th className="bg-accent">{i + 1}</th>
+                <td className="bg-accent">{detail?.toolName}</td>
+                <td className="bg-accent">{detail?.email}</td>
+                <td className="bg-accent">{detail?.quantity}</td>
+
+                <td className="bg-accent space-x-5">
+                  {detail.paid ? (
+                    <label className="px-3 py-2 rounded-xl font-semibold bg-info">Paid</label>
+                  ) : (
+                    <label className="px-3 py-2 rounded-xl font-semibold bg-warning">Unpaid</label>
+                  )}
+                </td>
+
+                <td className="bg-accent space-x-5">
+                  {!detail.paid && (
+                    <label
+                      htmlFor="cancelorder"
+                      onClick={() => setCancelOrder(detail)}
+                      className="btn btn-error btn-sm"
+                    >
+                      Cancel
+                    </label>
+                  )}
+                </td>
+
+                <td className="bg-accent space-x-5">
+                  {detail.paid && detail.status && (
+                    <button onClick={() => handleUpdateStatus(detail._id)} className="btn btn-success btn-sm">
+                      {detail.status}
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 };
 

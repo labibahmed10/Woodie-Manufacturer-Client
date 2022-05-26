@@ -13,7 +13,7 @@ const UseDeleteModal = ({ refetch, deleteTool, setDeleteTool }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+       
         if (data?.deletedCount > 0) {
           swal("Congratulations", "The Tool Was Deleted From Database", "success");
           refetch();

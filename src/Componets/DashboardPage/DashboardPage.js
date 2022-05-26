@@ -14,14 +14,12 @@ const DashboardPage = () => {
       <div className="drawer-content lg:px-10 px-2 lg:py-24 py-16">
         {/* <!-- Page content here --> */}
         <Outlet></Outlet>
-        <label htmlFor="dashbar" className="btn btn-primary drawer-button lg:hidden">
-          Open drawer
-        </label>
       </div>
       <div className="drawer-side overflow-y-hidden">
         <label htmlFor="dashbar" className="drawer-overlay"></label>
         <ul className="menu p-4 space-y-2 lg:w-80 w-64  text-base-content bg-neutral relative">
           {/* <!-- Sidebar content here --> */}
+
           {/* this is used to close the sidebar */}
           <label htmlFor="dashbar" className="btn btn-sm btn-circle absolute right-2 top-2 lg:hidden">
             ✕
@@ -29,8 +27,10 @@ const DashboardPage = () => {
 
           {!admin && (
             <>
-              <li className="pt-5">
-                <NavLink to="myorder">My Orders</NavLink>
+              <li>
+                <NavLink className="mt-5" to="myorder">
+                  My Orders
+                </NavLink>
               </li>
               <li>
                 <NavLink to="addreview">Add a review</NavLink>
@@ -39,7 +39,9 @@ const DashboardPage = () => {
           )}
 
           <li>
-            <NavLink to="myprofile">My Profile</NavLink>
+            <NavLink className="mt-3" to="myprofile">
+              My Profile
+            </NavLink>
           </li>
 
           {admin && (

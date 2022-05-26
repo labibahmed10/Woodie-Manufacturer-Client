@@ -82,7 +82,6 @@ const PurchasePage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data?.acknowledged) {
           fetch(`http://localhost:5000/allTools/${id}`, {
             method: "PUT",
@@ -97,12 +96,12 @@ const PurchasePage = () => {
               if (data?.modifiedCount > 0) {
                 refetch();
               }
+              swal(
+                "Thank You!",
+                "You have Successfully placed the order.Now you can pay by going to 'My order' page",
+                "success"
+              );
             });
-          swal(
-            "Thank You!",
-            "You have Successfully placed the order.Now you can pay by going to 'My order' page",
-            "success"
-          );
         }
       });
 

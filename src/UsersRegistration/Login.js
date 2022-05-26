@@ -33,7 +33,6 @@ const LogIn = () => {
 
   const onSubmit = (data) => {
     const { email, password } = data;
-    console.log(data);
     signInWithEmailAndPassword(email, password);
   };
 

@@ -31,7 +31,6 @@ const MyProfile = () => {
       phone,
       profile,
     };
-    console.log(updatedUser);
 
     fetch(`http://localhost:5000/allRandomUsers?email=${email}`, {
       method: "PUT",
@@ -43,7 +42,6 @@ const MyProfile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data?.result?.modifiedCount > 0 || data?.result?.upsertedCount) {
           swal("Congrats!", "Your Information was updated!", "success");
           e.target.reset();
@@ -55,7 +53,8 @@ const MyProfile = () => {
 
   return (
     <section>
-      <form className="mx-auto space-y-3 lg:mt-20 mt-5 lg:w-[27rem]" onSubmit={handleUpdateProfile}>
+      <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Update Your Profile Here</h1>
+      <form className="mx-auto space-y-3 lg:mt-20 mt-5 lg:max-w-3xl" onSubmit={handleUpdateProfile}>
         <div className="form-control">
           <input
             type="text"

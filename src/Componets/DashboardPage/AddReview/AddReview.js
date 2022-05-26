@@ -36,7 +36,6 @@ const AddReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           swal("Thank You!", "We are privilleged to have your review 😀", "success");
           e.target.reset();
@@ -45,10 +44,15 @@ const AddReview = () => {
   };
 
   return (
-    <section className="mx-auto lg:mt-20 lg:w-[27rem]">
+    <section className="mx-auto lg:mt-20 lg:max-w-3xl">
+      <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Give us a review</h1>
       <form onSubmit={handleReview} className="space-y-3">
         <div className="form-control">
-          <input type="text" value={displayName} className="input bg-neutral font-semibold w-full" />
+          <input
+            type="text"
+            value={displayName}
+            className="input input-bordered bg-neutral font-semibold w-full"
+          />
         </div>
         <div>
           <label htmlFor="" className="label font-semibold">

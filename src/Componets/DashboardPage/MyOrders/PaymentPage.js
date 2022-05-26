@@ -14,14 +14,18 @@ const PaymentPage = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/purchase/${id}`)
+    fetch(`http://localhost:5000/purchase/${id}`, {
+      method: "GET",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setPurchaseInfo(data);
       });
   }, [id]);
 
-  // console.log(purchaseInfo);
   return (
     <section className="px-2 lg:px-0">
       <div className="mx-auto lg:mt-20 mt-5 lg:max-w-3xl">

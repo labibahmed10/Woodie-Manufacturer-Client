@@ -6,7 +6,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
   const handleCancelOrder = () => {
     const newQuantity = avlQuan + quantity;
     cancelOrder = { ...cancelOrder, avlQuan: newQuantity };
-    console.log(cancelOrder);
+  
 
     fetch(`http://localhost:5000/cancelOrder/${_id}`, {
       method: "DELETE",
@@ -16,7 +16,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+      
         if (data?.deletedCount > 0) {
           refetch();
           setCancelOrder(null);
@@ -29,7 +29,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
           // })
           //   .then((res) => res.json())
           //   .then((data) => {
-          //     console.log(data);
+          //   
           //     // if (data?.modifiedCount > 0) {
           //     //   refetch();
           //     // }
