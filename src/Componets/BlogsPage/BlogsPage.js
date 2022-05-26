@@ -28,12 +28,6 @@ const BlogsPage = () => {
           What are the different ways to manage a state in a React application?
         </h1>
         <div className="flex md:flex-row flex-col items-center gap-10 leading-7">
-          <img
-            className="md:w-1/2"
-            src="https://www.loginradius.com/blog/static/878d2cde053633bfea88a8bfcfc28e89/29007/image1.png"
-            alt=""
-          />
-
           <p className="text-xl text-justify">
             There are four main types of state that we need to manaage in our react application.They are --
             <br />
@@ -46,6 +40,11 @@ const BlogsPage = () => {
             <span className="font-semibold">4. URL state - </span>Data that exists on our URLs, including the
             pathname and query parameters. <br />
           </p>
+          <img
+            className="md:w-1/2"
+            src="https://www.loginradius.com/blog/static/878d2cde053633bfea88a8bfcfc28e89/29007/image1.png"
+            alt=""
+          />
         </div>
       </div>
       <div className="border p-4 mb-3">
@@ -74,8 +73,6 @@ const BlogsPage = () => {
           setProducts] = useState([]). Why you do not set products = [...] instead, you use the setProducts?
         </h1>
         <div className="flex md:flex-row flex-col items-center gap-10 leading-7">
-          <img className="md:w-1/2" src="https://daveceddia.com/images/useState-hook-twitter.png" alt="" />
-
           <p className="text-xl text-justify">
             In React, the state is immutable. In simple terms it means that we should not modify it
             directly.React state is a plain JavaScript object that holds information that influences the
@@ -84,6 +81,7 @@ const BlogsPage = () => {
             and the updates can be possible by using setProducts() and it will not disturb the process of
             rendering.
           </p>
+          <img className="md:w-1/2" src="https://daveceddia.com/images/useState-hook-twitter.png" alt="" />
         </div>
       </div>
       <div className="border p-4 mb-3">
