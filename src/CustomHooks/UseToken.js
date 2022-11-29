@@ -1,32 +1,32 @@
 import { useEffect, useState } from "react";
 
 const UseToken = (user) => {
-  const [token, setToken] = useState("");
+   const [token, setToken] = useState("");
 
-  useEffect(() => {
-    const email = user?.user?.email;
-    const newUser = { name: user?.user?.displayName, email };
+   useEffect(() => {
+      const email = user?.user?.email;
+      const newUser = { name: user?.user?.displayName, email };
 
-    if (email) {
-      fetch(`https://shrouded-stream-85988.herokuapp.com/allRandomUsers?email=${email}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-        body: JSON.stringify(newUser),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data?.result?.acknowledged) {
-            localStorage.setItem("accessToken", data?.accessToken);
-            setToken(data?.accessToken);
-          }
-        });
-    }
-  }, [user, token]);
+      if (email) {
+         fetch(`https://woodie-manufacturer-server-production.up.railway.app/allRandomUsers?email=${email}`, {
+            method: "PUT",
+            headers: {
+               "content-type": "application/json",
+               authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(newUser),
+         })
+            .then((res) => res.json())
+            .then((data) => {
+               if (data?.result?.acknowledged) {
+                  localStorage.setItem("accessToken", data?.accessToken);
+                  setToken(data?.accessToken);
+               }
+            });
+      }
+   }, [user, token]);
 
-  return [token];
+   return [token];
 };
 
 export default UseToken;
