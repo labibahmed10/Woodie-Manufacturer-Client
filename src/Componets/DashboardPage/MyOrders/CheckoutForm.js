@@ -17,7 +17,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
    const price = totalCost;
 
    useEffect(() => {
-      fetch("https://woodie-manufacturer-server-production.up.railway.app/create-payment-intent", {
+      fetch("https://woodie-manufature.onrender.com/create-payment-intent", {
          method: "POST",
          headers: {
             "content-Type": "application/json",
@@ -62,15 +62,18 @@ const CheckoutForm = ({ purchaseInfo }) => {
       setLoading(true);
 
       // cofirm card intent payment
-      const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(clientSecret, {
-         payment_method: {
-            card: card,
-            billing_details: {
-               name: name,
-               email: email,
+      const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
+         clientSecret,
+         {
+            payment_method: {
+               card: card,
+               billing_details: {
+                  name: name,
+                  email: email,
+               },
             },
          },
-      });
+      );
 
       if (intentError) {
          setCardError(intentError.message);
@@ -81,7 +84,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
             status: "Pending",
          };
 
-         fetch(`https://woodie-manufacturer-server-production.up.railway.app/purchasePaid/${_id}`, {
+         fetch(`https://woodie-manufature.onrender.com/purchasePaid/${_id}`, {
             method: "PATCH",
             headers: {
                "content-type": "application/json",
@@ -93,7 +96,11 @@ const CheckoutForm = ({ purchaseInfo }) => {
             .then((data) => {
                if (data.modifiedCount > 0) {
                   setLoading(false);
-                  swal("Congrats!", `Your Payment Is Successful!,Your Transaction Id - ${paymentIntent.id}`, "success");
+                  swal(
+                     "Congrats!",
+                     `Your Payment Is Successful!,Your Transaction Id - ${paymentIntent.id}`,
+                     "success",
+                  );
                   navigate("/dashboard/myorder");
                }
             });
@@ -125,7 +132,11 @@ const CheckoutForm = ({ purchaseInfo }) => {
             {cardError && <p className="text-red-500">{cardError}</p>}
 
             <div className="flex justify-end pt-3">
-               <button className=" btn btn-primary" type="submit" disabled={!stripe || !clientSecret}>
+               <button
+                  className=" btn btn-primary"
+                  type="submit"
+                  disabled={!stripe || !clientSecret}
+               >
                   Pay
                </button>
             </div>

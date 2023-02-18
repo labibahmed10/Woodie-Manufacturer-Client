@@ -13,14 +13,15 @@ const ReviewSection = () => {
    const [reviews, setReviews] = useState([]);
 
    useEffect(() => {
-      fetch("https://woodie-manufacturer-server-production.up.railway.app/allReviews")
+      fetch("https://woodie-manufature.onrender.com/allReviews")
          .then((res) => res.json())
          .then((data) => setReviews(data));
    }, []);
    return (
       <section className="md:px-20 md:py-32 py-12 px-5  text-secondary">
          <h1 className="text-center lg:text-5xl text-4xl pb-10 font-bold">
-            Positive <span className="text-primary">Reviwes</span> From our <br /> valuable customers around the world
+            Positive <span className="text-primary">Reviwes</span> From our <br />{" "}
+            valuable customers around the world
          </h1>
 
          <div className="lg:h-[35rem] py-10">
@@ -50,7 +51,12 @@ const ReviewSection = () => {
 
                            <div className="rating rating-md mt-2">
                               {[...Array(review?.ratings).keys()].map((rating) => (
-                                 <input key={rating} type="radio" name="rating-7" className="mask mask-star-2 bg-orange-300" />
+                                 <input
+                                    key={rating}
+                                    type="radio"
+                                    name="rating-7"
+                                    className="mask mask-star-2 bg-orange-300"
+                                 />
                               ))}
                            </div>
                         </div>

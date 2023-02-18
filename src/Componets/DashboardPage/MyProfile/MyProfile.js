@@ -32,7 +32,7 @@ const MyProfile = () => {
          profile,
       };
 
-      fetch(`https://woodie-manufacturer-server-production.up.railway.app/allRandomUsers?email=${email}`, {
+      fetch(`https://woodie-manufature.onrender.com/allRandomUsers?email=${email}`, {
          method: "PUT",
          headers: {
             "content-type": "application/json",
@@ -53,18 +53,36 @@ const MyProfile = () => {
 
    return (
       <section>
-         <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Update Your Profile Here</h1>
-         <form className="mx-auto space-y-3 lg:mt-20 mt-5 lg:max-w-3xl" onSubmit={handleUpdateProfile}>
+         <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">
+            Update Your Profile Here
+         </h1>
+         <form
+            className="mx-auto space-y-3 lg:mt-20 mt-5 lg:max-w-3xl"
+            onSubmit={handleUpdateProfile}
+         >
             <div className="form-control">
-               <input type="text" value={displayName} className="input bg-neutral input-bordered font-semibold w-full" />
+               <input
+                  type="text"
+                  value={displayName}
+                  className="input bg-neutral input-bordered font-semibold w-full"
+               />
             </div>
 
             <div className="form-control">
-               <input type="email" value={email} className="input bg-neutral input-bordered font-semibold w-full" />
+               <input
+                  type="email"
+                  value={email}
+                  className="input bg-neutral input-bordered font-semibold w-full"
+               />
             </div>
 
             <div className="form-control">
-               <input name="edu" type="text" placeholder="Add Education" className="input bg-neutral input-bordered font-semibold w-full" />
+               <input
+                  name="edu"
+                  type="text"
+                  placeholder="Add Education"
+                  className="input bg-neutral input-bordered font-semibold w-full"
+               />
             </div>
 
             <div className="form-control">
@@ -76,7 +94,12 @@ const MyProfile = () => {
                />
             </div>
             <div className="form-control">
-               <input name="phone" type="number" placeholder="Add Phone Number" className="input bg-neutral input-bordered font-semibold w-full" />
+               <input
+                  name="phone"
+                  type="number"
+                  placeholder="Add Phone Number"
+                  className="input bg-neutral input-bordered font-semibold w-full"
+               />
             </div>
             <div className="form-control">
                <input

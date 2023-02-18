@@ -8,7 +8,7 @@ const UseToken = (user) => {
       const newUser = { name: user?.user?.displayName, email };
 
       if (email) {
-         fetch(`https://woodie-manufacturer-server-production.up.railway.app/allRandomUsers?email=${email}`, {
+         fetch(`https://woodie-manufature.onrender.com/allRandomUsers?email=${email}`, {
             method: "PUT",
             headers: {
                "content-type": "application/json",

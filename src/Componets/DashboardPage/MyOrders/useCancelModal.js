@@ -7,7 +7,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
       const newQuantity = avlQuan + quantity;
       cancelOrder = { ...cancelOrder, avlQuan: newQuantity };
 
-      fetch(`https://woodie-manufacturer-server-production.up.railway.app/cancelOrder/${id}`, {
+      fetch(`https://woodie-manufature.onrender.com/cancelOrder/${id}`, {
          method: "DELETE",
          headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -18,7 +18,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
             if (data?.deletedCount > 0) {
                refetch();
                setCancelOrder(null);
-               // fetch(`https://woodie-manufacturer-server-production.up.railway.app/allTools/${_id}`, {
+               // fetch(`https://woodie-manufature.onrender.com/allTools/${_id}`, {
                //   method: "PUT",
                //   headers: {
                //     "content-type": "application/json", "authorization" : `bearer ${localStorage.getItem("accessToken")}` "authorization" : `bearer localStorage.getItem("accessToken")`
@@ -41,14 +41,22 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }) => {
          <input type="checkbox" id="cancelorder" className="modal-toggle" />
          <div className="modal text-secondary">
             <div className="modal-box relative">
-               <label htmlFor="cancelorder" className="btn btn-sm btn-circle absolute right-2 top-2">
+               <label
+                  htmlFor="cancelorder"
+                  className="btn btn-sm btn-circle absolute right-2 top-2"
+               >
                   ✕
                </label>
-               <h3 className="text-lg font-bold">Are You Sure You Want To Cancel The Order For :-</h3>
+               <h3 className="text-lg font-bold">
+                  Are You Sure You Want To Cancel The Order For :-
+               </h3>
                <p className="py-2">Name : {toolName}</p>
                <p>Quantity : {quantity}</p>
                <div className="flex justify-end">
-                  <button onClick={() => handleCancelOrder(_id)} className="btn btn-primary btn-sm">
+                  <button
+                     onClick={() => handleCancelOrder(_id)}
+                     className="btn btn-primary btn-sm"
+                  >
                      Yes,cancel
                   </button>
                </div>

@@ -26,7 +26,7 @@ const AddReview = () => {
          text,
       };
 
-      fetch(`https://woodie-manufacturer-server-production.up.railway.app/allReviews`, {
+      fetch(`https://woodie-manufature.onrender.com/allReviews`, {
          method: "POST",
          headers: {
             "content-type": "application/json",
@@ -45,26 +45,64 @@ const AddReview = () => {
 
    return (
       <section className="mx-auto lg:mt-20 lg:max-w-3xl">
-         <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Give us a review</h1>
+         <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">
+            Give us a review
+         </h1>
          <form onSubmit={handleReview} className="space-y-3">
             <div className="form-control">
-               <input type="text" value={displayName} className="input input-bordered bg-neutral font-semibold w-full" />
+               <input
+                  type="text"
+                  value={displayName}
+                  className="input input-bordered bg-neutral font-semibold w-full"
+               />
             </div>
             <div>
                <label htmlFor="" className="label font-semibold">
                   Give us any kind of reviews & Suggestion
                </label>
-               <textarea name="message" className="textarea textarea-bordered w-full" placeholder="Description"></textarea>
+               <textarea
+                  name="message"
+                  className="textarea textarea-bordered w-full"
+                  placeholder="Description"
+               ></textarea>
             </div>
 
             <div className="form-control">
                <label className="label">How Would You Rate Us?</label>
-               <div onChange={(e) => setRatings(+e.target.value)} className="rating rating-md">
-                  <input type="radio" value="1" name="rating-7" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" value="2" name="rating-7" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" value="3" name="rating-7" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" value="4" name="rating-7" className="mask mask-star-2 bg-orange-400" />
-                  <input type="radio" value="5" name="rating-7" className="mask mask-star-2 bg-orange-400" />
+               <div
+                  onChange={(e) => setRatings(+e.target.value)}
+                  className="rating rating-md"
+               >
+                  <input
+                     type="radio"
+                     value="1"
+                     name="rating-7"
+                     className="mask mask-star-2 bg-orange-400"
+                  />
+                  <input
+                     type="radio"
+                     value="2"
+                     name="rating-7"
+                     className="mask mask-star-2 bg-orange-400"
+                  />
+                  <input
+                     type="radio"
+                     value="3"
+                     name="rating-7"
+                     className="mask mask-star-2 bg-orange-400"
+                  />
+                  <input
+                     type="radio"
+                     value="4"
+                     name="rating-7"
+                     className="mask mask-star-2 bg-orange-400"
+                  />
+                  <input
+                     type="radio"
+                     value="5"
+                     name="rating-7"
+                     className="mask mask-star-2 bg-orange-400"
+                  />
                </div>
             </div>
 

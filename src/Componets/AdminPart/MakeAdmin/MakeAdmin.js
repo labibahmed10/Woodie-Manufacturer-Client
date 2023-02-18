@@ -16,7 +16,7 @@ const MakeAdmin = () => {
       isLoading,
       refetch,
    } = useQuery("allRandomUsers", () =>
-      fetch("https://woodie-manufacturer-server-production.up.railway.app/allRandomUsers", {
+      fetch("https://woodie-manufature.onrender.com/allRandomUsers", {
          method: "GET",
          headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -29,7 +29,7 @@ const MakeAdmin = () => {
    }
 
    const MakeAdmin = (email) => {
-      fetch(`https://woodie-manufacturer-server-production.up.railway.app/allRandomUsers/admin?email=${email}`, {
+      fetch(`https://woodie-manufature.onrender.com/allRandomUsers/admin?email=${email}`, {
          method: "PUT",
          headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,

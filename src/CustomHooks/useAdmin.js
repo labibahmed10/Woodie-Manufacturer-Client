@@ -10,7 +10,7 @@ const useAdmin = (user) => {
       const email = user?.email;
 
       if (email) {
-         fetch(`https://woodie-manufacturer-server-production.up.railway.app/admin?email=${email}`, {
+         fetch(`https://woodie-manufature.onrender.com/admin?email=${email}`, {
             method: "GET",
             headers: {
                authorization: `bearer ${localStorage.getItem("accessToken")}`,

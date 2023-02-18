@@ -10,7 +10,7 @@ const ManageTools = () => {
       isLoading,
       refetch,
    } = useQuery("alltools", () =>
-      fetch("https://woodie-manufacturer-server-production.up.railway.app/allTools", {
+      fetch("https://woodie-manufature.onrender.com/allTools", {
          method: "GET",
          headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -24,9 +24,17 @@ const ManageTools = () => {
 
    return (
       <section className="lg:py-0 py-16">
-         <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Manage All Tools Here</h1>
+         <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">
+            Manage All Tools Here
+         </h1>
          <div>
-            {deleteTool && <UseDeleteModal refetch={refetch} deleteTool={deleteTool} setDeleteTool={setDeleteTool}></UseDeleteModal>}
+            {deleteTool && (
+               <UseDeleteModal
+                  refetch={refetch}
+                  deleteTool={deleteTool}
+                  setDeleteTool={setDeleteTool}
+               ></UseDeleteModal>
+            )}
 
             <div className="overflow-x-auto">
                <table className="table w-full">
@@ -54,7 +62,11 @@ const ManageTools = () => {
                            <td className="bg-accent">{detail?.pPerUnit}</td>
                            <td className="bg-accent">{detail?.avlQuan}</td>
                            <td className="bg-accent">
-                              <label onClick={() => setDeleteTool(detail)} htmlFor="deleteOrder" className="btn btn-error btn-sm">
+                              <label
+                                 onClick={() => setDeleteTool(detail)}
+                                 htmlFor="deleteOrder"
+                                 className="btn btn-error btn-sm"
+                              >
                                  Delete Tool
                               </label>
                            </td>

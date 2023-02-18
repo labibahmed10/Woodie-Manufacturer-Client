@@ -17,7 +17,7 @@ const MyOrders = () => {
       isLoading,
       refetch,
    } = useQuery(["personsData", email], () =>
-      fetch(`https://woodie-manufacturer-server-production.up.railway.app/purchaseByEmail?email=${email}`, {
+      fetch(`https://woodie-manufature.onrender.com/purchaseByEmail?email=${email}`, {
          method: "GET",
          headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -31,9 +31,17 @@ const MyOrders = () => {
 
    return (
       <section>
-         <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">All The Orders You Have Done</h1>
+         <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">
+            All The Orders You Have Done
+         </h1>
          <div className="overflow-x-auto">
-            {cancelOrder && <UseCancelModal refetch={refetch} setCancelOrder={setCancelOrder} cancelOrder={cancelOrder}></UseCancelModal>}
+            {cancelOrder && (
+               <UseCancelModal
+                  refetch={refetch}
+                  setCancelOrder={setCancelOrder}
+                  cancelOrder={cancelOrder}
+               ></UseCancelModal>
+            )}
             <table className="table w-full">
                {/* <!-- head --> */}
                <thead>
@@ -57,7 +65,11 @@ const MyOrders = () => {
                         <td className="bg-accent">{detail?.quantity}</td>
                         <td className="bg-accent ">
                            {!detail.paid && (
-                              <label onClick={() => setCancelOrder(detail)} htmlFor="cancelorder" className="btn btn-primary btn-sm">
+                              <label
+                                 onClick={() => setCancelOrder(detail)}
+                                 htmlFor="cancelorder"
+                                 className="btn btn-primary btn-sm"
+                              >
                                  Cancel
                               </label>
                            )}
@@ -66,12 +78,23 @@ const MyOrders = () => {
                            {detail.paid ? (
                               <span className="text-green-500 px-3">Paid</span>
                            ) : (
-                              <button onClick={() => navigate(`/dashboard/payment/${detail._id}`)} className="btn btn-success btn-sm">
+                              <button
+                                 onClick={() =>
+                                    navigate(`/dashboard/payment/${detail._id}`)
+                                 }
+                                 className="btn btn-success btn-sm"
+                              >
                                  Pay
                               </button>
                            )}
                         </td>
-                        <td className="bg-accent">{detail?.transictionID && <span className="text-green-500 px-3">{detail?.transictionID}</span>}</td>
+                        <td className="bg-accent">
+                           {detail?.transictionID && (
+                              <span className="text-green-500 px-3">
+                                 {detail?.transictionID}
+                              </span>
+                           )}
+                        </td>
                      </tr>
                   ))}
                </tbody>

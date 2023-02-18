@@ -12,7 +12,7 @@ const ManageAllTools = () => {
       isLoading,
       refetch,
    } = useQuery("allusers", () =>
-      fetch("https://woodie-manufacturer-server-production.up.railway.app/purchase", {
+      fetch("https://woodie-manufature.onrender.com/purchase", {
          method: "GET",
          headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -25,7 +25,7 @@ const ManageAllTools = () => {
    }
 
    const handleUpdateStatus = (id) => {
-      fetch(`https://woodie-manufacturer-server-production.up.railway.app/updateStatus/${id}`, {
+      fetch(`https://woodie-manufature.onrender.com/updateStatus/${id}`, {
          method: "PATCH",
          headers: {
             "content-type": "application/json",
@@ -46,9 +46,17 @@ const ManageAllTools = () => {
 
    return (
       <section>
-         <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Update Your Profile Here</h1>
+         <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">
+            Update Your Profile Here
+         </h1>
          <div className="overflow-x-auto">
-            {cancelOrder && <UseCancelModal refetch={refetch} setCancelOrder={setCancelOrder} cancelOrder={cancelOrder}></UseCancelModal>}
+            {cancelOrder && (
+               <UseCancelModal
+                  refetch={refetch}
+                  setCancelOrder={setCancelOrder}
+                  cancelOrder={cancelOrder}
+               ></UseCancelModal>
+            )}
 
             <table className="table w-full">
                {/* <!-- head --> */}
@@ -74,15 +82,23 @@ const ManageAllTools = () => {
 
                         <td className="bg-accent space-x-5">
                            {detail.paid ? (
-                              <label className="px-3 py-2 rounded-xl font-semibold bg-info">Paid</label>
+                              <label className="px-3 py-2 rounded-xl font-semibold bg-info">
+                                 Paid
+                              </label>
                            ) : (
-                              <label className="px-3 py-2 rounded-xl font-semibold bg-warning">Unpaid</label>
+                              <label className="px-3 py-2 rounded-xl font-semibold bg-warning">
+                                 Unpaid
+                              </label>
                            )}
                         </td>
 
                         <td className="bg-accent space-x-5">
                            {!detail.paid && (
-                              <label htmlFor="cancelorder" onClick={() => setCancelOrder(detail)} className="btn btn-error btn-sm">
+                              <label
+                                 htmlFor="cancelorder"
+                                 onClick={() => setCancelOrder(detail)}
+                                 className="btn btn-error btn-sm"
+                              >
                                  Cancel
                               </label>
                            )}
@@ -90,7 +106,10 @@ const ManageAllTools = () => {
 
                         <td className="bg-accent space-x-5">
                            {detail.paid && detail.status && (
-                              <button onClick={() => handleUpdateStatus(detail._id)} className="btn btn-success btn-sm">
+                              <button
+                                 onClick={() => handleUpdateStatus(detail._id)}
+                                 className="btn btn-success btn-sm"
+                              >
                                  {detail.status}
                               </button>
                            )}

@@ -5,14 +5,16 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 
-const stripePromise = loadStripe("pk_test_51L176eLJGq2V9Vbnyh02I7vKL5E6H5e19B2UidcrAcbDKPfq3Ue3nVLr4r9FMCxtMz8eB2HeEo7rtADhDhHpRuzm009Himf1Yb");
+const stripePromise = loadStripe(
+   "pk_test_51L176eLJGq2V9Vbnyh02I7vKL5E6H5e19B2UidcrAcbDKPfq3Ue3nVLr4r9FMCxtMz8eB2HeEo7rtADhDhHpRuzm009Himf1Yb",
+);
 
 const PaymentPage = () => {
    const [purchaseInfo, setPurchaseInfo] = useState("");
    const { id } = useParams();
 
    useEffect(() => {
-      fetch(`https://woodie-manufacturer-server-production.up.railway.app/purchase/${id}`, {
+      fetch(`https://woodie-manufature.onrender.com/purchase/${id}`, {
          method: "GET",
          headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -31,14 +33,22 @@ const PaymentPage = () => {
                <label class="label">
                   <span class="label-text font-semibold">Your Name</span>
                </label>
-               <input type="text" value={purchaseInfo?.name} className="input bg-neutral input-bordered font-semibold w-full" />
+               <input
+                  type="text"
+                  value={purchaseInfo?.name}
+                  className="input bg-neutral input-bordered font-semibold w-full"
+               />
             </div>
 
             <div className="form-control">
                <label class="label">
                   <span class="label-text font-semibold">Your Email</span>
                </label>
-               <input type="email" value={purchaseInfo?.email} className="input bg-neutral input-bordered font-semibold  w-full" />
+               <input
+                  type="email"
+                  value={purchaseInfo?.email}
+                  className="input bg-neutral input-bordered font-semibold  w-full"
+               />
             </div>
 
             <div className="form-control">
@@ -87,7 +97,15 @@ const PaymentPage = () => {
             <div>
                <p className="text-gray-500 my-2">You can pay with</p>
                <div className="flex items-center gap-2">
-                  <input bg-neutral input bg-neutral-bordered type="radio" name="radio-1" className="radio w-5 h-5" checked />
+                  <input
+                     bg-neutral
+                     input
+                     bg-neutral-bordered
+                     type="radio"
+                     name="radio-1"
+                     className="radio w-5 h-5"
+                     checked
+                  />
                   <p className="flex items-center gap-1 font-bold">
                      <FaCreditCard /> Credit Cart
                   </p>

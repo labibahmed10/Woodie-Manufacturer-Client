@@ -5,7 +5,7 @@ const Toolkits = () => {
    const [tools, setTools] = useState([]);
 
    useEffect(() => {
-      fetch("https://woodie-manufacturer-server-production.up.railway.app/allTools", {
+      fetch("https://woodie-manufature.onrender.com/allTools", {
          method: "GET",
          headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
