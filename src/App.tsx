@@ -17,8 +17,6 @@ import MakeAdmin from "./Componets/AdminPart/MakeAdmin/MakeAdmin";
 import ManageTools from "./Componets/AdminPart/ManageTools/ManageTools";
 import AddATool from "./Componets/AdminPart/AddATool/AddATool";
 import RequireAdmin from "./RequireAdmin/RequireAdmin";
-import BlogsPage from "./Componets/BlogsPage/BlogsPage";
-import MyPortfolioPage from "./Componets/MyPortfolioPage/MyPortfolioPage";
 import NotFoundPage from "./Componets/NotFoundPage/NotFoundPage";
 
 function App() {
@@ -26,18 +24,16 @@ function App() {
     <div>
       <Navbar>
         <Routes>
-          <Route path="/" element={<HomePage></HomePage>}></Route>
-          <Route path="/home" element={<HomePage></HomePage>}></Route>
-          <Route path="/blogs" element={<BlogsPage></BlogsPage>}></Route>
-          <Route path="/myportfolio" element={<MyPortfolioPage></MyPortfolioPage>}></Route>
-          <Route path="/login" element={<LogIn></LogIn>}></Route>
-          <Route path="/signup" element={<SignUp></SignUp>}></Route>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/home" element={<HomePage />}></Route>
+          <Route path="/login" element={<LogIn />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
 
           <Route
             path="/purchase/:id"
             element={
               <RequiredAuth>
-                <PurchasePage></PurchasePage>
+                <PurchasePage />
               </RequiredAuth>
             }
           ></Route>
@@ -46,20 +42,20 @@ function App() {
             path="/dashboard"
             element={
               <RequiredAuth>
-                <DashboardPage></DashboardPage>
+                <DashboardPage />
               </RequiredAuth>
             }
           >
-            <Route path="myorder" element={<MyOrders></MyOrders>}></Route>
-            <Route path="payment/:id" element={<PaymentPage></PaymentPage>}></Route>
-            <Route path="addreview" element={<AddReview></AddReview>}></Route>
-            <Route path="myprofile" element={<MyProfile></MyProfile>}></Route>
+            <Route path="myorder" element={<MyOrders />}></Route>
+            <Route path="payment/:id" element={<PaymentPage />}></Route>
+            <Route path="addreview" element={<AddReview />}></Route>
+            <Route path="myprofile" element={<MyProfile />}></Route>
 
             <Route
               path="manageAllOrders"
               element={
                 <RequireAdmin>
-                  <ManageAllTools></ManageAllTools>
+                  <ManageAllTools />
                 </RequireAdmin>
               }
             ></Route>
@@ -68,7 +64,7 @@ function App() {
               path="makeadmin"
               element={
                 <RequireAdmin>
-                  <MakeAdmin></MakeAdmin>
+                  <MakeAdmin />
                 </RequireAdmin>
               }
             ></Route>
@@ -77,7 +73,7 @@ function App() {
               path="addtool"
               element={
                 <RequireAdmin>
-                  <AddATool></AddATool>
+                  <AddATool />
                 </RequireAdmin>
               }
             ></Route>
@@ -86,15 +82,15 @@ function App() {
               path="managetool"
               element={
                 <RequireAdmin>
-                  <ManageTools></ManageTools>
+                  <ManageTools />
                 </RequireAdmin>
               }
             ></Route>
           </Route>
-          <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
+          <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
 
-        <ToastContainer theme="dark"></ToastContainer>
+        <ToastContainer theme="dark" />
       </Navbar>
     </div>
   );

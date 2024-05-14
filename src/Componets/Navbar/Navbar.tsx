@@ -5,7 +5,7 @@ import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import Spinner from "../../Spinner/Spinner";
 
-const Navbar = ({ children }) => {
+const Navbar = ({ children }: { children: React.ReactNode }) => {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,18 +24,8 @@ const Navbar = ({ children }) => {
           {/* dashboard logo */}
           {dashbar && (
             <label htmlFor="dashbar" className="lg:hidden drawer-button">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="inline-block w-6 h-6 stroke-current"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </label>
           )}
@@ -50,18 +40,8 @@ const Navbar = ({ children }) => {
 
           <div className="flex-none lg:hidden">
             <label htmlFor="my-drawer-3" className="btn btn-square btn-ghost">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="inline-block w-6 h-6 stroke-current"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-6 h-6 stroke-current">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </label>
           </div>
@@ -81,17 +61,6 @@ const Navbar = ({ children }) => {
                     Dashboard
                   </NavLink>
                 )}
-              </li>
-
-              <li>
-                <NavLink to="/blogs" className="rounded-xl font-semibold">
-                  Blogs
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/myportfolio" className="rounded-xl font-semibold">
-                  My Portfolio
-                </NavLink>
               </li>
 
               <li>
@@ -139,17 +108,6 @@ const Navbar = ({ children }) => {
                 Dashboard
               </NavLink>
             )}
-          </li>
-
-          <li>
-            <NavLink to="/blogs" className="rounded-xl font-semibold">
-              Blogs
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/myportfolio" className="rounded-xl font-semibold">
-              My Portfolio
-            </NavLink>
           </li>
 
           <li>
