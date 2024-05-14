@@ -3,10 +3,6 @@ import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig(() => {
   return {
-    build: {
-      outDir: "build",
-    },
-    base: "/",
     plugins: [react()],
   };
 });

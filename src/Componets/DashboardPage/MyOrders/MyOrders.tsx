@@ -4,7 +4,8 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Spinner from "../../../Spinner/Spinner";
-import UseCancelModal from "./UseCancelModal";
+import UseCancelModal from "./useCancelModal";
+
 
 const MyOrders = () => {
    const [user] = useAuthState(auth);
