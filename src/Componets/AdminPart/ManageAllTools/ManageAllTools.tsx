@@ -12,7 +12,7 @@ const ManageAllTools = () => {
     isLoading,
     refetch,
   } = useQuery("allusers", () =>
-    fetch("https://woodie-manufature.onrender.com/purchase", {
+    fetch("http://localhost:5000/purchase", {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -25,7 +25,7 @@ const ManageAllTools = () => {
   }
 
   const handleUpdateStatus = (id) => {
-    fetch(`https://woodie-manufature.onrender.com/updateStatus/${id}`, {
+    fetch(`http://localhost:5000/updateStatus/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

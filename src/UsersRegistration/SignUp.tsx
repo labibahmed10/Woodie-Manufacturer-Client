@@ -17,6 +17,8 @@ const SignUp = () => {
   // custom hook has been made for token issue
   const [token] = UseToken(user);
 
+  console.log(token);
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -44,10 +46,7 @@ const SignUp = () => {
   }
 
   return (
-    <section
-      style={{ backgroundImage: `url('https://i.postimg.cc/V68pVgwz/banner6.webp')` }}
-      className="px-5 bg-cover bg-no-repeat h-screen"
-    >
+    <section style={{ backgroundImage: `url('https://i.postimg.cc/V68pVgwz/banner6.webp')` }} className="px-5 bg-cover bg-no-repeat h-screen">
       <div>
         <div className="lg:mt-32 my-10 card shadow-2xl max-w-md bg-base-100 mx-auto">
           <div className="card-body">
@@ -59,16 +58,9 @@ const SignUp = () => {
 
             <form action="" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-3">
               <div className="form-control">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="input input-bordered"
-                  {...register("name", { required: true })}
-                />
+                <input type="text" placeholder="Your Name" className="input input-bordered" {...register("name", { required: true })} />
 
-                {errors.name?.type === "required" && (
-                  <span className="text-red-500 text-sm mt-1">Please provide your name</span>
-                )}
+                {errors.name?.type === "required" && <span className="text-red-500 text-sm mt-1">Please provide your name</span>}
               </div>
 
               <div className="form-control">
@@ -82,9 +74,7 @@ const SignUp = () => {
                   })}
                 />
 
-                {errors.email?.type === "required" && (
-                  <span className="text-red-500 text-sm mt-1">Please provide valid email</span>
-                )}
+                {errors.email?.type === "required" && <span className="text-red-500 text-sm mt-1">Please provide valid email</span>}
                 {errors.email?.type === "pattern" && <span className="text-red-500">Please include @ .</span>}
               </div>
 
@@ -99,13 +89,9 @@ const SignUp = () => {
                   })}
                 />
 
-                {errors.password?.type === "required" && (
-                  <span className="text-red-500 text-sm mt-1">Please provide password</span>
-                )}
+                {errors.password?.type === "required" && <span className="text-red-500 text-sm mt-1">Please provide password</span>}
                 {errors.password?.type === "pattern" && (
-                  <span className="text-red-500 text-sm mt-1">
-                    Password must 8 characters with a number and one capital letter
-                  </span>
+                  <span className="text-red-500 text-sm mt-1">Password must 8 characters with a number and one capital letter</span>
                 )}
               </div>
 

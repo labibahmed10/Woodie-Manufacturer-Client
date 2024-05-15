@@ -7,7 +7,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }: any) => {
     const newQuantity = avlQuan + quantity;
     cancelOrder = { ...cancelOrder, avlQuan: newQuantity };
 
-    fetch(`https://woodie-manufature.onrender.com/cancelOrder/${id}`, {
+    fetch(`http://localhost:5000/cancelOrder/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -18,7 +18,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }: any) => {
         if (data?.deletedCount > 0) {
           refetch();
           setCancelOrder(null);
-          // fetch(`https://woodie-manufature.onrender.com/allTools/${_id}`, {
+          // fetch(`http://localhost:5000/allTools/${_id}`, {
           //   method: "PUT",
           //   headers: {
           //     "content-type": "application/json", "authorization" : `bearer ${localStorage.getItem("accessToken")}` "authorization" : `bearer localStorage.getItem("accessToken")`

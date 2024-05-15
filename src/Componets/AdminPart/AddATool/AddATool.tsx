@@ -70,7 +70,7 @@ const AddATool = () => {
         if (res.success) {
           toolInfo = { ...toolInfo, image };
 
-          fetch("https://woodie-manufature.onrender.com/allTools", {
+          fetch("http://localhost:5000/allTools", {
             method: "POST",
             headers: {
               "content-type": "application/json",

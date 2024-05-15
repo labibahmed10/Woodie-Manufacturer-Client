@@ -12,7 +12,7 @@ const PaymentPage = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`https://woodie-manufature.onrender.com/purchase/${id}`, {
+    fetch(`http://localhost:5000/purchase-info/${id}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

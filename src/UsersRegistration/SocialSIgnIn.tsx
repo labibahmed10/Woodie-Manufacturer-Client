@@ -11,6 +11,8 @@ const SocialSIgnIn = () => {
   // custom hook has been made
   const [token] = UseToken(user);
 
+  console.log(token);
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
