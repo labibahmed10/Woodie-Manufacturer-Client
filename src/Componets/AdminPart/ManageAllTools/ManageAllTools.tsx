@@ -1,11 +1,28 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 import Spinner from "../../../Spinner/Spinner";
 import UseCancelModal from "../../DashboardPage/MyOrders/useCancelModal";
 
+export interface IPurchaseInfo {
+  _id: string;
+  name: string;
+  toolName: string;
+  email: string;
+  address: string;
+  phone: number;
+  details: string;
+  quantity: number;
+  avlQuan: number;
+  totalCost: number;
+  paid?: boolean;
+  paymentID?: string;
+  status?: "Shipped" | "Pending";
+  transictionID?: string;
+}
+
 const ManageAllTools = () => {
-  const [cancelOrder, setCancelOrder] = useState([]);
+  const [cancelOrder, setCancelOrder] = useState({});
 
   const {
     data: allUser,
@@ -24,20 +41,21 @@ const ManageAllTools = () => {
     return <Spinner />;
   }
 
-  const handleUpdateStatus = (id) => {
-    fetch(`http://localhost:5000/updateStatus/${id}`, {
+  const handleUpdateStatus = (id: string) => {
+    fetch(`http://localhost:5000/purchase-info/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify({ status: "Spipped" }),
+      body: JSON.stringify({ status: "Shipped" }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(({ data }) => {
+        console.log("paid status", data);
         if (data?.modifiedCount > 0) {
           toast.success("The product has now gone for shipping", {
-            autoClose: 1500,
+            autoClose: 2000,
           });
           refetch();
         }
@@ -48,7 +66,7 @@ const ManageAllTools = () => {
     <section>
       <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Update Your Profile Here</h1>
       <div className="overflow-x-auto">
-        {cancelOrder && <UseCancelModal refetch={refetch} setCancelOrder={setCancelOrder} cancelOrder={cancelOrder}></UseCancelModal>}
+        {cancelOrder && <UseCancelModal refetch={refetch} setCancelOrder={setCancelOrder} cancelOrder={cancelOrder} />}
 
         <table className="table w-full">
           {/* <!-- head --> */}
@@ -65,8 +83,8 @@ const ManageAllTools = () => {
             </tr>
           </thead>
           <tbody>
-            {allUser?.data?.map((detail, i) => (
-              <tr key={detail._id} className="text-center">
+            {allUser?.data?.map((detail: IPurchaseInfo, i: number) => (
+              <tr key={detail?._id} className="text-center">
                 <th className="bg-accent">{i + 1}</th>
                 <td className="bg-accent">{detail?.toolName}</td>
                 <td className="bg-accent">{detail?.email}</td>

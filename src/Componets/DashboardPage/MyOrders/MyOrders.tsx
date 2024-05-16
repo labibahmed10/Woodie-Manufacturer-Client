@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Spinner from "../../../Spinner/Spinner";
 import UseCancelModal from "./useCancelModal";
+import { User } from "firebase/auth";
+import { IPurchaseInfo } from "../../AdminPart/ManageAllTools/ManageAllTools";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
-  const [cancelOrder, setCancelOrder] = useState([]);
+  const [cancelOrder, setCancelOrder] = useState({});
   const navigate = useNavigate();
-  const { email } = user;
+  const { email } = user as User;
 
   const {
     data: personData,
@@ -22,7 +24,9 @@ const MyOrders = () => {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
-    }).then((res) => res.json())
+    })
+      .then((res) => res.json())
+      .then(({ data }) => data)
   );
 
   console.log("personsData", personData);
@@ -51,7 +55,7 @@ const MyOrders = () => {
             </tr>
           </thead>
           <tbody>
-            {personData?.results?.map((detail, i) => (
+            {personData?.map((detail: IPurchaseInfo, i: number) => (
               <tr key={detail._id} className="text-center">
                 <th className="bg-accent">{i + 1}</th>
                 <td className="bg-accent">{detail?.toolName}</td>

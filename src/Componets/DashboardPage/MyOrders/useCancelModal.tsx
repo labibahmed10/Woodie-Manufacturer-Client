@@ -1,37 +1,42 @@
-import React, { useState } from "react";
-
 const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }: any) => {
   const { toolName, _id, avlQuan, quantity } = cancelOrder;
 
   const handleCancelOrder = (id: any) => {
     const newQuantity = avlQuan + quantity;
     cancelOrder = { ...cancelOrder, avlQuan: newQuantity };
+    const { prodID, avlQuan: availableQuantity } = cancelOrder;
 
-    fetch(`http://localhost:5000/cancelOrder/${id}`, {
+    console.log(availableQuantity);
+
+    fetch(`http://localhost:5000/cancel-order/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(({ data }) => {
+        console.log("if the order cancel", data);
         if (data?.deletedCount > 0) {
-          refetch();
+          // refetch();
           setCancelOrder(null);
-          // fetch(`http://localhost:5000/allTools/${_id}`, {
-          //   method: "PUT",
-          //   headers: {
-          //     "content-type": "application/json", "authorization" : `bearer ${localStorage.getItem("accessToken")}` "authorization" : `bearer localStorage.getItem("accessToken")`
-          //   },
-          //   body: JSON.stringify(cancelOrder),
-          // })
-          //   .then((res) => res.json())
-          //   .then((data) => {
-          //
-          //     // if (data?.modifiedCount > 0) {
-          //     //   refetch();
-          //     // }
-          //   });
+          // here i need the id of that specific tool to update its quantity
+          fetch(`http://localhost:5000/all-tools/${prodID}`, {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(availableQuantity),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              refetch();
+              // if (data?.modifiedCount > 0) {
+              //   refetch();
+              // }
+            });
         }
       });
   };

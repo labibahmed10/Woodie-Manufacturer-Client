@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
@@ -16,23 +16,27 @@ const PurchasePage = () => {
     data: singleTool,
     refetch,
     isLoading,
-  } = useQuery(["singleTool", id], () => fetch(`http://localhost:5000/allTools/${id}`).then((res) => res.json()));
+  } = useQuery(["singleTool", id], () =>
+    fetch(`http://localhost:5000/all-tools/${id}`)
+      .then((res) => res.json())
+      .then(({ data }) => data)
+  );
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  const handlePurchaseTool = (e) => {
+  const handlePurchaseTool = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const moq = singleTool?.moq;
     const availableQuantity = singleTool?.avlQuan;
     const userQuantity = +e.target.quantity.value;
-    const adress = e.target.adress.value;
+    const address = e.target.adress.value;
     const phone = +e.target.phone.value;
     const details = e.target.details.value;
 
-    if (!adress || !userQuantity || !phone) {
+    if (!address || !userQuantity || !phone) {
       return toast("please fill up with your valuable information");
     }
 
@@ -60,17 +64,18 @@ const PurchasePage = () => {
       name: user?.displayName,
       toolName: singleTool?.name,
       email: user?.email,
-      adress,
+      address,
       phone,
       details,
       quantity: userQuantity,
       avlQuan: updatedQuantity,
       totalCost,
+      prodID: id,
     };
 
     singleTool = { ...singleTool, avlQuan: updatedQuantity };
 
-    fetch(`http://localhost:5000/purchase`, {
+    fetch(`http://localhost:5000/purchase-info`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -80,9 +85,10 @@ const PurchasePage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data?.acknowledged) {
-          fetch(`http://localhost:5000/allTools/${id}`, {
-            method: "PUT",
+        console.log("if purchas einfo posted", data);
+        if (data?.success) {
+          fetch(`http://localhost:5000/all-tools/${id}`, {
+            method: "PATCH",
             headers: {
               "content-type": "application/json",
               authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -90,7 +96,8 @@ const PurchasePage = () => {
             body: JSON.stringify(singleTool),
           })
             .then((res) => res.json())
-            .then((data) => {
+            .then(({ data }) => {
+              console.log("if Tool info is updated", data);
               if (data?.modifiedCount > 0) {
                 refetch();
               }
@@ -116,7 +123,7 @@ const PurchasePage = () => {
           <h1 className="text-center text-4xl font-bold">Hello {user?.displayName}</h1>
 
           <div className="form-control">
-            <input type="email" disabled defaultValue={user?.email} className="input input-bordered w-full font-semibold" />
+            <input type="email" disabled defaultValue={user?.email as string} className="input input-bordered w-full font-semibold" />
           </div>
 
           <div className="form-control">
