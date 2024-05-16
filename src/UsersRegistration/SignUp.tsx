@@ -8,6 +8,12 @@ import SocialSIgnIn from "./SocialSIgnIn";
 import Spinner from "../Spinner/Spinner";
 import UseToken from "../CustomHooks/UseToken";
 
+interface DATA {
+  email: string;
+  password: string;
+  name: string;
+}
+
 const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, {
     sendEmailVerification: true,
@@ -27,9 +33,9 @@ const SignUp = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<DATA>();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: DATA) => {
     const { email, password, name } = data;
     await createUserWithEmailAndPassword(email, password);
     await updateProfile({ displayName: name });

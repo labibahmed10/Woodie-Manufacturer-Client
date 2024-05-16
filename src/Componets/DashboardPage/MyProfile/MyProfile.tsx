@@ -1,14 +1,17 @@
-import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import swal from "sweetalert";
 import auth from "../../../firebase.init";
+import { User } from "firebase/auth";
+import { ChangeEvent, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
   const [user] = useAuthState(auth);
-  const { displayName, email } = user;
+  const { displayName, email } = user as User;
+  const navigate = useNavigate();
 
-  const handleUpdateProfile = (e) => {
+  const handleUpdateProfile = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const name = displayName;
@@ -32,7 +35,7 @@ const MyProfile = () => {
       profile,
     };
 
-    fetch(`http://localhost:5000/allRandomUsers?email=${email}`, {
+    fetch(`http://localhost:5000/user-info?email=${email}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -42,9 +45,10 @@ const MyProfile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data?.result?.modifiedCount > 0 || data?.result?.upsertedCount) {
+        if (data?.success) {
           swal("Congrats!", "Your Information was updated!", "success");
           e.target.reset();
+          navigate("/home");
         } else {
           swal("Ooops!", "Already updated!", "error");
         }
@@ -56,11 +60,11 @@ const MyProfile = () => {
       <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Update Your Profile Here</h1>
       <form className="mx-auto space-y-3 lg:mt-20 mt-5 lg:max-w-3xl" onSubmit={handleUpdateProfile}>
         <div className="form-control">
-          <input type="text" value={displayName} className="input bg-neutral input-bordered font-semibold w-full" />
+          <input type="text" value={displayName as string} className="input bg-neutral input-bordered font-semibold w-full" />
         </div>
 
         <div className="form-control">
-          <input type="email" value={email} className="input bg-neutral input-bordered font-semibold w-full" />
+          <input type="email" value={email as string} className="input bg-neutral input-bordered font-semibold w-full" />
         </div>
 
         <div className="form-control">

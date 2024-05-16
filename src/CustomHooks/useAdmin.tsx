@@ -1,7 +1,8 @@
+import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const useAdmin = (user) => {
+const useAdmin = (user: User) => {
   const [admin, setAdmin] = useState(false);
   const [aLoading, setaLoading] = useState(true);
   const navigate = useNavigate();
@@ -17,15 +18,14 @@ const useAdmin = (user) => {
         },
       })
         .then((res) => {
-          // if (res.status === 401 || res.status === 403) {
-          //   navigate("/home");
-          // }
+          if (res.status === 401 || res.status === 403) {
+            navigate("/home");
+          }
           return res.json();
         })
         .then((data) => {
-          console.log("admin: " + data?.result);
-          if (data?.result) {
-            setAdmin(data?.result);
+          if (data?.data) {
+            setAdmin(data?.data);
             setaLoading(false);
           }
         });

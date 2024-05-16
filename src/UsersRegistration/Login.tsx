@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../firebase.init";
-
 import SocialSIgnIn from "./SocialSIgnIn";
 import Spinner from "../Spinner/Spinner";
 import UseToken from "../CustomHooks/UseToken";
 import { toast } from "react-toastify";
 
+interface DATA {
+  email: string;
+  password: string;
+}
+
 const LogIn = () => {
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
-  const [sendPasswordResetEmail, sending, Perror] = useSendPasswordResetEmail(auth);
+  const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
   const [userEmail, setUserEmail] = useState("");
+
   // custom hook has been made
   const [token] = UseToken(user);
 
@@ -21,11 +25,7 @@ const LogIn = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const {register,handleSubmit,formState: { errors } } = useForm<DATA>();
 
   useEffect(() => {
     if (token) {
@@ -33,7 +33,7 @@ const LogIn = () => {
     }
   }, [token, from, navigate]);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: DATA) => {
     const { email, password } = data;
     setUserEmail(email);
     signInWithEmailAndPassword(email, password);
@@ -75,28 +75,13 @@ const LogIn = () => {
 
             <form action="" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-5">
               <div className="form-control">
-                <input
-                  type="text"
-                  placeholder="email"
-                  className="input input-bordered"
-                  {...register("email", { required: true })}
-                />
-
-                {errors.email?.type === "required" && (
-                  <span className="text-red-500 text-sm mt-1">Please provide your email</span>
-                )}
+                <input type="text" placeholder="email" className="input input-bordered" {...register("email", { required: true })} />
+                {errors.email?.type === "required" && <span className="text-red-500 text-sm mt-1">Please provide your email</span>}
               </div>
-              <div className="form-control">
-                <input
-                  type="text"
-                  placeholder="password"
-                  className="input input-bordered"
-                  {...register("password", { required: true })}
-                />
-                {errors.password?.type === "required" && (
-                  <span className="text-red-500 text-sm mt-1">Please provide your password</span>
-                )}
 
+              <div className="form-control">
+                <input type="text" placeholder="password" className="input input-bordered" {...register("password", { required: true })} />
+                {errors.password?.type === "required" && <span className="text-red-500 text-sm mt-1">Please provide your password</span>}
                 <label className="label">
                   <button onClick={sendPassResetEmail} className="label-text-alt link link-hover">
                     Forgot password?

@@ -10,7 +10,7 @@ const ManageTools = () => {
     isLoading,
     refetch,
   } = useQuery("alltools", () =>
-    fetch("http://localhost:5000/allTools", {
+    fetch("http://localhost:5000/all-tools", {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -43,7 +43,7 @@ const ManageTools = () => {
               </tr>
             </thead>
             <tbody>
-              {allTools?.map((detail, i) => (
+              {allTools?.data?.map((detail, i) => (
                 <tr key={detail._id} className="text-center">
                   <td className="bg-accent">{i + 1}</td>
                   <th className="bg-accent">

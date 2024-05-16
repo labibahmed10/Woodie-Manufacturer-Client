@@ -12,7 +12,7 @@ const ManageAllTools = () => {
     isLoading,
     refetch,
   } = useQuery("allusers", () =>
-    fetch("http://localhost:5000/purchase", {
+    fetch("http://localhost:5000/purchase-info", {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -65,7 +65,7 @@ const ManageAllTools = () => {
             </tr>
           </thead>
           <tbody>
-            {allUser?.map((detail, i) => (
+            {allUser?.data?.map((detail, i) => (
               <tr key={detail._id} className="text-center">
                 <th className="bg-accent">{i + 1}</th>
                 <td className="bg-accent">{detail?.toolName}</td>

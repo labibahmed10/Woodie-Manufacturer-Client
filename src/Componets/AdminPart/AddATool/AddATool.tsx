@@ -70,7 +70,7 @@ const AddATool = () => {
         if (res.success) {
           toolInfo = { ...toolInfo, image };
 
-          fetch("http://localhost:5000/allTools", {
+          fetch("http://localhost:5000/create", {
             method: "POST",
             headers: {
               "content-type": "application/json",

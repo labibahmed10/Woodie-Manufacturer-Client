@@ -1,14 +1,14 @@
+import { UserCredential } from "firebase/auth";
 import { useEffect, useState } from "react";
 
-const UseToken = (user) => {
+const UseToken = (user: UserCredential | undefined) => {
   const [token, setToken] = useState("");
+
+  console.log(user);
 
   useEffect(() => {
     const email = user?.user?.email;
     const newUser = { name: user?.user?.displayName, email };
-
-    console.log("email", email);
-    console.log("newUser", newUser);
 
     if (email) {
       fetch(`http://localhost:5000/user-info?email=${email}`, {
@@ -21,9 +21,9 @@ const UseToken = (user) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data?.result?.acknowledged) {
-            localStorage.setItem("accessToken", data?.accessToken);
-            setToken(data?.accessToken);
+          if (data?.success) {
+            localStorage.setItem("accessToken", data?.data?.accessToken);
+            setToken(data?.data?.accessToken);
           }
         });
     }

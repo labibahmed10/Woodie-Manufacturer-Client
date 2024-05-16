@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
 import swal from "sweetalert";
 import auth from "../../../firebase.init";
+import { User } from "firebase/auth";
 
 const AddReview = () => {
   const [user] = useAuthState(auth);
   const [ratings, setRatings] = useState(5);
-  const { displayName, photoURL } = user;
+  const { displayName, photoURL } = user as User;
 
-  const handleReview = (e) => {
+  const handleReview = (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const text = e.target.message.value;
 
@@ -26,7 +27,7 @@ const AddReview = () => {
       text,
     };
 
-    fetch(`http://localhost:5000/allReviews`, {
+    fetch(`http://localhost:5000/create`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -48,7 +49,7 @@ const AddReview = () => {
       <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Give us a review</h1>
       <form onSubmit={handleReview} className="space-y-3">
         <div className="form-control">
-          <input type="text" value={displayName} className="input input-bordered bg-neutral font-semibold w-full" />
+          <input type="text" value={displayName as string} className="input input-bordered bg-neutral font-semibold w-full" />
         </div>
         <div>
           <label htmlFor="" className="label font-semibold">
@@ -59,7 +60,7 @@ const AddReview = () => {
 
         <div className="form-control">
           <label className="label">How Would You Rate Us?</label>
-          <div onChange={(e) => setRatings(+e.target.value)} className="rating rating-md">
+          <div onChange={(e) => setRatings(+(e.target as any).value)} className="rating rating-md">
             <input type="radio" value="1" name="rating-7" className="mask mask-star-2 bg-orange-400" />
             <input type="radio" value="2" name="rating-7" className="mask mask-star-2 bg-orange-400" />
             <input type="radio" value="3" name="rating-7" className="mask mask-star-2 bg-orange-400" />
