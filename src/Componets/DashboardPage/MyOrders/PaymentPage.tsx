@@ -9,7 +9,7 @@ import { IPurchaseInfo } from "../../AdminPart/ManageToolsPayment/ManageToolsPay
 const stripePromise = loadStripe(import.meta.env.VITE_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentPage = () => {
-  const [purchaseInfo, setPurchaseInfo] = useState<IPurchaseInfo>({});
+  const [purchaseInfo, setPurchaseInfo] = useState<IPurchaseInfo | any>({});
   const { id } = useParams();
 
   useEffect(() => {
