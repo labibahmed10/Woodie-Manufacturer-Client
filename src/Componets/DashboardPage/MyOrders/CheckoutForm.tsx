@@ -3,8 +3,10 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import swal from "sweetalert";
 import Spinner from "../../../Spinner/Spinner";
 import { useNavigate } from "react-router-dom";
+import { IPurchaseInfo } from "../../AdminPart/ManageToolsPayment/ManageToolsPayment";
+import { StripeCardElement } from "@stripe/stripe-js";
 
-const CheckoutForm = ({ purchaseInfo }) => {
+const CheckoutForm = ({ purchaseInfo }: { purchaseInfo: IPurchaseInfo }) => {
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,6 +18,8 @@ const CheckoutForm = ({ purchaseInfo }) => {
   const { totalCost, name, email, _id } = purchaseInfo;
   const price = totalCost;
 
+  console.log(price);
+
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
@@ -26,7 +30,8 @@ const CheckoutForm = ({ purchaseInfo }) => {
       body: JSON.stringify({ price }),
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(({ data }) => {
+        console.log(data);
         if (data?.clientSecret) {
           setClientSecret(data.clientSecret);
         }
@@ -37,7 +42,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
     return <Spinner />;
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -51,7 +56,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
     }
 
     // Use your card Element with other Stripe.js APIs
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error, paymentMethod } = await (stripe as any).createPaymentMethod({
       type: "card",
       card,
     });
@@ -64,7 +69,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
     // cofirm card intent payment
     const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: card,
+        card: card as StripeCardElement,
         billing_details: {
           name: name,
           email: email,
@@ -73,7 +78,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
     });
 
     if (intentError) {
-      setCardError(intentError.message);
+      setCardError(intentError.message as string);
     } else {
       const paymentInfo = {
         transictionID: paymentIntent?.id,
@@ -81,7 +86,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
         status: "Pending",
       };
 
-      fetch(`http://localhost:5000/purchasePaid/${_id}`, {
+      fetch(`http://localhost:5000/purchase-paid/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
@@ -90,7 +95,7 @@ const CheckoutForm = ({ purchaseInfo }) => {
         body: JSON.stringify(paymentInfo),
       })
         .then((res) => res.json())
-        .then((data) => {
+        .then(({ data }) => {
           if (data.modifiedCount > 0) {
             setLoading(false);
             swal("Congrats!", `Your Payment Is Successful!,Your Transaction Id - ${paymentIntent.id}`, "success");

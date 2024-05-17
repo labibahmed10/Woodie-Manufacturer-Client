@@ -6,7 +6,7 @@ import auth from "../../../firebase.init";
 import Spinner from "../../../Spinner/Spinner";
 import UseCancelModal from "./useCancelModal";
 import { User } from "firebase/auth";
-import { IPurchaseInfo } from "../../AdminPart/ManageAllTools/ManageAllTools";
+import { IPurchaseInfo } from "../../AdminPart/ManageToolsPayment/ManageToolsPayment";
 
 const MyOrders = () => {
   const [user] = useAuthState(auth);
@@ -28,8 +28,6 @@ const MyOrders = () => {
       .then((res) => res.json())
       .then(({ data }) => data)
   );
-
-  console.log("personsData", personData);
 
   if (isLoading) {
     return <Spinner />;
@@ -77,7 +75,13 @@ const MyOrders = () => {
                     </button>
                   )}
                 </td>
-                <td className="bg-accent">{detail?.transictionID && <span className="text-green-500 px-3">{detail?.transictionID}</span>}</td>
+                <td className="bg-accent">
+                  {detail?.transictionID ? (
+                    <span className="text-green-500 px-3">{detail?.transictionID}</span>
+                  ) : (
+                    <span className="text-red-600 px-3 font-semibold">Null</span>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>

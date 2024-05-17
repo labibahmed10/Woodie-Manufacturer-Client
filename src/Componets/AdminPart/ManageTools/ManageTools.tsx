@@ -3,8 +3,18 @@ import { useQuery } from "react-query";
 import Spinner from "../../../Spinner/Spinner";
 import UseDeleteModal from "./UseDeleteModal";
 
+export interface IAllTools {
+  _id?: string;
+  name: string;
+  image: string;
+  desc: string;
+  moq: number;
+  avlQuan: number;
+  pPerUnit: number;
+}
+
 const ManageTools = () => {
-  const [deleteTool, setDeleteTool] = useState([]);
+  const [deleteTool, setDeleteTool] = useState({});
   const {
     data: allTools,
     isLoading,
@@ -43,7 +53,7 @@ const ManageTools = () => {
               </tr>
             </thead>
             <tbody>
-              {allTools?.data?.map((detail, i) => (
+              {allTools?.data?.map((detail: IAllTools, i: number) => (
                 <tr key={detail._id} className="text-center">
                   <td className="bg-accent">{i + 1}</td>
                   <th className="bg-accent">

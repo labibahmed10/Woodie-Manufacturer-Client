@@ -5,7 +5,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import auth from "../firebase.init";
 import Spinner from "../Spinner/Spinner";
 
-const RequiredAuth = ({ children }) => {
+const RequiredAuth = ({ children }: { children: React.ReactNode }) => {
   const [user, loading] = useAuthState(auth);
   const location = useLocation();
 

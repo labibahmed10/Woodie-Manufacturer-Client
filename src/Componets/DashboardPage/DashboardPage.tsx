@@ -1,12 +1,16 @@
-import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../CustomHooks/useAdmin";
 import auth from "../../firebase.init";
+import { User } from "firebase/auth";
+import { CgProfile } from "react-icons/cg";
+import { IoReorderFourSharp, IoBagAddOutline } from "react-icons/io5";
+import { MdRateReview, MdOutlineManageSearch } from "react-icons/md";
+import { RiAdminLine, RiToolsFill } from "react-icons/ri";
 
 const DashboardPage = () => {
   const [user] = useAuthState(auth);
-  const [admin] = useAdmin(user);
+  const [admin] = useAdmin(user as User);
 
   return (
     <div className="drawer drawer-mobile">
@@ -29,34 +33,48 @@ const DashboardPage = () => {
             <>
               <li>
                 <NavLink className="mt-5" to="myorder">
-                  My Orders
+                  <IoReorderFourSharp /> My Orders
                 </NavLink>
               </li>
               <li>
-                <NavLink to="addreview">Add a review</NavLink>
+                <NavLink to="addreview">
+                  <MdRateReview />
+                  Add a review
+                </NavLink>
               </li>
             </>
           )}
 
           <li>
             <NavLink className="mt-3" to="myprofile">
-              My Profile
+              <CgProfile size={24} /> My Profile
             </NavLink>
           </li>
 
           {admin && (
             <>
               <li>
-                <NavLink to="manageAllOrders">Manage All Tools</NavLink>
+                <NavLink to="manageAllOrders">
+                  <MdOutlineManageSearch size={24} /> Manage Tools Payment
+                </NavLink>
               </li>
               <li>
-                <NavLink to="addtool">Add A Tool</NavLink>
+                <NavLink to="addtool">
+                  <IoBagAddOutline size={24} />
+                  Add Tool
+                </NavLink>
               </li>
               <li>
-                <NavLink to="makeadmin">Make Admin</NavLink>
+                <NavLink to="makeadmin">
+                  <RiAdminLine size={24} />
+                  Make Admin
+                </NavLink>
               </li>
               <li>
-                <NavLink to="managetool">Manage Tools</NavLink>
+                <NavLink to="managetool">
+                  <RiToolsFill size={24} />
+                  Manage Tools
+                </NavLink>
               </li>
             </>
           )}

@@ -4,11 +4,12 @@ import { Navigate, useLocation } from "react-router-dom";
 import useAdmin from "../CustomHooks/useAdmin";
 import auth from "../firebase.init";
 import Spinner from "../Spinner/Spinner";
+import { User } from "firebase/auth";
 
-const RequireAdmin = ({ children }) => {
+const RequireAdmin = ({ children }: { children: React.ReactNode }) => {
   const [user, loading] = useAuthState(auth);
   const location = useLocation();
-  const [admin, aLoading] = useAdmin(user);
+  const [admin, aLoading] = useAdmin(user as User);
 
   if (loading || aLoading) {
     return <Spinner></Spinner>;

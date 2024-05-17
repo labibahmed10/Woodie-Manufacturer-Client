@@ -1,4 +1,3 @@
-import React from "react";
 import { EffectFade, Navigation, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -32,7 +31,7 @@ const HomeBanner = () => {
             <h1 className="text-primary lg:text-5xl text-3xl font-semibold uppercase">
               We have one the bestest Manufacturing <br /> factory over the world
             </h1>
-            <button className="mt-8 py-2 px-3 font-semibold border border-accent hover:bg-accent text-black duration-300">
+            <button className="mt-8 py-2 px-3 font-semibold border border-accent hover:bg-accent hover:text-black text-white duration-300">
               Visit Us
             </button>
           </div>
@@ -45,7 +44,7 @@ const HomeBanner = () => {
             <h1 className="text-primary lg:text-5xl text-3xl font-semibold uppercase">
               The most important thing we <br /> build is trust
             </h1>
-            <button className="mt-8 py-2 px-3 font-semibold border border-accent hover:bg-accent text-black duration-300">
+            <button className="mt-8 py-2 px-3 font-semibold border border-accent hover:bg-accent hover:text-black text-white duration-300">
               Visit Us
             </button>
           </div>
@@ -58,7 +57,7 @@ const HomeBanner = () => {
               We provide high quality materials for users to
               <br /> make their wooden things perfectly
             </h1>
-            <button className="mt-8 py-2 px-3 font-semibold border border-accent hover:bg-accent text-black duration-300">
+            <button className="mt-8 py-2 px-3 font-semibold border border-accent hover:bg-accent hover:text-black text-white duration-300">
               Visit Us
             </button>
           </div>

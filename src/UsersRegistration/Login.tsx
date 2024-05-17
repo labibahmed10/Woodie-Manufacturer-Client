@@ -25,7 +25,11 @@ const LogIn = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const {register,handleSubmit,formState: { errors } } = useForm<DATA>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<DATA>();
 
   useEffect(() => {
     if (token) {
@@ -45,7 +49,6 @@ const LogIn = () => {
 
   const sendPassResetEmail = async () => {
     const email = userEmail;
-    console.log(email);
     if (!email) {
       return toast("Please Input Email", {
         autoClose: 2500,

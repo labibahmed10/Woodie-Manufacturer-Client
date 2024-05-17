@@ -1,10 +1,11 @@
 import { UserCredential } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UseToken = (user: UserCredential | undefined) => {
   const [token, setToken] = useState("");
 
-  console.log(user);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const email = user?.user?.email;
@@ -24,6 +25,7 @@ const UseToken = (user: UserCredential | undefined) => {
           if (data?.success) {
             localStorage.setItem("accessToken", data?.data?.accessToken);
             setToken(data?.data?.accessToken);
+            navigate("/dashboard/myprofile");
           }
         });
     }

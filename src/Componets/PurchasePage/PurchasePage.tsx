@@ -85,7 +85,6 @@ const PurchasePage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("if purchas einfo posted", data);
         if (data?.success) {
           fetch(`http://localhost:5000/all-tools/${id}`, {
             method: "PATCH",
@@ -97,7 +96,6 @@ const PurchasePage = () => {
           })
             .then((res) => res.json())
             .then(({ data }) => {
-              console.log("if Tool info is updated", data);
               if (data?.modifiedCount > 0) {
                 refetch();
               }

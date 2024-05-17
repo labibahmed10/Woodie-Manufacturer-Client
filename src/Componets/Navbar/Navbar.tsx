@@ -33,9 +33,7 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
           {/* brand logo */}
           <div onClick={() => navigate("/home")} className="flex-1 px-2 mx-2">
             <img className="w-16" src="https://i.postimg.cc/JhfM4jWF/logo.png" alt="" />
-            <span className="md:text-2xl text-xl ml-1 font-bold">
-              Woodie <br /> Manufacturer
-            </span>
+            <span className="md:text-2xl text-xl ml-1 font-bold">Wood Manufacturer</span>
           </div>
 
           <div className="flex-none lg:hidden">

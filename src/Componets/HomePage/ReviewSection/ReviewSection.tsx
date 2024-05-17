@@ -7,6 +7,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+export interface IAllReviews {
+  name: string;
+  image: string;
+  ratings: number;
+  text: string;
+}
+
 const ReviewSection = () => {
   const [reviews, setReviews] = useState([]);
 
@@ -16,7 +23,6 @@ const ReviewSection = () => {
       .then(({ data }) => setReviews(data));
   }, []);
 
-  console.log(reviews);
   return (
     <section className="md:px-20 md:py-32 py-12 px-5  text-secondary">
       <h1 className="text-center lg:text-5xl text-4xl pb-10 font-bold">
@@ -36,7 +42,7 @@ const ReviewSection = () => {
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper w-full"
         >
-          {reviews?.map((review, i) => (
+          {reviews?.map((review: IAllReviews, i) => (
             <SwiperSlide key={i}>
               <div className="card lg:w-[30rem] h-full w-full bg-base-100 shadow-xl">
                 <img className="px-32" src={review.image} alt="Shoes" />

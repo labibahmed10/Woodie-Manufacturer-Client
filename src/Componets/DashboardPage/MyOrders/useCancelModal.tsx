@@ -6,8 +6,6 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }: any) => {
     cancelOrder = { ...cancelOrder, avlQuan: newQuantity };
     const { prodID, avlQuan: availableQuantity } = cancelOrder;
 
-    console.log(availableQuantity);
-
     fetch(`http://localhost:5000/cancel-order/${id}`, {
       method: "DELETE",
       headers: {
@@ -16,26 +14,23 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }: any) => {
     })
       .then((res) => res.json())
       .then(({ data }) => {
-        console.log("if the order cancel", data);
         if (data?.deletedCount > 0) {
           // refetch();
           setCancelOrder(null);
           // here i need the id of that specific tool to update its quantity
-          fetch(`http://localhost:5000/all-tools/${prodID}`, {
+          fetch(`http://localhost:5000/all-tools/${prodID || _id}`, {
             method: "PATCH",
             headers: {
               "content-type": "application/json",
               authorization: `bearer ${localStorage.getItem("accessToken")}`,
             },
-            body: JSON.stringify(availableQuantity),
+            body: JSON.stringify({ avlQuan: availableQuantity }),
           })
             .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              refetch();
-              // if (data?.modifiedCount > 0) {
-              //   refetch();
-              // }
+            .then(({ data }) => {
+              if (data?.modifiedCount > 0) {
+                refetch();
+              }
             });
         }
       });

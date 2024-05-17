@@ -1,18 +1,17 @@
-import React from "react";
 import swal from "sweetalert";
 
-const UseDeleteModal = ({ refetch, deleteTool, setDeleteTool }) => {
+const UseDeleteModal = ({ refetch, deleteTool, setDeleteTool }: any) => {
   const { name, _id } = deleteTool;
 
-  const handleDeleteOrder = (id) => {
-    fetch(`http://localhost:5000/deleteTool/${id}`, {
+  const handleDeleteOrder = (id: string) => {
+    fetch(`http://localhost:5000/all-tools/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
-      .then((data) => {
+      .then(({ data }) => {
         if (data?.deletedCount > 0) {
           swal("Congratulations", "The Tool Was Deleted From Database", "success");
           refetch();

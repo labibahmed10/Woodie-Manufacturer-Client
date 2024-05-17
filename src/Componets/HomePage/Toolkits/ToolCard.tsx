@@ -1,9 +1,15 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import { IAllTools } from "../../AdminPart/ManageTools/ManageTools";
+import useAdmin from "../../../CustomHooks/useAdmin";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
+import { User } from "firebase/auth";
 
-const ToolCard = ({ tool }) => {
+const ToolCard = ({ tool }: { tool: IAllTools }) => {
   const { image, desc, moq, avlQuan, pPerUnit, name, _id } = tool;
   const navigate = useNavigate();
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user as User);
 
   return (
     <div className="card card-compact lg:w-96 w-full bg-accent shadow-xl h-full">
@@ -23,7 +29,11 @@ const ToolCard = ({ tool }) => {
           Price Per Unit : <span className="text-lg"> ${pPerUnit}</span> / piece
         </p>
         <div className="card-actions justify-end">
-          <button onClick={() => navigate(`/purchase/${_id}`)} className="btn btn-primary">
+          <button
+            disabled={admin}
+            onClick={() => navigate(`/purchase/${_id}`)}
+            className={`${admin ? "btn-sm bg-gray-300 rounded-md" : "btn btn-primary text-white"} `}
+          >
             Buy Now
           </button>
         </div>

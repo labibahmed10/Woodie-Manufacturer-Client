@@ -21,7 +21,7 @@ export interface IPurchaseInfo {
   transictionID?: string;
 }
 
-const ManageAllTools = () => {
+const ManageToolsPayment = () => {
   const [cancelOrder, setCancelOrder] = useState({});
 
   const {
@@ -52,7 +52,6 @@ const ManageAllTools = () => {
     })
       .then((res) => res.json())
       .then(({ data }) => {
-        console.log("paid status", data);
         if (data?.modifiedCount > 0) {
           toast.success("The product has now gone for shipping", {
             autoClose: 2000,
@@ -64,7 +63,7 @@ const ManageAllTools = () => {
 
   return (
     <section>
-      <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Update Your Profile Here</h1>
+      <h1 className="text-center lg:text-4xl text-2xl font-bold py-5">Manage tools payments here</h1>
       <div className="overflow-x-auto">
         {cancelOrder && <UseCancelModal refetch={refetch} setCancelOrder={setCancelOrder} cancelOrder={cancelOrder} />}
 
@@ -92,23 +91,33 @@ const ManageAllTools = () => {
 
                 <td className="bg-accent space-x-5">
                   {detail.paid ? (
-                    <label className="px-3 py-2 rounded-xl font-semibold bg-info">Paid</label>
+                    <label className="btn rounded-xl font-semibold bg-info hover:bg-info btn-sm">Paid</label>
                   ) : (
-                    <label className="px-3 py-2 rounded-xl font-semibold bg-warning">Unpaid</label>
+                    <label className="btn rounded-xl font-semibold  bg-warning hover:bg-warning btn-sm">Unpaid</label>
                   )}
                 </td>
 
                 <td className="bg-accent space-x-5">
                   {!detail.paid && (
-                    <label htmlFor="cancelorder" onClick={() => setCancelOrder(detail)} className="btn btn-error btn-sm">
+                    <label
+                      htmlFor="cancelorder"
+                      onClick={() => setCancelOrder(detail)}
+                      className="btn bg-red-500 hover:bg-red-600 text-slate-50 btn-sm"
+                    >
                       Cancel
                     </label>
                   )}
                 </td>
 
                 <td className="bg-accent space-x-5">
-                  {detail.paid && detail.status && (
-                    <button onClick={() => handleUpdateStatus(detail._id)} className="btn btn-success btn-sm">
+                  {detail?.paid && detail?.status && (
+                    <button
+                      disabled={detail.status === "Shipped"}
+                      onClick={() => handleUpdateStatus(detail._id)}
+                      className={`${
+                        detail.status === "Shipped" ? "disabled:btn-success btn-sm btn" : "btn bg-amber-500 hover:bg-amber-600 border-0 btn-sm"
+                      } `}
+                    >
                       {detail.status}
                     </button>
                   )}
@@ -122,4 +131,4 @@ const ManageAllTools = () => {
   );
 };
 
-export default ManageAllTools;
+export default ManageToolsPayment;

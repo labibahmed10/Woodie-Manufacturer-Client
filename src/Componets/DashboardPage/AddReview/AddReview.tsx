@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import swal from "sweetalert";
 import auth from "../../../firebase.init";
 import { User } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const AddReview = () => {
   const [user] = useAuthState(auth);
@@ -23,11 +24,11 @@ const AddReview = () => {
     const review = {
       name: displayName,
       ratings: ratings,
-      image: photoURL,
+      image: photoURL || "https://th.bing.com/th?id=OIP.p_-XBDaYYHdPmwp60BZYKwHaLH&w=204&h=306&c=8&rs=1&qlt=90&o=6&dpr=1.1&pid=3.1&rm=2",
       text,
     };
 
-    fetch(`http://localhost:5000/create`, {
+    fetch(`http://localhost:5000/review-create`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -37,8 +38,9 @@ const AddReview = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.acknowledged) {
+        if (data.success) {
           swal("Thank You!", "We are privilleged to have your review 😀", "success");
+
           e.target.reset();
         }
       });

@@ -12,7 +12,7 @@ import MyOrders from "./Componets/DashboardPage/MyOrders/MyOrders";
 import AddReview from "./Componets/DashboardPage/AddReview/AddReview";
 import MyProfile from "./Componets/DashboardPage/MyProfile/MyProfile";
 import PaymentPage from "./Componets/DashboardPage/MyOrders/PaymentPage";
-import ManageAllTools from "./Componets/AdminPart/ManageAllTools/ManageAllTools";
+import ManageToolsPayment from "./Componets/AdminPart/ManageToolsPayment/ManageToolsPayment";
 import MakeAdmin from "./Componets/AdminPart/MakeAdmin/MakeAdmin";
 import ManageTools from "./Componets/AdminPart/ManageTools/ManageTools";
 import AddATool from "./Componets/AdminPart/AddATool/AddATool";
@@ -55,7 +55,7 @@ function App() {
               path="manageAllOrders"
               element={
                 <RequireAdmin>
-                  <ManageAllTools />
+                  <ManageToolsPayment />
                 </RequireAdmin>
               }
             ></Route>

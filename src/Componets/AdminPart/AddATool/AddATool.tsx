@@ -65,12 +65,20 @@ const AddATool = () => {
     })
       .then((res) => res.json())
       .then((res) => {
+        if (res?.status_code) {
+          toast.warn("Try uploading image again", {
+            autoClose: 1500,
+          });
+          setLoading(false);
+        }
+
+        console.log("Image res", res);
         const image = res?.data?.url;
 
         if (res.success) {
           toolInfo = { ...toolInfo, image };
-
-          fetch("http://localhost:5000/create", {
+          console.log("toolInfo", toolInfo);
+          fetch("http://localhost:5000/create-tool", {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -80,17 +88,20 @@ const AddATool = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              if (data?.acknowledged) {
-                toast.success("New Tool Uploaded successfully", {
+              if (data?.success) {
+                toast.success(data?.message, {
                   autoClose: 1500,
                 });
                 setLoading(false);
                 target.reset();
-              } else {
-                toast.error("Failed to add a tool", {
+              }
+
+              if (!data.success) {
+                toast.error(data?.errorMessage, {
                   autoClose: 1500,
                 });
                 target.reset();
+                setLoading(false);
               }
             });
         }
