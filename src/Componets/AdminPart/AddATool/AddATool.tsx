@@ -72,12 +72,12 @@ const AddATool = () => {
           setLoading(false);
         }
 
-        console.log("Image res", res);
+        
         const image = res?.data?.url;
 
         if (res.success) {
           toolInfo = { ...toolInfo, image };
-          console.log("toolInfo", toolInfo);
+          
           fetch("http://localhost:5000/create-tool", {
             method: "POST",
             headers: {

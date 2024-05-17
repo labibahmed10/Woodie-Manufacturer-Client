@@ -18,7 +18,7 @@ const CheckoutForm = ({ purchaseInfo }: { purchaseInfo: IPurchaseInfo }) => {
   const { totalCost, name, email, _id } = purchaseInfo;
   const price = totalCost;
 
-  console.log(price);
+  
 
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
@@ -31,7 +31,7 @@ const CheckoutForm = ({ purchaseInfo }: { purchaseInfo: IPurchaseInfo }) => {
     })
       .then((res) => res.json())
       .then(({ data }) => {
-        console.log(data);
+        
         if (data?.clientSecret) {
           setClientSecret(data.clientSecret);
         }

@@ -6,7 +6,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import { IPurchaseInfo } from "../../AdminPart/ManageToolsPayment/ManageToolsPayment";
 
-const stripePromise = loadStripe("pk_test_51L176eLJGq2V9Vbnyh02I7vKL5E6H5e19B2UidcrAcbDKPfq3Ue3nVLr4r9FMCxtMz8eB2HeEo7rtADhDhHpRuzm009Himf1Yb");
+const stripePromise = loadStripe(import.meta.env.VITE_APP_STRIPE_PUBLIC_KEY);
 
 const PaymentPage = () => {
   const [purchaseInfo, setPurchaseInfo] = useState<IPurchaseInfo>({});
@@ -24,8 +24,6 @@ const PaymentPage = () => {
         setPurchaseInfo(data);
       });
   }, [id]);
-
-  console.log(purchaseInfo);
 
   return (
     <section className="px-2 lg:px-0">
