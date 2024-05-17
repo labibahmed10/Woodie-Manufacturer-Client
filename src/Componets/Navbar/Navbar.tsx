@@ -63,7 +63,13 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
 
               <li>
                 {user ? (
-                  <button onClick={() => signOut(auth)} className="rounded-xl font-semibold">
+                  <button
+                    onClick={() => {
+                      signOut(auth);
+                      localStorage.removeItem("accessToken");
+                    }}
+                    className="rounded-xl font-semibold"
+                  >
                     Log out
                   </button>
                 ) : (
@@ -110,7 +116,13 @@ const Navbar = ({ children }: { children: React.ReactNode }) => {
 
           <li>
             {user ? (
-              <button onClick={() => signOut(auth)} className="rounded-xl font-semibold">
+              <button
+                onClick={() => {
+                  signOut(auth);
+                  localStorage.removeItem("accessToken");
+                }}
+                className="rounded-xl font-semibold"
+              >
                 Log out
               </button>
             ) : (
