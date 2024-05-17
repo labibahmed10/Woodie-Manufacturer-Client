@@ -29,7 +29,7 @@ const ManageToolsPayment = () => {
     isLoading,
     refetch,
   } = useQuery("allusers", () =>
-    fetch("http://localhost:5000/purchase-info", {
+    fetch("https://woodie-manufacturer-server.vercel.app/purchase-info", {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -42,7 +42,7 @@ const ManageToolsPayment = () => {
   }
 
   const handleUpdateStatus = (id: string) => {
-    fetch(`http://localhost:5000/purchase-info/${id}`, {
+    fetch(`https://woodie-manufacturer-server.vercel.app/purchase-info/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

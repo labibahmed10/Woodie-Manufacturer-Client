@@ -18,10 +18,8 @@ const CheckoutForm = ({ purchaseInfo }: { purchaseInfo: IPurchaseInfo }) => {
   const { totalCost, name, email, _id } = purchaseInfo;
   const price = totalCost;
 
-  
-
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://woodie-manufacturer-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "content-Type": "application/json",
@@ -31,7 +29,6 @@ const CheckoutForm = ({ purchaseInfo }: { purchaseInfo: IPurchaseInfo }) => {
     })
       .then((res) => res.json())
       .then(({ data }) => {
-        
         if (data?.clientSecret) {
           setClientSecret(data.clientSecret);
         }
@@ -86,7 +83,7 @@ const CheckoutForm = ({ purchaseInfo }: { purchaseInfo: IPurchaseInfo }) => {
         status: "Pending",
       };
 
-      fetch(`http://localhost:5000/purchase-paid/${_id}`, {
+      fetch(`https://woodie-manufacturer-server.vercel.app/purchase-paid/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

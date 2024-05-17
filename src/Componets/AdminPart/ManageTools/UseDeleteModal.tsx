@@ -4,7 +4,7 @@ const UseDeleteModal = ({ refetch, deleteTool, setDeleteTool }: any) => {
   const { name, _id } = deleteTool;
 
   const handleDeleteOrder = (id: string) => {
-    fetch(`http://localhost:5000/all-tools/${id}`, {
+    fetch(`https://woodie-manufacturer-server.vercel.app/all-tools/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

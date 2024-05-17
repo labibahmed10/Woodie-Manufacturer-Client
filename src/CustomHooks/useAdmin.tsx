@@ -11,7 +11,7 @@ const useAdmin = (user: User) => {
     const email = user?.email;
 
     if (email) {
-      fetch(`http://localhost:5000/admin?email=${email}`, {
+      fetch(`https://woodie-manufacturer-server.vercel.app/admin?email=${email}`, {
         method: "GET",
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,

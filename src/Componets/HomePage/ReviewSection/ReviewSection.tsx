@@ -18,7 +18,7 @@ const ReviewSection = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/all-reviews")
+    fetch("https://woodie-manufacturer-server.vercel.app/all-reviews")
       .then((res) => res.json())
       .then(({ data }) => setReviews(data));
   }, []);

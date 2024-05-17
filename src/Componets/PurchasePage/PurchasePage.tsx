@@ -17,7 +17,7 @@ const PurchasePage = () => {
     refetch,
     isLoading,
   } = useQuery(["singleTool", id], () =>
-    fetch(`http://localhost:5000/all-tools/${id}`)
+    fetch(`https://woodie-manufacturer-server.vercel.app/all-tools/${id}`)
       .then((res) => res.json())
       .then(({ data }) => data)
   );
@@ -75,7 +75,7 @@ const PurchasePage = () => {
 
     singleTool = { ...singleTool, avlQuan: updatedQuantity };
 
-    fetch(`http://localhost:5000/purchase-info`, {
+    fetch(`https://woodie-manufacturer-server.vercel.app/purchase-info`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -86,7 +86,7 @@ const PurchasePage = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data?.success) {
-          fetch(`http://localhost:5000/all-tools/${id}`, {
+          fetch(`https://woodie-manufacturer-server.vercel.app/all-tools/${id}`, {
             method: "PATCH",
             headers: {
               "content-type": "application/json",

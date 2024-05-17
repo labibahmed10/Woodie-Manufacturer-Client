@@ -19,7 +19,7 @@ const MyOrders = () => {
     isLoading,
     refetch,
   } = useQuery(["personsData", email], () =>
-    fetch(`http://localhost:5000/purchase-by-email?email=${email}`, {
+    fetch(`https://woodie-manufacturer-server.vercel.app/purchase-by-email?email=${email}`, {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

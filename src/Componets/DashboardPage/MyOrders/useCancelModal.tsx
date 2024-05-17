@@ -6,7 +6,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }: any) => {
     cancelOrder = { ...cancelOrder, avlQuan: newQuantity };
     const { prodID, avlQuan: availableQuantity } = cancelOrder;
 
-    fetch(`http://localhost:5000/cancel-order/${id}`, {
+    fetch(`https://woodie-manufacturer-server.vercel.app/cancel-order/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -18,7 +18,7 @@ const UseCancelModal = ({ cancelOrder, setCancelOrder, refetch }: any) => {
           // refetch();
           setCancelOrder(null);
           // here i need the id of that specific tool to update its quantity
-          fetch(`http://localhost:5000/all-tools/${prodID || _id}`, {
+          fetch(`https://woodie-manufacturer-server.vercel.app/all-tools/${prodID || _id}`, {
             method: "PATCH",
             headers: {
               "content-type": "application/json",

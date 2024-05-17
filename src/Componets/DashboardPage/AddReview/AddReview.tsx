@@ -28,7 +28,7 @@ const AddReview = () => {
       text,
     };
 
-    fetch(`http://localhost:5000/review-create`, {
+    fetch(`https://woodie-manufacturer-server.vercel.app/review-create`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

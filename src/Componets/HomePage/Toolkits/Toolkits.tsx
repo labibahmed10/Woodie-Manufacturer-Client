@@ -5,7 +5,7 @@ const Toolkits = () => {
   const [tools, setTools] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/all-tools", {
+    fetch("https://woodie-manufacturer-server.vercel.app/all-tools", {
       method: "GET",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

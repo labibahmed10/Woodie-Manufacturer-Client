@@ -72,13 +72,12 @@ const AddATool = () => {
           setLoading(false);
         }
 
-        
         const image = res?.data?.url;
 
         if (res.success) {
           toolInfo = { ...toolInfo, image };
-          
-          fetch("http://localhost:5000/create-tool", {
+
+          fetch("https://woodie-manufacturer-server.vercel.app/create-tool", {
             method: "POST",
             headers: {
               "content-type": "application/json",

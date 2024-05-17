@@ -30,7 +30,7 @@ const MakeAdmin = () => {
   } = useQuery({
     queryKey: ["all-users"],
     queryFn: async () => {
-      const data = await fetch("http://localhost:5000/all-users", {
+      const data = await fetch("https://woodie-manufacturer-server.vercel.app/all-users", {
         method: "GET",
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -43,7 +43,7 @@ const MakeAdmin = () => {
   const { mutate, data, isSuccess, isError } = useMutation({
     mutationKey: ["all-users"],
     mutationFn: async (email: string) => {
-      const data = await fetch(`http://localhost:5000/remove-user?email=${email}`, {
+      const data = await fetch(`https://woodie-manufacturer-server.vercel.app/remove-user?email=${email}`, {
         method: "DELETE",
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -70,7 +70,7 @@ const MakeAdmin = () => {
   }
 
   const makeAdmin = async (email: string) => {
-    const updated = await fetch(`http://localhost:5000/make-admin/?email=${email}`, {
+    const updated = await fetch(`https://woodie-manufacturer-server.vercel.app/make-admin/?email=${email}`, {
       method: "PATCH",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -84,7 +84,7 @@ const MakeAdmin = () => {
   };
 
   const removeAdmin = async (email: string) => {
-    const updated = await fetch(`http://localhost:5000/remove-admin/?email=${email}`, {
+    const updated = await fetch(`https://woodie-manufacturer-server.vercel.app/remove-admin/?email=${email}`, {
       method: "PATCH",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

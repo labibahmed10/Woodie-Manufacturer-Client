@@ -12,7 +12,7 @@ const UseToken = (user: UserCredential | undefined) => {
     const newUser = { name: user?.user?.displayName, email };
 
     if (email) {
-      fetch(`http://localhost:5000/user-info?email=${email}`, {
+      fetch(`https://woodie-manufacturer-server.vercel.app/user-info?email=${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
